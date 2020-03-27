@@ -32,6 +32,10 @@ public class Operacion extends V2lAudit {
 	private Float importe;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "metodo_id", nullable = false)
+	private MetodoPago metodo;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "estado_id", nullable = false)
 	private EstadoOperacion estado;
 
@@ -73,6 +77,14 @@ public class Operacion extends V2lAudit {
 
 	public void setEstado(EstadoOperacion estado) {
 		this.estado = estado;
+	}
+
+	public MetodoPago getMetodo() {
+		return metodo;
+	}
+
+	public void setMetodo(MetodoPago metodo) {
+		this.metodo = metodo;
 	}
 	
 }
