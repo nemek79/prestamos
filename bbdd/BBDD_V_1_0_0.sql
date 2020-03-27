@@ -53,10 +53,10 @@ CREATE TABLE t_clientes
 	comentario			VARCHAR(512) ,
 	telefono			VARCHAR(16)  ,
 	email				VARCHAR(128) ,
-	usu_alta			VARCHAR(32)  NOT NULL,
-	fecha_alta			DATE		 NOT NULL,
-	usu_modif			VARCHAR(32)  NOT NULL,
-	fecha_modif			DATE		 NOT NULL,	
+	created_by			VARCHAR(32)  NOT NULL,
+	created_at			DATE		 NOT NULL,
+	updated_by			VARCHAR(32)  NOT NULL,
+	updated_at			DATE		 NOT NULL,	
 	
 	PRIMARY KEY (id)
 
@@ -71,10 +71,10 @@ CREATE TABLE t_intermediarios
 	telefono			VARCHAR(16)  ,
 	email				VARCHAR(128) ,
 	porc_comision		DECIMAL(4,2) NOT NULL,
-	usu_alta			VARCHAR(32)  NOT NULL,
-	fecha_alta			DATE		 NOT NULL,
-	usu_modif			VARCHAR(32)  NOT NULL,
-	fecha_modif			DATE		 NOT NULL,	
+	created_by			VARCHAR(32)  NOT NULL,
+	created_at			DATE		 NOT NULL,
+	updated_by			VARCHAR(32)  NOT NULL,
+	updated_at			DATE		 NOT NULL,	
 	
 	PRIMARY KEY (id)
 
@@ -91,10 +91,10 @@ CREATE TABLE t_prestamos
 	cliente_id			INT(4)		 NOT NULL,
 	intermediario_id	INT(4)		 ,
 	estado_id			INT(2)		 NOT NULL,
-	usu_alta			VARCHAR(32)  NOT NULL,
-	fecha_alta			DATE		 NOT NULL,
-	usu_modif			VARCHAR(32)  NOT NULL,
-	fecha_modif			DATE		 NOT NULL,	
+	created_by			VARCHAR(32)  NOT NULL,
+	created_at			DATE		 NOT NULL,
+	updated_by			VARCHAR(32)  NOT NULL,
+	updated_at			DATE		 NOT NULL,
 	
 	PRIMARY KEY (id)
 
@@ -127,10 +127,10 @@ CREATE TABLE t_comentarios_prestamo
 	prestamo_id			INT(6)		 NOT NULL,
 	comentario			VARCHAR(512) NOT NULL,
 	fecha				DATE		 NOT NULL,
-	usu_alta			VARCHAR(32)  NOT NULL,
-	fecha_alta			DATE		 NOT NULL,
-	usu_modif			VARCHAR(32)  NOT NULL,
-	fecha_modif			DATE		 NOT NULL,	
+	created_by			VARCHAR(32)  NOT NULL,
+	created_at			DATE		 NOT NULL,
+	updated_by			VARCHAR(32)  NOT NULL,
+	updated_at			DATE		 NOT NULL,	
 	
 	PRIMARY KEY (id)
 
@@ -151,10 +151,10 @@ CREATE TABLE t_operaciones
 	importe				DECIMAL(8,2) NOT NULL,
 	metodo_id			INT(2)		 NOT NULL,
 	estado_id			INT(2)		 NOT NULL,
-	usu_alta			VARCHAR(32)  NOT NULL,
-	fecha_alta			DATE		 NOT NULL,
-	usu_modif			VARCHAR(32)  NOT NULL,
-	fecha_modif			DATE		 NOT NULL,	
+	created_by			VARCHAR(32)  NOT NULL,
+	created_at			DATE		 NOT NULL,
+	updated_by			VARCHAR(32)  NOT NULL,
+	updated_at			DATE		 NOT NULL,	
 	
 	PRIMARY KEY (id)
 
@@ -187,10 +187,10 @@ CREATE TABLE t_comentarios_operacion
 	operacion_id		INT(6)		 NOT NULL,
 	comentario			VARCHAR(512) NOT NULL,
 	fecha				DATE		 NOT NULL,
-	usu_alta			VARCHAR(32)  NOT NULL,
-	fecha_alta			DATE		 NOT NULL,
-	usu_modif			VARCHAR(32)  NOT NULL,
-	fecha_modif			DATE		 NOT NULL,	
+	created_by			VARCHAR(32)  NOT NULL,
+	created_at			DATE		 NOT NULL,
+	updated_by			VARCHAR(32)  NOT NULL,
+	updated_at			DATE		 NOT NULL,	
 	
 	PRIMARY KEY (id)
 

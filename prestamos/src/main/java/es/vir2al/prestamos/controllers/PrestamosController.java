@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class PrestamosController {
 
 	@GetMapping()
-	@PreAuthorize("hasRole('ADMIN')")
+	@PreAuthorize("hasRole('USER')")
 	public ResponseEntity<?> getAllPrestamos() {
 		
 
