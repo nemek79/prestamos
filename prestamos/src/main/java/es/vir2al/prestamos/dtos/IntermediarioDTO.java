@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import es.vir2al.models.Intermediario;
 
-public class IntermedarioDTO implements Serializable {
+public class IntermediarioDTO implements Serializable {
 
 	private static final long serialVersionUID = -6671076511431031981L;
 
@@ -16,11 +16,11 @@ public class IntermedarioDTO implements Serializable {
 	private String email;
 	private Float porcComision;
 	
-	public IntermedarioDTO() {
+	public IntermediarioDTO() {
 	
 	}
 
-	public IntermedarioDTO(Intermediario intermediario) {
+	public IntermediarioDTO(Intermediario intermediario) {
 		
 		this.id = intermediario.getId();
 		this.nombre = intermediario.getNombre();

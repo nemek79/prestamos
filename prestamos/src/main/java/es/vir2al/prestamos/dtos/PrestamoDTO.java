@@ -17,7 +17,7 @@ public class PrestamoDTO implements Serializable {
 	private Float importeInicial;
 	private Float interes;
 	private ClienteDTO cliente;
-	private IntermedarioDTO intermediario;
+	private IntermediarioDTO intermediario;
 	private EstadoPrestamoDTO estado;
 	
 	public PrestamoDTO() {
@@ -47,7 +47,7 @@ public class PrestamoDTO implements Serializable {
 		
 		if (prestamo.getIntermediario() != null) {
 			
-			this.intermediario = new IntermedarioDTO(prestamo.getIntermediario());
+			this.intermediario = new IntermediarioDTO(prestamo.getIntermediario());
 			
 		} else {
 			
@@ -169,11 +169,11 @@ public class PrestamoDTO implements Serializable {
 		this.cliente = cliente;
 	}
 
-	public IntermedarioDTO getIntermediario() {
+	public IntermediarioDTO getIntermediario() {
 		return intermediario;
 	}
 
-	public void setIntermediario(IntermedarioDTO intermediario) {
+	public void setIntermediario(IntermediarioDTO intermediario) {
 		this.intermediario = intermediario;
 	}
 
