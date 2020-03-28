@@ -54,9 +54,9 @@ CREATE TABLE t_clientes
 	telefono			VARCHAR(16)  ,
 	email				VARCHAR(128) ,
 	created_by			VARCHAR(32)  NOT NULL,
-	created_at			DATE		 NOT NULL,
+	created_at			DATETIME		 NOT NULL,
 	updated_by			VARCHAR(32)  NOT NULL,
-	updated_at			DATE		 NOT NULL,	
+	updated_at			DATETIME		 NOT NULL,	
 	
 	PRIMARY KEY (id)
 
@@ -72,9 +72,9 @@ CREATE TABLE t_intermediarios
 	email				VARCHAR(128) ,
 	porc_comision		DECIMAL(4,2) NOT NULL,
 	created_by			VARCHAR(32)  NOT NULL,
-	created_at			DATE		 NOT NULL,
+	created_at			DATETIME		 NOT NULL,
 	updated_by			VARCHAR(32)  NOT NULL,
-	updated_at			DATE		 NOT NULL,	
+	updated_at			DATETIME		 NOT NULL,	
 	
 	PRIMARY KEY (id)
 
@@ -92,9 +92,9 @@ CREATE TABLE t_prestamos
 	intermediario_id	INT(4)		 ,
 	estado_id			INT(2)		 NOT NULL,
 	created_by			VARCHAR(32)  NOT NULL,
-	created_at			DATE		 NOT NULL,
+	created_at			DATETIME		 NOT NULL,
 	updated_by			VARCHAR(32)  NOT NULL,
-	updated_at			DATE		 NOT NULL,
+	updated_at			DATETIME		 NOT NULL,
 	
 	PRIMARY KEY (id)
 
@@ -128,9 +128,9 @@ CREATE TABLE t_comentarios_prestamo
 	comentario			VARCHAR(512) NOT NULL,
 	fecha				DATE		 NOT NULL,
 	created_by			VARCHAR(32)  NOT NULL,
-	created_at			DATE		 NOT NULL,
+	created_at			DATETIME		 NOT NULL,
 	updated_by			VARCHAR(32)  NOT NULL,
-	updated_at			DATE		 NOT NULL,	
+	updated_at			DATETIME		 NOT NULL,	
 	
 	PRIMARY KEY (id)
 
@@ -152,9 +152,9 @@ CREATE TABLE t_operaciones
 	metodo_id			INT(2)		 NOT NULL,
 	estado_id			INT(2)		 NOT NULL,
 	created_by			VARCHAR(32)  NOT NULL,
-	created_at			DATE		 NOT NULL,
+	created_at			DATETIME		 NOT NULL,
 	updated_by			VARCHAR(32)  NOT NULL,
-	updated_at			DATE		 NOT NULL,	
+	updated_at			DATETIME		 NOT NULL,	
 	
 	PRIMARY KEY (id)
 
@@ -188,9 +188,9 @@ CREATE TABLE t_comentarios_operacion
 	comentario			VARCHAR(512) NOT NULL,
 	fecha				DATE		 NOT NULL,
 	created_by			VARCHAR(32)  NOT NULL,
-	created_at			DATE		 NOT NULL,
+	created_at			DATETIME		 NOT NULL,
 	updated_by			VARCHAR(32)  NOT NULL,
-	updated_at			DATE		 NOT NULL,	
+	updated_at			DATETIME		 NOT NULL,	
 	
 	PRIMARY KEY (id)
 
