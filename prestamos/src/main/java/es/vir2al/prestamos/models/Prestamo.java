@@ -45,6 +45,8 @@ public class Prestamo extends V2lAudit {
 	@JoinColumn(name = "intermediario_id", nullable = false)
 	private Intermediario intermediario;
 	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "estado_id", nullable = false)
 	private EstadoPrestamo estado;
 
 	public Long getId() {
