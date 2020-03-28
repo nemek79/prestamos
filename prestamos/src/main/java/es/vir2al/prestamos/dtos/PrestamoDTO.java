@@ -1,9 +1,9 @@
 package es.vir2al.prestamos.dtos;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import es.vir2al.prestamos.models.Prestamo;
+import es.vir2al.prestamos.utils.Conversiones;
 
 public class PrestamoDTO implements Serializable {
 
@@ -28,8 +28,8 @@ public class PrestamoDTO implements Serializable {
 		// TODO actualizar con las fechas del prestamo convertidas a String
 		
 		this.id = prestamo.getId();
-		this.fechaIni = "01/01/1900";
-		this.fechaFin = "01/01/1900";
+		this.fechaIni = Conversiones.dateFromBD(prestamo.getFechaIni());
+		this.fechaFin = Conversiones.dateFromBD(prestamo.getFechaFin());
 		this.importe = prestamo.getImporte();
 		this.importeInicial = prestamo.getImporteInicial();
 		this.interes = prestamo.getInteres();
@@ -73,8 +73,8 @@ public class PrestamoDTO implements Serializable {
 		Prestamo prestamoBD = new Prestamo();
 		
 		prestamoBD.setId(this.id);
-		prestamoBD.setFechaIni(new Date());
-		prestamoBD.setFechaFin(new Date());
+		prestamoBD.setFechaIni(Conversiones.dateToBD(this.fechaIni));
+		prestamoBD.setFechaFin(Conversiones.dateToBD(this.fechaFin));
 		prestamoBD.setImporte(this.importe);
 		prestamoBD.setImporteInicial(this.importeInicial);
 		prestamoBD.setInteres(this.interes);
@@ -108,6 +108,8 @@ public class PrestamoDTO implements Serializable {
 			throw new Exception("El estado no puede ser nulo");
 			
 		}
+		
+		System.out.println(prestamoBD.toString());
 		
 		return prestamoBD;
 	}
