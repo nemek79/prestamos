@@ -13,7 +13,7 @@ public class TestController {
 
 	
 	@GetMapping()
-	@PreAuthorize("hasRole('USER')")
+	@PreAuthorize("hasRole('ADMIN')")
 	public ResponseEntity<?> test() {
 		
 		return new ResponseEntity<>("OK",HttpStatus.OK);

@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.Date;
 
 import es.vir2al.prestamos.models.ComentarioOperacion;
-import es.vir2al.prestamos.models.Operacion;
 
 public class ComentarioOperacionDTO implements Serializable {
 
