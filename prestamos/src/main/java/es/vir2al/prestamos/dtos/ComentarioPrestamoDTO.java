@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 import es.vir2al.prestamos.models.ComentarioPrestamo;
+import es.vir2al.prestamos.utils.Conversiones;
 
 public class ComentarioPrestamoDTO implements Serializable {
 
@@ -20,28 +21,24 @@ public class ComentarioPrestamoDTO implements Serializable {
 	
 	public ComentarioPrestamoDTO(ComentarioPrestamo comentario) throws Exception {
 		
-		// TODO obtener la fecha desde el comentario convertida a string
-		
 		this.id = comentario.getId();
 		
 		// el prestamos es obligatorio
 		this.prestamo = new PrestamoDTO(comentario.getPrestamo());
 		
 		this.comentario = comentario.getComentario();
-		this.fecha = "01/01/1900";
+		this.fecha = Conversiones.dateFromBD(comentario.getFecha());
 		
 	}
 	
 	public ComentarioPrestamo asComentarioPrestamo() throws Exception {
-		
-		// TODO revisar la fecha ya que hay que meter la fecha convertida del prestamo
 		
 		ComentarioPrestamo comentarioBD = new ComentarioPrestamo();
 		
 		comentarioBD.setId(this.id);
 		comentarioBD.setPrestamo(this.prestamo.asPrestamo());
 		comentarioBD.setComentario(this.comentario);
-		comentarioBD.setFecha(new Date()); // REVISAR!!
+		comentarioBD.setFecha(Conversiones.dateToBD(this.fecha));
 		
 		return comentarioBD;
 	}

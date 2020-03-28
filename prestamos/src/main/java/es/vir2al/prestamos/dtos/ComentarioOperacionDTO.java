@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 import es.vir2al.prestamos.models.ComentarioOperacion;
+import es.vir2al.prestamos.utils.Conversiones;
 
 public class ComentarioOperacionDTO implements Serializable {
 
@@ -21,11 +22,9 @@ public class ComentarioOperacionDTO implements Serializable {
 	
 	public ComentarioOperacionDTO(ComentarioOperacion comentario) throws Exception {
 		
-		// TODO controlar las fechas
-		
 		this.id = comentario.getId();
 		this.comentario = comentario.getComentario();
-		this.fecha = "01/01/1900";
+		this.fecha = Conversiones.dateFromBD(comentario.getFecha());
 		
 		this.operacion = new OperacionDTO(comentario.getOperacion());
 		
@@ -33,13 +32,11 @@ public class ComentarioOperacionDTO implements Serializable {
 	
 	public ComentarioOperacion asComentarioOperacion() throws Exception {
 		
-		// TODO revisar fechas
-		
 		ComentarioOperacion comentario = new ComentarioOperacion();
 		
 		comentario.setId(this.id);
 		comentario.setComentario(this.comentario);
-		comentario.setFecha(new Date()); // revisar este campo
+		comentario.setFecha(Conversiones.dateToBD(this.fecha));
 		
 		comentario.setOperacion(this.operacion.asOperacion());
 		

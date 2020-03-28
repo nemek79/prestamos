@@ -25,8 +25,6 @@ public class PrestamoDTO implements Serializable {
 
 	public PrestamoDTO(Prestamo prestamo) throws Exception {
 		
-		// TODO actualizar con las fechas del prestamo convertidas a String
-		
 		this.id = prestamo.getId();
 		this.fechaIni = Conversiones.dateFromBD(prestamo.getFechaIni());
 		this.fechaFin = Conversiones.dateFromBD(prestamo.getFechaFin());
@@ -67,8 +65,6 @@ public class PrestamoDTO implements Serializable {
 	}
 	
 	public Prestamo asPrestamo() throws Exception {
-		
-		// TODO actualizar las fechas convertidas a formato fecha
 		
 		Prestamo prestamoBD = new Prestamo();
 		

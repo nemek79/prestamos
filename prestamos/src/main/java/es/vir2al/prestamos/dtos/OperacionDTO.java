@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 import es.vir2al.prestamos.models.Operacion;
+import es.vir2al.prestamos.utils.Conversiones;
 
 public class OperacionDTO implements Serializable {
 
@@ -22,11 +23,9 @@ public class OperacionDTO implements Serializable {
 
 	public OperacionDTO(Operacion operacion) throws Exception {
 
-		// TODO Revisar fechas
-		
 		this.id = operacion.getId();
 		this.prestamo = new PrestamoDTO(operacion.getPrestamo());
-		this.fecha = "01/01/1900";
+		this.fecha = Conversiones.dateFromBD(operacion.getFecha());
 		this.importe = operacion.getImporte();
 		this.metodo = new MetodoPagoDTO(operacion.getMetodo());
 		this.estado = new EstadoOperacionDTO(operacion.getEstado());
@@ -35,13 +34,11 @@ public class OperacionDTO implements Serializable {
 	
 	public Operacion asOperacion() throws Exception {
 		
-		// TODO Revisar fechas
-		
 		Operacion operacionBD = new Operacion();
 		
 		operacionBD.setId(this.id);
 		operacionBD.setPrestamo(this.prestamo.asPrestamo());
-		operacionBD.setFecha(new Date()); // revisar este campo
+		operacionBD.setFecha(Conversiones.dateToBD(this.fecha));
 		operacionBD.setImporte(this.importe);
 		operacionBD.setMetodo(this.metodo.asMetodoPago());
 		operacionBD.setEstado(this.estado.asEstadoOperacion());
