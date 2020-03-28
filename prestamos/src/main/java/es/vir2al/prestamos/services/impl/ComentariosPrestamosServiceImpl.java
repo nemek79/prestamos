@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import es.vir2al.models.ComentarioPrestamo;
@@ -12,6 +13,7 @@ import es.vir2al.prestamos.dtos.PrestamoDTO;
 import es.vir2al.prestamos.repositories.ComentariosPrestamoDAO;
 import es.vir2al.prestamos.services.ComentariosPrestamoService;
 
+@Service
 public class ComentariosPrestamosServiceImpl implements ComentariosPrestamoService {
 
 	@Autowired
