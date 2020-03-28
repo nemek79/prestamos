@@ -3,8 +3,8 @@ package es.vir2al.prestamos.dtos;
 import java.io.Serializable;
 import java.util.Date;
 
-import es.vir2al.models.ComentarioOperacion;
-import es.vir2al.models.Operacion;
+import es.vir2al.prestamos.models.ComentarioOperacion;
+import es.vir2al.prestamos.models.Operacion;
 
 public class ComentarioOperacionDTO implements Serializable {
 

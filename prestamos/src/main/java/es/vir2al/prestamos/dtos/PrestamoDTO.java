@@ -3,8 +3,8 @@ package es.vir2al.prestamos.dtos;
 import java.io.Serializable;
 import java.util.Date;
 
-import es.vir2al.models.EstadoPrestamo;
-import es.vir2al.models.Prestamo;
+import es.vir2al.prestamos.models.EstadoPrestamo;
+import es.vir2al.prestamos.models.Prestamo;
 
 public class PrestamoDTO implements Serializable {
 

@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import es.vir2al.models.Prestamo;
 import es.vir2al.prestamos.dtos.PrestamoDTO;
+import es.vir2al.prestamos.models.Prestamo;
 import es.vir2al.prestamos.repositories.PrestamosDAO;
 import es.vir2al.prestamos.services.PrestamosService;
 

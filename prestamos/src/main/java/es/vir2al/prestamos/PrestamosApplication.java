@@ -4,8 +4,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
-@ComponentScan({"es.vir2al.fwk","es.vir2al.prestamos"})
 @SpringBootApplication
+@ComponentScan({"es.vir2al.fwk","es.vir2al.prestamos"})
 public class PrestamosApplication {
 
 	public static void main(String[] args) {

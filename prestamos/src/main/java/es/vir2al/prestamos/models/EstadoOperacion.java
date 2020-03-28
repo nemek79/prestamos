@@ -1,4 +1,4 @@
-package es.vir2al.models;
+package es.vir2al.prestamos.models;
 
 import java.io.Serializable;
 
@@ -9,10 +9,10 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "t_estados_prestamo")
-public class EstadoPrestamo implements Serializable {
+@Table(name = "t_estados_operaciones")
+public class EstadoOperacion implements Serializable {
 
-	private static final long serialVersionUID = -2799204471789318712L;
+	private static final long serialVersionUID = -3724092779119748988L;
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

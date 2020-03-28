@@ -1,6 +1,5 @@
-package es.vir2al.models;
+package es.vir2al.prestamos.models;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,11 +9,11 @@ import javax.persistence.Table;
 import es.vir2al.fwk.models.V2lAudit;
 
 @Entity
-@Table(name = "t_intermediarios")
-public class Intermediario extends V2lAudit {
+@Table(name = "t_clientes")
+public class Cliente extends V2lAudit {
 
-	private static final long serialVersionUID = -5013019689049275578L;
-
+	private static final long serialVersionUID = -4684539094893786734L;
+	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -28,9 +27,6 @@ public class Intermediario extends V2lAudit {
 	private String telefono;
 	
 	private String email;
-	
-	@Column(name="porc_comision")
-	private Float porcComision;
 
 	public Long getId() {
 		return id;
@@ -78,14 +74,6 @@ public class Intermediario extends V2lAudit {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	public Float getPorcComision() {
-		return porcComision;
-	}
-
-	public void setPorcComision(Float porcComision) {
-		this.porcComision = porcComision;
 	}
 	
 }

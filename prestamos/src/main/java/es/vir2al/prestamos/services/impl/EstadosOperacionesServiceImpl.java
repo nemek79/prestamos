@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import es.vir2al.models.EstadoOperacion;
 import es.vir2al.prestamos.dtos.EstadoOperacionDTO;
+import es.vir2al.prestamos.models.EstadoOperacion;
 import es.vir2al.prestamos.repositories.EstadosOperacionesDAO;
 import es.vir2al.prestamos.services.EstadosOperacionesService;
 

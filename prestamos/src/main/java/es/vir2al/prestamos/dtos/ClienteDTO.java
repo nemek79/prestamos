@@ -2,7 +2,7 @@ package es.vir2al.prestamos.dtos;
 
 import java.io.Serializable;
 
-import es.vir2al.models.Cliente;
+import es.vir2al.prestamos.models.Cliente;
 
 public class ClienteDTO implements Serializable {
 

@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import es.vir2al.models.Intermediario;
 import es.vir2al.prestamos.dtos.IntermediarioDTO;
+import es.vir2al.prestamos.models.Intermediario;
 import es.vir2al.prestamos.repositories.IntermediariosDAO;
 import es.vir2al.prestamos.services.IntermediariosService;
 

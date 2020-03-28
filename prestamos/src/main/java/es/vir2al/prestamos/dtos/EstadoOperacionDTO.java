@@ -2,7 +2,7 @@ package es.vir2al.prestamos.dtos;
 
 import java.io.Serializable;
 
-import es.vir2al.models.EstadoOperacion;
+import es.vir2al.prestamos.models.EstadoOperacion;
 
 public class EstadoOperacionDTO implements Serializable {
 

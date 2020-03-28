@@ -1,4 +1,4 @@
-package es.vir2al.models;
+package es.vir2al.prestamos.models;
 
 import java.util.Date;
 

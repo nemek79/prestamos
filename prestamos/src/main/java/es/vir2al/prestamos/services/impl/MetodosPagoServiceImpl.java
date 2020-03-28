@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import es.vir2al.models.MetodoPago;
 import es.vir2al.prestamos.dtos.MetodoPagoDTO;
+import es.vir2al.prestamos.models.MetodoPago;
 import es.vir2al.prestamos.repositories.MetodosPagoDAO;
 import es.vir2al.prestamos.services.MetodosPagoService;
 

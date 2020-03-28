@@ -2,7 +2,7 @@ package es.vir2al.prestamos.dtos;
 
 import java.io.Serializable;
 
-import es.vir2al.models.Intermediario;
+import es.vir2al.prestamos.models.Intermediario;
 
 public class IntermediarioDTO implements Serializable {
 

@@ -3,7 +3,7 @@ package es.vir2al.prestamos.dtos;
 import java.io.Serializable;
 import java.util.Date;
 
-import es.vir2al.models.ComentarioPrestamo;
+import es.vir2al.prestamos.models.ComentarioPrestamo;
 
 public class ComentarioPrestamoDTO implements Serializable {
 

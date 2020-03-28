@@ -7,9 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import es.vir2al.models.ComentarioOperacion;
 import es.vir2al.prestamos.dtos.ComentarioOperacionDTO;
 import es.vir2al.prestamos.dtos.OperacionDTO;
+import es.vir2al.prestamos.models.ComentarioOperacion;
 import es.vir2al.prestamos.repositories.ComentariosOperacionDAO;
 import es.vir2al.prestamos.services.ComentariosOperacionService;
 
