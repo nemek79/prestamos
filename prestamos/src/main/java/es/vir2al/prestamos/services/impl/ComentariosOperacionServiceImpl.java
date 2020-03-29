@@ -34,11 +34,10 @@ public class ComentariosOperacionServiceImpl implements ComentariosOperacionServ
 	@Transactional(readOnly=true)
 	public List<ComentarioOperacionDTO> getByOperacion(OperacionDTO operacion) throws Exception {
 		
-		// TODO crear nuevo metodo en el dao para obtener los comentarios asociados a la operacion 
-		
+
 		List<ComentarioOperacionDTO> lstComentarios = new ArrayList<ComentarioOperacionDTO>();
 		
-		Iterable<ComentarioOperacion> it = this.comentariosOperacionDAO.findAll();
+		Iterable<ComentarioOperacion> it = this.comentariosOperacionDAO.findByOperacion(operacion.asOperacion());
 		
 		for (ComentarioOperacion comentario : it) {
 			
