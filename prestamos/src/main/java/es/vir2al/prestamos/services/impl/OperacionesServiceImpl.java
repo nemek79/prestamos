@@ -36,8 +36,7 @@ public class OperacionesServiceImpl implements OperacionesService {
 
 		List<OperacionDTO> lstOperaciones = new ArrayList<OperacionDTO>();
 		
-		Iterable<Operacion> it = this.operacionesDAO.findAll(); // TODO cambiar por un nuevo método en el DAO para obtener las oepraciones
-																// 		asociadas al pretamo
+		Iterable<Operacion> it = this.operacionesDAO.findByPrestamo(prestamo.asPrestamo());
 		
 		for (Operacion operacion : it) {
 			
