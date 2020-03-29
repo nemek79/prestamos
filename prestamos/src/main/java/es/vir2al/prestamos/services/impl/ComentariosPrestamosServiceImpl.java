@@ -34,10 +34,8 @@ public class ComentariosPrestamosServiceImpl implements ComentariosPrestamoServi
 	@Transactional(readOnly=true)
 	public List<ComentarioPrestamoDTO> getByPrestamo(PrestamoDTO prestamo) throws Exception {
 		
-		// TODO crear el método del dao para buscar por prestamo
-		
 		List<ComentarioPrestamoDTO> lstComentarios = new ArrayList<ComentarioPrestamoDTO>();
-		Iterable<ComentarioPrestamo> it = this.comentariosPrestamoDAO.findAll(); // TODO aquí hay que buscar sólo los del prestamo
+		Iterable<ComentarioPrestamo> it = this.comentariosPrestamoDAO.findByPrestamo(prestamo.asPrestamo());
 		
 		for (ComentarioPrestamo comentario : it) {
 			
