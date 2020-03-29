@@ -226,6 +226,9 @@ INSERT INTO t_estados_operaciones
 VALUES (null, 'Cancelada');
 
 INSERT INTO t_estados_prestamo
+VALUES (null, 'Pendiente');
+
+INSERT INTO t_estados_prestamo
 VALUES (null, 'En curso');
 
 INSERT INTO t_estados_prestamo
