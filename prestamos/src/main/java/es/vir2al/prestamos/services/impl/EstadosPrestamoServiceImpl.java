@@ -44,4 +44,19 @@ public class EstadosPrestamoServiceImpl implements EstadosPrestamoService {
 		return lstEstados;
 	}
 
+	@Override
+	@Transactional(readOnly=true)
+	public List<EstadoPrestamoDTO> getAbiertos() throws Exception {
+		
+		List<EstadoPrestamoDTO> lstEstados = new ArrayList<EstadoPrestamoDTO>();
+		
+		Iterable<EstadoPrestamo> it = this.estadosPrestamoDAO.findAll();
+		
+		for (EstadoPrestamo estado : it) {
+			if (estado.getDescripcion() != "PAGADO") lstEstados.add(new EstadoPrestamoDTO(estado));
+		}
+		
+		return lstEstados;
+	}
+
 }

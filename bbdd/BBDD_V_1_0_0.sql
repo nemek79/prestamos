@@ -234,6 +234,3 @@ VALUES (null, 'En curso');
 INSERT INTO t_estados_prestamo
 VALUES (null, 'Pagado');
 
-INSERT INTO t_estados_prestamo
-VALUES (null, 'Pdte. pago intereses');
-

@@ -2,6 +2,7 @@ package es.vir2al.prestamos.services;
 
 import java.util.List;
 
+import es.vir2al.prestamos.dtos.EstadoPrestamoDTO;
 import es.vir2al.prestamos.dtos.PrestamoDTO;
 
 public interface PrestamosService {
@@ -11,5 +12,10 @@ public interface PrestamosService {
 	public PrestamoDTO save(PrestamoDTO prestamo) throws Exception;
 	public void delete(PrestamoDTO prestamo) throws Exception;
 	public void delete(Long id) throws Exception;
+	
+	/**
+	 * Obtiene la lista de prestamos que no están cerrados
+	 */
+	public List<PrestamoDTO> getByEstados(List<EstadoPrestamoDTO> lstEstados) throws Exception;
 	
 }

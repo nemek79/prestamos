@@ -9,10 +9,15 @@ public class InfoResponse implements Serializable {
 	private Integer total;
 	private Integer index;
 	private Integer offset;
-	private Iterable<?> Data;
+	private Iterable<?> data;
 	
 	public InfoResponse() {
 
+		this.total = 0;
+		this.index = 0;
+		this.offset = 0;
+		this.data = null;
+		
 	}
 
 	public InfoResponse(Integer total, Integer index, Integer offset, Iterable<Object> data) {
@@ -20,7 +25,7 @@ public class InfoResponse implements Serializable {
 		this.total = total;
 		this.index = index;
 		this.offset = offset;
-		Data = data;
+		this.data = data;
 
 	}
 
@@ -49,11 +54,11 @@ public class InfoResponse implements Serializable {
 	}
 
 	public Iterable<?> getData() {
-		return Data;
+		return data;
 	}
 
 	public void setData(Iterable<?> data) {
-		Data = data;
+		this.data = data;
 	}
 
 }

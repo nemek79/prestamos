@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import es.vir2al.prestamos.dtos.EstadoPrestamoDTO;
 import es.vir2al.prestamos.dtos.PrestamoDTO;
+import es.vir2al.prestamos.models.EstadoPrestamo;
 import es.vir2al.prestamos.models.Prestamo;
 import es.vir2al.prestamos.repositories.PrestamosDAO;
 import es.vir2al.prestamos.services.PrestamosService;
@@ -17,6 +19,7 @@ public class PrestamosServiceImpl implements PrestamosService {
 
 	@Autowired
 	private PrestamosDAO prestamosDAO;
+	
 	
 	@Override
 	@Transactional(readOnly=true)
@@ -69,6 +72,28 @@ public class PrestamosServiceImpl implements PrestamosService {
 
 		this.prestamosDAO.deleteById(id);
 		
+	}
+
+	@Override
+	@Transactional(readOnly=true)
+	public List<PrestamoDTO> getByEstados(List<EstadoPrestamoDTO> lstEstados) throws Exception {
+		
+		List<EstadoPrestamo> lstEstadosBD = new ArrayList<EstadoPrestamo>();
+		List<PrestamoDTO> lstPrestamos = new ArrayList<PrestamoDTO>();
+		
+		for (EstadoPrestamoDTO estado : lstEstados) {
+			lstEstadosBD.add(estado.asEstadoPrestamo());
+		}
+		
+		List<Prestamo> lstPrestamosBD = this.prestamosDAO.findByEstadoIn(lstEstadosBD);
+		
+		for (Prestamo prestamo : lstPrestamosBD) {
+			
+			lstPrestamos.add(new PrestamoDTO(prestamo));
+			
+		}
+		
+		return lstPrestamos;
 	}
 	
 }

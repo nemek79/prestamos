@@ -9,4 +9,6 @@ public interface EstadosPrestamoService {
 	public EstadoPrestamoDTO getById(Long id) throws Exception;
 	public List<EstadoPrestamoDTO> getAll() throws Exception;
 	
+	public List<EstadoPrestamoDTO> getAbiertos() throws Exception;
+	
 }
