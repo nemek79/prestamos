@@ -105,8 +105,6 @@ public class PrestamoDTO implements Serializable {
 			
 		}
 		
-		System.out.println(prestamoBD.toString());
-		
 		return prestamoBD;
 	}
 
