@@ -10,6 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 // COMPONENTS
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { HeaderComponent } from './components/header/header.component';
 
 // SERVICES
 import { PrestamosService } from './services/prestamos.service';
@@ -20,7 +21,8 @@ import { TokenInterceptor } from './interceptors/TokenInterceptor';
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent
+    DashboardComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
