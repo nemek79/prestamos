@@ -25,6 +25,7 @@ import es.vir2al.prestamos.services.IntermediariosService;
 import es.vir2al.prestamos.services.MetodosPagoService;
 import es.vir2al.prestamos.services.OperacionesService;
 import es.vir2al.prestamos.services.PrestamosService;
+import es.vir2al.prestamos.utils.Conversiones;
 
 @RestController
 @RequestMapping("/api/test")
@@ -131,12 +132,12 @@ public class TestController {
 		cliente = this.clientesSRV.getById(1L);
 		estado = this.estadosPrestamoSRV.getById(1L);
 		
-		prestamo.setImporte(1000f);
-		prestamo.setInteres(6f);
+		prestamo.setImporte(Conversiones.formatImporte(1000f));
+		prestamo.setInteres(Conversiones.formatImporte(6f));
 		prestamo.setIntermediario(intermediario);
 		prestamo.setCliente(cliente);
 		prestamo.setEstado(estado);
-		prestamo.setImporteInicial(1000f);
+		prestamo.setImporteInicial(Conversiones.formatImporte(1000f));
 		prestamo.setFechaIni("07/01/2020");
 		prestamo.setFechaFin("14/06/2020");
 		
