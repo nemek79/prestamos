@@ -34,8 +34,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     	UserDTO user = new UserDTO();
     	String jwt = this.getJwtFromRequest(request);
     	
-    	System.out.println("JWT: "+jwt);
-    	
     	try {
 	    	if (StringUtils.hasText(jwt) && tokenProvider.validateToken(jwt)) {
 	    		

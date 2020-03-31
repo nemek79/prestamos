@@ -18,6 +18,7 @@ public class PrestamoDTO implements Serializable {
 	private ClienteDTO cliente;
 	private IntermediarioDTO intermediario;
 	private EstadoPrestamoDTO estado;
+	private String mensualidad; // campo calculado que no está en bbdd
 	
 	public PrestamoDTO() {
 		
@@ -61,6 +62,17 @@ public class PrestamoDTO implements Serializable {
 			throw new Exception("El estado no es correcto.");
 			
 		}
+		
+		// calcular la mensualidad
+		Float mensualidad = 0f;
+		
+		mensualidad = prestamo.getImporte() * prestamo.getInteres() / 100;
+		
+		if (intermediario != null && intermediario.getPorcComision() != null && intermediario.getPorcComision() > 0) {
+			mensualidad -= mensualidad * intermediario.getPorcComision() / 100;
+		}
+		
+		this.mensualidad = Float.toString(mensualidad); // TODO convertir a una cadena formateada con una función general
 		
 	}
 	
@@ -179,5 +191,9 @@ public class PrestamoDTO implements Serializable {
 	public void setEstado(EstadoPrestamoDTO estado) {
 		this.estado = estado;
 	}
-	
+
+	public String getMensualidad() {
+		return mensualidad;
+	}
+
 }
