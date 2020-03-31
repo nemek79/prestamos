@@ -13,5 +13,6 @@ export class Prestamo {
   cliente: Cliente;
   intermediario: Intermediario;
   estado: EstadoPrestamo;
+  mensualidad: string;
 
 }

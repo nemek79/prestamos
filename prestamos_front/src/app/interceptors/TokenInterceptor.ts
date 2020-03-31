@@ -12,8 +12,6 @@ export class TokenInterceptor implements HttpInterceptor {
 
     const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1ODU3MjE1OTgsInVzZXJfbmFtZSI6ImFkbWluIiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9BRE1JTiIsIlJPTEVfVVNFUiJdLCJqdGkiOiJjODUxYTY5MC1iZGJlLTRhZGYtYjMzMS04MTBjMzg0OWQwZGMiLCJjbGllbnRfaWQiOiJQUkVTVEFNT1MiLCJzY29wZSI6WyJyZWFkIiwid3JpdGUiLCJ0cnVzdCJdfQ.t22tZSMk4xTPPRpVQUv4Ux8_JOj7V8WoxZk1yqFYyX8';
 
-    console.log('Adding token... ' + token);
-
     if (token != null) {
 
       const authReq = req.clone({
