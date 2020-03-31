@@ -72,7 +72,7 @@ public class PrestamoDTO implements Serializable {
 			mensualidad -= mensualidad * intermediario.getPorcComision() / 100;
 		}
 		
-		this.mensualidad = Float.toString(mensualidad); // TODO convertir a una cadena formateada con una función general
+		this.mensualidad = Conversiones.formatImporte(mensualidad);
 		
 	}
 	
