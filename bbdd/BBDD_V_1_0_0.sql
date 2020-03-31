@@ -44,7 +44,6 @@ CREATE TABLE t_estados_prestamo
 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-
 CREATE TABLE t_clientes
 (
 	id					INT(4)		 NOT NULL AUTO_INCREMENT,
@@ -203,6 +202,23 @@ ALTER TABLE t_comentarios_operacion
 		ON DELETE NO ACTION
 		ON UPDATE NO ACTION;
 		
+CREATE TABLE t_mensualidades
+(
+	id						INT(8)			NOT NULL AUTO_INCREMENT,
+	prestamo_id		INT(6)			NOT NULL 	,
+	mes						INT(2)			NOT NULL  ,
+	year					INT(4)			NOT NULL  ,
+
+	PRIMARY KEY (id)
+
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+ALTER TABLE t_mensualidades
+	ADD CONSTRAINT fk_mensualidades_prestamoId
+	FOREIGN KEY (prestamo_id)
+		REFERENCES t_prestamos(id)
+		ON DELETE NO ACTION
+		ON UPDATE NO ACTION;
 	
 INSERT INTO t_metodos_pago
 VALUES (null,'En mano');
