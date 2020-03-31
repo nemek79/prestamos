@@ -12,9 +12,9 @@ public class PrestamoDTO implements Serializable {
 	private Long id;
 	private String fechaIni;
 	private String fechaFin;
-	private Float importe;
-	private Float importeInicial;
-	private Float interes;
+	private String importe;
+	private String importeInicial;
+	private String interes;
 	private ClienteDTO cliente;
 	private IntermediarioDTO intermediario;
 	private EstadoPrestamoDTO estado;
@@ -29,9 +29,9 @@ public class PrestamoDTO implements Serializable {
 		this.id = prestamo.getId();
 		this.fechaIni = Conversiones.dateFromBD(prestamo.getFechaIni());
 		this.fechaFin = Conversiones.dateFromBD(prestamo.getFechaFin());
-		this.importe = prestamo.getImporte();
-		this.importeInicial = prestamo.getImporteInicial();
-		this.interes = prestamo.getInteres();
+		this.importe = Conversiones.formatImporte(prestamo.getImporte());
+		this.importeInicial = Conversiones.formatImporte(prestamo.getImporteInicial());
+		this.interes = Conversiones.formatImporte(prestamo.getInteres());
 		
 		if (prestamo.getCliente() != null) {
 			
@@ -83,9 +83,9 @@ public class PrestamoDTO implements Serializable {
 		prestamoBD.setId(this.id);
 		prestamoBD.setFechaIni(Conversiones.dateToBD(this.fechaIni));
 		prestamoBD.setFechaFin(Conversiones.dateToBD(this.fechaFin));
-		prestamoBD.setImporte(this.importe);
-		prestamoBD.setImporteInicial(this.importeInicial);
-		prestamoBD.setInteres(this.interes);
+		prestamoBD.setImporte(Float.valueOf(this.importe));
+		prestamoBD.setImporteInicial(Float.valueOf(this.importeInicial));
+		prestamoBD.setInteres(Float.valueOf(this.interes));
 		
 		if (this.cliente != null) {
 			
@@ -144,27 +144,27 @@ public class PrestamoDTO implements Serializable {
 		this.fechaFin = fechaFin;
 	}
 
-	public Float getImporte() {
+	public String getImporte() {
 		return importe;
 	}
 
-	public void setImporte(Float importe) {
+	public void setImporte(String importe) {
 		this.importe = importe;
 	}
 
-	public Float getImporteInicial() {
+	public String getImporteInicial() {
 		return importeInicial;
 	}
 
-	public void setImporteInicial(Float importeInicial) {
+	public void setImporteInicial(String importeInicial) {
 		this.importeInicial = importeInicial;
 	}
 
-	public Float getInteres() {
+	public String getInteres() {
 		return interes;
 	}
 
-	public void setInteres(Float interes) {
+	public void setInteres(String interes) {
 		this.interes = interes;
 	}
 
