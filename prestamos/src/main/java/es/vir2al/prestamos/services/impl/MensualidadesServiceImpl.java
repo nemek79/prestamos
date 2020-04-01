@@ -65,12 +65,12 @@ public class MensualidadesServiceImpl implements MensualidadesService {
 		
 		// obtener la fecha limite de pago del mes y año actual
 		fecha = this.getFechaPagoActual(fechaIn, mesActual, yearActual);
-		
+
 		// Estamos en el mes y año correctos, comprobar si la fecha actual es anterior a la de pago
 		Date hoy = new Date();
 		Date dateFecha = Conversiones.dateToBD(fecha);
 		
-		if (hoy.compareTo(dateFecha) <= 0) {
+		if (hoy.compareTo(dateFecha) > 0) {
 			return false;
 		} else {
 			return true;
