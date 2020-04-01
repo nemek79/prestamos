@@ -6,10 +6,14 @@
       <h6 class="card-subtitle mb-2 text-muted">{{prestamo.cliente.nombre}} {{prestamo.cliente.apellidos}}</h6>
       <h6 class="card-subtitle mb-2 text-muted">{{prestamo.intermediario?.nombre}} {{prestamo.intermediario?.apellidos}}</h6>
         <dl class="row">
+          <dt class="col-6">Fecha inicio</dt>
+          <dd class="col-5 text-right">{{prestamo.fechaIni}}</dd>
           <dt class="col-6">Importe</dt>
           <dd class="col-5 text-right">{{prestamo.importe}}</dd>
           <dt class="col-6">Mensualidad</dt>
           <dd class="col-5 text-right">{{prestamo.mensualidad}}</dd>
+          <dt class="col-6">Estado mes</dt>
+          <dd class="col-5 text-right"><span class="badge badge-{{prestamo.estadoMensualidad.color}}">{{prestamo.estadoMensualidad.descripcion}}</span></dd>
         </dl>
     </div>
   </div>
