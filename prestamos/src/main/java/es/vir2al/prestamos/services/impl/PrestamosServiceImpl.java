@@ -7,18 +7,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import es.vir2al.prestamos.dtos.EstadoMensualidadDTO;
 import es.vir2al.prestamos.dtos.EstadoPrestamoDTO;
 import es.vir2al.prestamos.dtos.PrestamoDTO;
 import es.vir2al.prestamos.models.EstadoPrestamo;
 import es.vir2al.prestamos.models.Prestamo;
+import es.vir2al.prestamos.repositories.MensualidadesDAO;
 import es.vir2al.prestamos.repositories.PrestamosDAO;
+import es.vir2al.prestamos.services.MensualidadesService;
 import es.vir2al.prestamos.services.PrestamosService;
+import es.vir2al.prestamos.utils.Utilidades;
 
 @Service
 public class PrestamosServiceImpl implements PrestamosService {
 
 	@Autowired
 	private PrestamosDAO prestamosDAO;
+	
+	@Autowired
+	private MensualidadesService mensualidadesSRV;
 	
 	
 	@Override
@@ -78,6 +85,8 @@ public class PrestamosServiceImpl implements PrestamosService {
 	@Transactional(readOnly=true)
 	public List<PrestamoDTO> getByEstados(List<EstadoPrestamoDTO> lstEstados) throws Exception {
 		
+		PrestamoDTO prestamo = null;
+		EstadoMensualidadDTO estadoMensualidad = null;
 		List<EstadoPrestamo> lstEstadosBD = new ArrayList<EstadoPrestamo>();
 		List<PrestamoDTO> lstPrestamos = new ArrayList<PrestamoDTO>();
 		
@@ -87,9 +96,16 @@ public class PrestamosServiceImpl implements PrestamosService {
 		
 		List<Prestamo> lstPrestamosBD = this.prestamosDAO.findByEstadoIn(lstEstadosBD);
 		
-		for (Prestamo prestamo : lstPrestamosBD) {
+		for (Prestamo prestamoBD : lstPrestamosBD) {
 			
-			lstPrestamos.add(new PrestamoDTO(prestamo));
+			// Calculamos el estado de la mensualidad
+			prestamo = new PrestamoDTO(prestamoBD);
+			
+			estadoMensualidad = this.mensualidadesSRV.getEstadoMensualidad(prestamo, Utilidades.getMesActual(), Utilidades.getYearActual());
+			
+			prestamo.setEstadoMensualidad(estadoMensualidad);
+			
+			lstPrestamos.add(prestamo);
 			
 		}
 		

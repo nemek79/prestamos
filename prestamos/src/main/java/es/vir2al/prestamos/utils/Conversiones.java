@@ -31,6 +31,12 @@ public class Conversiones {
 		
 	}
 	
+	/**
+	 * Formatea una cifra a formato euros
+	 * @param f
+	 * @return
+	 * @throws Exception
+	 */
 	public static String formatImporte(Float f) throws Exception {
 		
     	String pattern = "###,###,##0.00";
@@ -43,4 +49,57 @@ public class Conversiones {
 		
 	}
 	
+	/**
+	 * Formatea una cifra a formato porcentaje
+	 * @param f
+	 * @return
+	 * @throws Exception
+	 */
+	public static String formatPorcentaje(Float f) throws Exception {
+		
+    	String pattern = "#0.00";
+    	DecimalFormat myFormatter = new DecimalFormat(pattern);
+    	String output = myFormatter.format(f);
+    	
+    	output += " %";
+    	
+    	return output;
+		
+	}
+	
+	/**
+	 * Convierte un importe formateado en moneda a valor numérico
+	 * @param importe
+	 * @return
+	 * @throws Exception
+	 */
+	public static Float importeToNumber(String importe) throws Exception {
+		
+		importe = importe.replace("€", "");
+		importe = importe.replace(".", "");
+		importe = importe.replace(",", ".");
+		importe.trim();
+
+		return Float.valueOf(importe);
+		
+	}
+	
+	/**
+	 * Convierte un importe formateado en porcentaje a valor numérico
+	 * @param importe
+	 * @return
+	 * @throws Exception
+	 */
+	public static Float porcentajeToNumber(String importe) throws Exception {
+		
+		importe = importe.replace("%", "");
+		importe = importe.replace(".", "");
+		importe = importe.replace(",", ".");
+		importe.trim();
+
+		return Float.valueOf(importe);
+		
+	}
+	
+
 }

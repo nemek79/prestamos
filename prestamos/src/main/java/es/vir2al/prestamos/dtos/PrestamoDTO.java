@@ -20,6 +20,8 @@ public class PrestamoDTO implements Serializable {
 	private EstadoPrestamoDTO estado;
 	private String mensualidad; // campo calculado que no está en bbdd
 	
+	private EstadoMensualidadDTO estadoMensualidad;
+	
 	public PrestamoDTO() {
 		
 	}
@@ -31,7 +33,7 @@ public class PrestamoDTO implements Serializable {
 		this.fechaFin = Conversiones.dateFromBD(prestamo.getFechaFin());
 		this.importe = Conversiones.formatImporte(prestamo.getImporte());
 		this.importeInicial = Conversiones.formatImporte(prestamo.getImporteInicial());
-		this.interes = Conversiones.formatImporte(prestamo.getInteres());
+		this.interes = Conversiones.formatPorcentaje(prestamo.getInteres());
 		
 		if (prestamo.getCliente() != null) {
 			
@@ -83,9 +85,9 @@ public class PrestamoDTO implements Serializable {
 		prestamoBD.setId(this.id);
 		prestamoBD.setFechaIni(Conversiones.dateToBD(this.fechaIni));
 		prestamoBD.setFechaFin(Conversiones.dateToBD(this.fechaFin));
-		prestamoBD.setImporte(Float.valueOf(this.importe));
-		prestamoBD.setImporteInicial(Float.valueOf(this.importeInicial));
-		prestamoBD.setInteres(Float.valueOf(this.interes));
+		prestamoBD.setImporte(Conversiones.importeToNumber(this.importe));
+		prestamoBD.setImporteInicial(Conversiones.importeToNumber(this.importeInicial));
+		prestamoBD.setInteres(Conversiones.porcentajeToNumber(this.interes));
 		
 		if (this.cliente != null) {
 			
@@ -196,4 +198,12 @@ public class PrestamoDTO implements Serializable {
 		return mensualidad;
 	}
 
+	public EstadoMensualidadDTO getEstadoMensualidad() {
+		return estadoMensualidad;
+	}
+
+	public void setEstadoMensualidad(EstadoMensualidadDTO estadoMensualidad) {
+		this.estadoMensualidad = estadoMensualidad;
+	}
+	
 }
