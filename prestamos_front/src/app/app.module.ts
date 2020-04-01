@@ -11,18 +11,22 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HeaderComponent } from './components/header/header.component';
+import { LoginComponent } from './components/login/login.component';
 
 // SERVICES
 import { PrestamosService } from './services/prestamos.service';
+import { AuthService } from './services/auth.service';
 
 // INTERCEPTORS
 import { TokenInterceptor } from './interceptors/TokenInterceptor';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
-    HeaderComponent
+    HeaderComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -31,6 +35,7 @@ import { TokenInterceptor } from './interceptors/TokenInterceptor';
   ],
   providers: [
     PrestamosService,
+    AuthService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,

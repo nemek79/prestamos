@@ -1,3 +1,6 @@
 export const environment = {
-  production: true
+  production: true,
+  client: 'PRESTAMOS',
+  clientPass: '',
+  urlEndPointAuth: 'http://localhost:8099'
 };
