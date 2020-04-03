@@ -79,4 +79,46 @@ export class AuthService {
     return null;
   }
 
+  hasRole(role: string): boolean {
+
+    if (this.getUsuario().roles.includes(role)) {
+      return true;
+    }
+
+    return false;
+
+  }
+
+  logout(): void {
+
+      this.token = null;
+      this.usuario = null;
+      sessionStorage.clear();
+
+  }
+
+  public getUsuario(): Usuario {
+
+    if (this.usuario != null) {
+      return this.usuario;
+    } else if (this.usuario == null && sessionStorage.getItem('usuario')) {
+      this.usuario = JSON.parse(sessionStorage.getItem('usuario')) as Usuario;
+      return this.usuario;
+    }
+
+    return new Usuario();
+  }
+
+  isAuthenticated(): boolean {
+
+    const payload = this.obtenerDatosToken(this.getToken());
+
+    if (payload != null && payload.user_name && payload.user_name.length > 0) {
+
+      return true;
+    }
+
+    return false;
+  }
+
 }

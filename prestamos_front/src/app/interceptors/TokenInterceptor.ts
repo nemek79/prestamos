@@ -4,13 +4,18 @@ import {
 } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
+import { AuthService } from '../services/auth.service';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
 
+  constructor(
+    private authSRV: AuthService
+  ) {}
+
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1ODU3MjE1OTgsInVzZXJfbmFtZSI6ImFkbWluIiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9BRE1JTiIsIlJPTEVfVVNFUiJdLCJqdGkiOiJjODUxYTY5MC1iZGJlLTRhZGYtYjMzMS04MTBjMzg0OWQwZGMiLCJjbGllbnRfaWQiOiJQUkVTVEFNT1MiLCJzY29wZSI6WyJyZWFkIiwid3JpdGUiLCJ0cnVzdCJdfQ.t22tZSMk4xTPPRpVQUv4Ux8_JOj7V8WoxZk1yqFYyX8';
+    const token = this.authSRV.getToken();
 
     if (token != null) {
 

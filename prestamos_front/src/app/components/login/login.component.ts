@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Usuario } from 'src/app/models/usuario';
 import { AuthService } from 'src/app/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,8 @@ export class LoginComponent implements OnInit {
   public usuario: Usuario;
 
   constructor(
-    private authSRV: AuthService
+    public authSRV: AuthService,
+    private route: Router
   ) { }
 
   ngOnInit() {
@@ -29,6 +31,8 @@ export class LoginComponent implements OnInit {
 
       this.authSRV.guardarUsuario(response.access_token);
       this.authSRV.guardarToken(response.access_token);
+
+      this.route.navigate(['/dashboard']);
 
     });
 
