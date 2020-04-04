@@ -4,6 +4,8 @@ import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
+import swal from 'sweetalert2';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -13,6 +15,7 @@ export class LoginComponent implements OnInit {
 
   public usuario: Usuario;
   public loginForm: FormGroup;
+  public badCredentials = false;
 
   constructor(
     public authSRV: AuthService,
@@ -49,6 +52,8 @@ export class LoginComponent implements OnInit {
     err => {
       console.log('ERROR EN LA PETICIÓN');
       console.log(err);
+      // swal.fire('Error Login', 'El usuario o la contraseña no son válidas', 'error');
+      this.badCredentials = true;
     }
     );
 
