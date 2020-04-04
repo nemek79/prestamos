@@ -1,6 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+// FORMULARIOS
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 // Peticiones HTTP
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
@@ -31,7 +34,9 @@ import { TokenInterceptor } from './interceptors/TokenInterceptor';
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     PrestamosService,

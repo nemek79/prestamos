@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Usuario } from 'src/app/models/usuario';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -11,21 +12,31 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   public usuario: Usuario;
+  public loginForm: FormGroup;
 
   constructor(
     public authSRV: AuthService,
+    private formBuilder: FormBuilder,
     private route: Router
   ) { }
 
   ngOnInit() {
+
     this.usuario = new Usuario();
+
+    this.loginForm = this.formBuilder.group({
+      username: ['', Validators.required],
+      password: ['', Validators.required],
+      done: false
+    });
+
   }
 
 
   public login(): void {
 
-    this.usuario.username = 'admin';
-    this.usuario.password = 'alamierda';
+    this.usuario.username = this.loginForm.controls.username.value;
+    this.usuario.password = this.loginForm.controls.password.value;
 
     this.authSRV.login(this.usuario).subscribe( response => {
 
@@ -34,7 +45,12 @@ export class LoginComponent implements OnInit {
 
       this.route.navigate(['/dashboard']);
 
-    });
+    },
+    err => {
+      console.log('ERROR EN LA PETICIÓN');
+      console.log(err);
+    }
+    );
 
   }
 
