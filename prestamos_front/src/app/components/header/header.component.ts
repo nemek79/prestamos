@@ -1,3 +1,4 @@
+import { Usuario } from './../../models/usuario';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { Component, OnInit } from '@angular/core';
@@ -18,12 +19,11 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
 
-    this.login = this.authSRV.getUsuario().username;
-
   }
 
   public cerrar_sesion(): void {
 
+    this.login = null;
     this.authSRV.logout();
     this.route.navigate(['/login']);
 

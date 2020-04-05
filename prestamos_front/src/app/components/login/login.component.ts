@@ -50,6 +50,7 @@ export class LoginComponent implements OnInit {
 
     },
     err => {
+      this.usuario = new Usuario();
       console.log('ERROR EN LA PETICIÓN');
       console.log(err);
       // swal.fire('Error Login', 'El usuario o la contraseña no son válidas', 'error');
