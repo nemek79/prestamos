@@ -45,9 +45,9 @@ public class MensualidadesServiceImpl implements MensualidadesService {
 		} else {
 			
 			if (this.isFechaPagoExpired(prestamo.getFechaIni())) {
-				estado.setEstado(MensualidadEnum.PENDIENTE);
-			} else {
 				estado.setEstado(MensualidadEnum.RETRASO);
+			} else {
+				estado.setEstado(MensualidadEnum.PENDIENTE);
 			}
 		
 		}
@@ -70,7 +70,7 @@ public class MensualidadesServiceImpl implements MensualidadesService {
 		Date hoy = new Date();
 		Date dateFecha = Conversiones.dateToBD(fecha);
 		
-		if (hoy.compareTo(dateFecha) > 0) {
+		if (hoy.compareTo(dateFecha) <= 0) {
 			return false;
 		} else {
 			return true;
