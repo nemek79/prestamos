@@ -34,4 +34,15 @@ export class DashboardComponent implements OnInit {
 
   }
 
+  public setPagado(prestamosId: number): void {
+
+      this.prestamosSRV.setPrestamoMensualidadPagado(prestamosId)
+        .subscribe( (response: InfoResponse) => {
+
+          location.reload();
+
+      });
+
+  }
+
 }

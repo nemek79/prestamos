@@ -20,7 +20,9 @@
         <button 
             *ngIf="prestamo.estadoMensualidad.descripcion != 'Pagado'"
             type="button" 
-            class="btn btn-lg btn-block btn-outline-success">
+            class="btn btn-lg btn-block btn-outline-success"
+            (click)="setPagado(prestamo.id)"
+        >
           Pagado
         </button>
         <button type="button" class="btn btn-lg btn-block btn-outline-warning">Comentario</button>

@@ -23,4 +23,6 @@ public interface MensualidadesService {
 	 */
 	public EstadoMensualidadDTO getEstadoMensualidad(PrestamoDTO prestamo, Integer mes, Integer year) throws Exception;
 	
+	public void setMensualidadActual(PrestamoDTO prestamo) throws Exception;
+	
 }

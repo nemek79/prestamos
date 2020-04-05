@@ -12,6 +12,7 @@ import es.vir2al.prestamos.dtos.PrestamoDTO;
 import es.vir2al.prestamos.enums.MensualidadEnum;
 import es.vir2al.prestamos.models.Mensualidad;
 import es.vir2al.prestamos.repositories.MensualidadesDAO;
+import es.vir2al.prestamos.repositories.PrestamosDAO;
 import es.vir2al.prestamos.services.MensualidadesService;
 import es.vir2al.prestamos.utils.Conversiones;
 import es.vir2al.prestamos.utils.Utilidades;
@@ -22,6 +23,9 @@ public class MensualidadesServiceImpl implements MensualidadesService {
 	@Autowired
 	private MensualidadesDAO mesualidadesDAO;
 	
+	@Autowired
+	private PrestamosDAO prestamosDAO;
+	
 	@Override
 	@Transactional(readOnly=true)
 	public MensualidadDTO create(MensualidadDTO mensualidad) throws Exception {
@@ -29,6 +33,20 @@ public class MensualidadesServiceImpl implements MensualidadesService {
 		Mensualidad mensualidadBD = this.mesualidadesDAO.save(mensualidad.asMensualidad());
 		
 		return new MensualidadDTO(mensualidadBD);
+	}
+	
+	@Override
+	@Transactional(readOnly=false)
+	public void setMensualidadActual(PrestamoDTO prestamo) throws Exception {
+		
+		Mensualidad mensualidadBD = new Mensualidad();
+		
+		mensualidadBD.setMes(Utilidades.getMesActual());
+		mensualidadBD.setYear(Utilidades.getYearActual());
+		mensualidadBD.setPrestamo(prestamo.asPrestamo());
+		
+		this.mesualidadesDAO.save(mensualidadBD);
+		
 	}
 
 	@Override
