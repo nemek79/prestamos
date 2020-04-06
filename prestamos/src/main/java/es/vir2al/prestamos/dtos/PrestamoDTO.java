@@ -28,6 +28,7 @@ public class PrestamoDTO implements Serializable {
 
 	public PrestamoDTO(Prestamo prestamo) throws Exception {
 		
+
 		this.id = prestamo.getId();
 		this.fechaIni = Conversiones.dateFromBD(prestamo.getFechaIni());
 		this.fechaFin = Conversiones.dateFromBD(prestamo.getFechaFin());
@@ -88,7 +89,7 @@ public class PrestamoDTO implements Serializable {
 		prestamoBD.setImporte(Conversiones.importeToNumber(this.importe));
 		prestamoBD.setImporteInicial(Conversiones.importeToNumber(this.importeInicial));
 		prestamoBD.setInteres(Conversiones.porcentajeToNumber(this.interes));
-		
+
 		if (this.cliente != null) {
 			
 			prestamoBD.setCliente(this.cliente.asCliente());
@@ -105,7 +106,7 @@ public class PrestamoDTO implements Serializable {
 			
 		} else {
 			
-			prestamoBD.setInteres(null);
+			prestamoBD.setIntermediario(null);
 			
 		}
 		
@@ -205,5 +206,15 @@ public class PrestamoDTO implements Serializable {
 	public void setEstadoMensualidad(EstadoMensualidadDTO estadoMensualidad) {
 		this.estadoMensualidad = estadoMensualidad;
 	}
+
+	@Override
+	public String toString() {
+		return "PrestamoDTO [id=" + id + ", fechaIni=" + fechaIni + ", fechaFin=" + fechaFin + ", importe=" + importe
+				+ ", importeInicial=" + importeInicial + ", interes=" + interes + ", cliente=" + cliente
+				+ ", intermediario=" + intermediario + ", estado=" + estado + ", mensualidad=" + mensualidad
+				+ ", estadoMensualidad=" + estadoMensualidad + "]";
+	}
+	
+	
 	
 }

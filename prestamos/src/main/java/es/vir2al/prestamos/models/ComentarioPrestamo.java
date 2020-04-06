@@ -62,5 +62,11 @@ public class ComentarioPrestamo extends V2lAudit {
 	public void setFecha(Date fecha) {
 		this.fecha = fecha;
 	}
+
+	@Override
+	public String toString() {
+		return "ComentarioPrestamo [id=" + id + ", prestamo=" + prestamo + ", comentario=" + comentario + ", fecha="
+				+ fecha + "]";
+	}
 	
 }

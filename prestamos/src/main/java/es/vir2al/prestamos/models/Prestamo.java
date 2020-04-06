@@ -120,5 +120,12 @@ public class Prestamo extends V2lAudit {
 	public void setEstado(EstadoPrestamo estado) {
 		this.estado = estado;
 	}
+
+	@Override
+	public String toString() {
+		return "Prestamo [id=" + id + ", fechaIni=" + fechaIni + ", fechaFin=" + fechaFin + ", importe=" + importe
+				+ ", importeInicial=" + importeInicial + ", interes=" + interes + ", cliente=" + cliente
+				+ ", intermediario=" + intermediario + ", estado=" + estado + "]";
+	}
 	
 }
