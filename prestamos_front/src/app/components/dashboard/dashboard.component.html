@@ -25,8 +25,38 @@
         >
           Pagado
         </button>
-        <button type="button" class="btn btn-lg btn-block btn-outline-warning">Comentario</button>
+        <button 
+            type="button" 
+            class="btn btn-lg btn-block btn-outline-warning"
+            (click)="showComentario(prestamo.id)"    
+        >
+          Comentario
+        </button>
     </div>
   </div>
 
+</div>
+
+<div  id="mdlComentario" [style.display]="showMdlComentario ? 'block' : 'none'"
+      class="modal" 
+      tabindex="-1" 
+      role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="input-group">
+          <input 
+              [(ngModel)]="comentarioInput"
+              id="comentarioInput"
+              type="text" 
+              class="form-control"
+          >
+          <div class="input-group-append" id="btnAddon">
+            <button class="btn btn-outline-secondary" type="button" (click)="saveComentario()">Guardar</button>
+            <button class="btn btn-outline-secondary" type="button" (click)="hideComentario()">Cancelar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

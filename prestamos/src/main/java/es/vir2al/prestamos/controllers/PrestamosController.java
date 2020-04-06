@@ -10,14 +10,18 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import es.vir2al.prestamos.data.responses.InfoResponse;
+import es.vir2al.prestamos.dtos.ComentarioPrestamoDTO;
 import es.vir2al.prestamos.dtos.PrestamoDTO;
+import es.vir2al.prestamos.services.ComentariosPrestamoService;
 import es.vir2al.prestamos.services.EstadosPrestamoService;
 import es.vir2al.prestamos.services.MensualidadesService;
 import es.vir2al.prestamos.services.PrestamosService;
+import es.vir2al.prestamos.utils.Utilidades;
 
 @CrossOrigin(origins = {"http://localhost:4200", "*"})
 @RestController
@@ -32,6 +36,9 @@ public class PrestamosController {
 	
 	@Autowired
 	private MensualidadesService mensualidadesSRV;
+	
+	@Autowired
+	private ComentariosPrestamoService comentariosSRV;
 	
 	
 	@GetMapping("/dashboard")
@@ -78,6 +85,38 @@ public class PrestamosController {
 
 		return new ResponseEntity<>(response,HttpStatus.OK);
 		
+	}
+	
+	@PostMapping("/comentario/{id}")
+	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+	public ResponseEntity<?> setComentario(
+			@PathVariable("id") Long id,
+			@RequestBody String comentarioIn
+	) {
+		
+		InfoResponse response = new InfoResponse();
+		
+		ComentarioPrestamoDTO comentario = new ComentarioPrestamoDTO();
+		
+		try {
+			
+			comentario.setPrestamo(this.prestamosSRV.getById(id));
+			comentario.setComentario(comentarioIn);
+			comentario.setFecha(Utilidades.getDateActual());
+			
+			this.comentariosSRV.save(comentario);
+			
+		
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+			return new ResponseEntity<>("",HttpStatus.INTERNAL_SERVER_ERROR);
+		
+		}
+		
+		
+		
+		return new ResponseEntity<>(response,HttpStatus.OK);
 	}
 	
 }

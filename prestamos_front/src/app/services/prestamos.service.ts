@@ -38,4 +38,15 @@ export class PrestamosService {
 
   }
 
+  public createComentario(idPrestamo: number, comentarioIn: string): Observable<InfoResponse> {
+
+    const urlEndpoint = environment.urlBack + '/prestamos/comentario/' + idPrestamo;
+
+    const httpHeaders = new HttpHeaders({
+    });
+
+
+    return this.http.post<InfoResponse>(urlEndpoint, comentarioIn);
+  }
+
 }

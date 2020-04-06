@@ -1,6 +1,8 @@
 package es.vir2al.prestamos.utils;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 public class Utilidades {
 
@@ -46,6 +48,12 @@ public class Utilidades {
 	public static Integer getYearFromDate(String fecha) throws Exception {
 		
 		return Integer.parseInt(fecha.substring(6, 9));
+	}
+	
+	public static String getDateActual() {
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		return sdf.format(new Date());
 	}
 	
 }
