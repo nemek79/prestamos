@@ -23,6 +23,9 @@ import { AuthService } from './services/auth.service';
 // INTERCEPTORS
 import { TokenInterceptor } from './interceptors/TokenInterceptor';
 
+// ICONS
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
+
 
 @NgModule({
   declarations: [
@@ -36,7 +39,8 @@ import { TokenInterceptor } from './interceptors/TokenInterceptor';
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AngularFontAwesomeModule
   ],
   providers: [
     PrestamosService,

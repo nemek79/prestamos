@@ -19,6 +19,7 @@ public class PrestamoDTO implements Serializable {
 	private IntermediarioDTO intermediario;
 	private EstadoPrestamoDTO estado;
 	private String mensualidad; // campo calculado que no está en bbdd
+	private Integer diaIntereses;
 	
 	private EstadoMensualidadDTO estadoMensualidad;
 	
@@ -35,6 +36,7 @@ public class PrestamoDTO implements Serializable {
 		this.importe = Conversiones.formatImporte(prestamo.getImporte());
 		this.importeInicial = Conversiones.formatImporte(prestamo.getImporteInicial());
 		this.interes = Conversiones.formatPorcentaje(prestamo.getInteres());
+		this.diaIntereses = prestamo.getDiaIntereses();
 		
 		if (prestamo.getCliente() != null) {
 			
@@ -89,6 +91,13 @@ public class PrestamoDTO implements Serializable {
 		prestamoBD.setImporte(Conversiones.importeToNumber(this.importe));
 		prestamoBD.setImporteInicial(Conversiones.importeToNumber(this.importeInicial));
 		prestamoBD.setInteres(Conversiones.porcentajeToNumber(this.interes));
+		
+		if (this.diaIntereses != null) {
+			prestamoBD.setDiaIntereses(this.diaIntereses);
+		} else {
+			Integer dia = Integer.parseInt(this.fechaIni.substring(0, 1));
+			prestamoBD.setDiaIntereses(dia);
+		}
 
 		if (this.cliente != null) {
 			
@@ -207,14 +216,20 @@ public class PrestamoDTO implements Serializable {
 		this.estadoMensualidad = estadoMensualidad;
 	}
 
+	public Integer getDiaIntereses() {
+		return diaIntereses;
+	}
+
+	public void setDiaIntereses(Integer diaIntereses) {
+		this.diaIntereses = diaIntereses;
+	}
+
 	@Override
 	public String toString() {
 		return "PrestamoDTO [id=" + id + ", fechaIni=" + fechaIni + ", fechaFin=" + fechaFin + ", importe=" + importe
 				+ ", importeInicial=" + importeInicial + ", interes=" + interes + ", cliente=" + cliente
 				+ ", intermediario=" + intermediario + ", estado=" + estado + ", mensualidad=" + mensualidad
-				+ ", estadoMensualidad=" + estadoMensualidad + "]";
+				+ ", diaIntereses=" + diaIntereses + ", estadoMensualidad=" + estadoMensualidad + "]";
 	}
-	
-	
-	
+
 }

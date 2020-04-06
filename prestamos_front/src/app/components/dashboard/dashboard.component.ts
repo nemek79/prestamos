@@ -60,6 +60,10 @@ export class DashboardComponent implements OnInit {
 
   public saveComentario() {
 
+    if (!this.comentarioInput || this.comentarioInput.length <= 2) {
+      return;
+    }
+
     this.prestamosSRV.createComentario(this.comentarioPrestamoId, this.comentarioInput)
       .subscribe( (response: InfoResponse) => {
         this.hideComentario();

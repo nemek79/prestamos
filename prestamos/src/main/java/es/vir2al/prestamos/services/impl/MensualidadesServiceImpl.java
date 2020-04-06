@@ -23,9 +23,6 @@ public class MensualidadesServiceImpl implements MensualidadesService {
 	@Autowired
 	private MensualidadesDAO mesualidadesDAO;
 	
-	@Autowired
-	private PrestamosDAO prestamosDAO;
-	
 	@Override
 	@Transactional(readOnly=true)
 	public MensualidadDTO create(MensualidadDTO mensualidad) throws Exception {
@@ -62,7 +59,7 @@ public class MensualidadesServiceImpl implements MensualidadesService {
 			
 		} else {
 			
-			if (this.isFechaPagoExpired(prestamo.getFechaIni())) {
+			if (this.isFechaPagoExpired(Utilidades.getDateFromDay(prestamo.getDiaIntereses()))) {
 				estado.setEstado(MensualidadEnum.RETRASO);
 			} else {
 				estado.setEstado(MensualidadEnum.PENDIENTE);

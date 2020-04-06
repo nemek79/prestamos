@@ -15,7 +15,7 @@
           <dt class="col-6">Mensualidad</dt>
           <dd class="col-5 text-right">{{prestamo.mensualidad}}</dd>
           <dt class="col-6">Estado mes</dt>
-          <dd class="col-5 text-right"><span class="badge badge-{{prestamo.estadoMensualidad.color}}">{{prestamo.estadoMensualidad.descripcion}}</span></dd>
+          <dd class="col-5 text-right">({{prestamo.diaIntereses}}) <span class="badge badge-{{prestamo.estadoMensualidad.color}}">{{prestamo.estadoMensualidad.descripcion}}</span></dd>
         </dl>
         <button 
             *ngIf="prestamo.estadoMensualidad.descripcion != 'Pagado'"

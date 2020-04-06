@@ -50,10 +50,28 @@ public class Utilidades {
 		return Integer.parseInt(fecha.substring(6, 9));
 	}
 	
+	/**
+	 * Devuelve la fecha actual en string y formato (dd/MM/yyyy)
+	 * @return
+	 */
 	public static String getDateActual() {
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		return sdf.format(new Date());
+	}
+	
+	/**
+	 * Devuelve la fecha a partir del día indicado, con el mes y año actual
+	 */
+	public static String getDateFromDay(Integer day) throws Exception {
+		
+		Calendar fecha = Calendar.getInstance();
+		fecha.set(Calendar.DAY_OF_MONTH,day);
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		
+		return sdf.format(fecha.getTime());
+		
 	}
 	
 }

@@ -87,6 +87,7 @@ CREATE TABLE t_prestamos
 	importe				DECIMAL(8,2) NOT NULL,
 	importe_inicial		DECIMAL(8,2) NOT NULL,
 	interes				DECIMAL(4,2) NOT NULL,
+	dia_intereses	INT(2)			NOT NULL,
 	cliente_id			INT(4)		 NOT NULL,
 	intermediario_id	INT(4)		 ,
 	estado_id			INT(2)		 NOT NULL,

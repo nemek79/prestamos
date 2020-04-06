@@ -48,6 +48,9 @@ public class Prestamo extends V2lAudit {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "estado_id", nullable = false)
 	private EstadoPrestamo estado;
+	
+	@Column(name="dia_intereses")
+	private Integer diaIntereses;
 
 	public Long getId() {
 		return id;
@@ -120,12 +123,20 @@ public class Prestamo extends V2lAudit {
 	public void setEstado(EstadoPrestamo estado) {
 		this.estado = estado;
 	}
+	
+	public Integer getDiaIntereses() {
+		return diaIntereses;
+	}
+
+	public void setDiaIntereses(Integer diaIntereses) {
+		this.diaIntereses = diaIntereses;
+	}
 
 	@Override
 	public String toString() {
 		return "Prestamo [id=" + id + ", fechaIni=" + fechaIni + ", fechaFin=" + fechaFin + ", importe=" + importe
 				+ ", importeInicial=" + importeInicial + ", interes=" + interes + ", cliente=" + cliente
-				+ ", intermediario=" + intermediario + ", estado=" + estado + "]";
+				+ ", intermediario=" + intermediario + ", estado=" + estado + ", diaIntereses=" + diaIntereses + "]";
 	}
-	
+
 }
