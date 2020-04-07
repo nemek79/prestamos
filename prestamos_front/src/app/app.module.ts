@@ -25,6 +25,7 @@ import { TokenInterceptor } from './interceptors/TokenInterceptor';
 
 // ICONS
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { PerfilComponent } from './components/perfil/perfil.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
     AppComponent,
     DashboardComponent,
     HeaderComponent,
-    LoginComponent
+    LoginComponent,
+    PerfilComponent
   ],
   imports: [
     BrowserModule,
