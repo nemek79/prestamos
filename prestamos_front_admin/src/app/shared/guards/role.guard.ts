@@ -26,9 +26,7 @@ export class RoleGuard implements CanActivate, CanActivateChild, CanLoad {
     }
 
     // Obtener los parametros
-    let role = next.data['role'] as string;
-
-    console.log('GUARD ROLE: ' + role);
+    const role = next.data.role as string;
 
     if (this.authSRV.hasRole(role)) {
 

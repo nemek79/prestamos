@@ -1,5 +1,5 @@
 <mat-nav-list>
-
+    <div *ngIf="authSRV.hasRole('ROLE_ADMIN')">
     <h2 matSubheader>Páginas</h2>
     
     <a  mat-list-item 
@@ -40,5 +40,5 @@
         <mat-icon>calendar_today</mat-icon>
         Maestro 02
     </a>
-
+    </div>
 </mat-nav-list>
