@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   public usuario: Usuario;
+  public loading = false;
 
   constructor(
     public authSRV: AuthService,
@@ -23,22 +24,37 @@ export class LoginComponent implements OnInit {
 
   login(): void {
 
+    console.log('logueando...')
+
+    this.loading = true;
+
     this.authSRV.login(this.usuario).subscribe( response => {
 
       this.authSRV.guardarUsuario(response.access_token);
       this.authSRV.guardarToken(response.access_token);
 
+      this.loading = false;
       this.route.navigate(['/posts']);
 
       },
       err => {
-        this.usuario = new Usuario();
-        console.log('ERROR EN LA PETICIÓN');
-        console.log(err);
 
+        this.loading = false;
       }
     );
 
+  }
+
+  btnDisable(): boolean {
+
+    if (this.usuario.username != null &&
+        this.usuario.username.length >= 4 &&
+        this.usuario.password != null &&
+        this.usuario.password.length >= 4 ) {
+          return false;
+    }
+
+    return true;
   }
 
 }
