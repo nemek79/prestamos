@@ -12,6 +12,7 @@ export class LoginComponent implements OnInit {
 
   public usuario: Usuario;
   public loading = false;
+  public badCredentials = false;
 
   constructor(
     public authSRV: AuthService,
@@ -24,9 +25,8 @@ export class LoginComponent implements OnInit {
 
   login(): void {
 
-    console.log('logueando...')
-
     this.loading = true;
+    this.badCredentials = false;
 
     this.authSRV.login(this.usuario).subscribe( response => {
 
@@ -40,6 +40,8 @@ export class LoginComponent implements OnInit {
       err => {
 
         this.loading = false;
+        this.badCredentials = true;
+
       }
     );
 

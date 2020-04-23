@@ -1,9 +1,15 @@
-
   <div fxLayout="row" fxLayoutAlign="center center" class="login-main">
     <mat-card >
-    <mat-card-header>
-      <mat-card-title>Administración de préstamos</mat-card-title>
-    </mat-card-header>
+        <mat-card-header>
+          <mat-card-title>
+            <h2>Administración de préstamos</h2>
+          </mat-card-title>
+        </mat-card-header>
+        <div *ngIf="badCredentials" 
+            class="alert alert-danger" 
+            role="alert">
+            El usuario o la contraseña no son correctos.    
+        </div>
         <mat-card-content fxLayout="column">
           <mat-form-field>
                 <input matInput placeholder="Usuario" 
@@ -11,7 +17,6 @@
                         #name="ngModel"
                         name="username" 
                         id="username"
-                        class="form-control"
                         required>
           </mat-form-field>
             <!--
