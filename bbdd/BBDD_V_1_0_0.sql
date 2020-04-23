@@ -4,15 +4,6 @@
 # VERSION:  1_0_0
 #==========================================
 
-DROP DATABASE IF EXISTS prestamosbd;
-
-#-------------------------------------------
-# CREACION DE LA BASE DE DATOS
-#-------------------------------------------
-
-CREATE DATABASE prestamosbd
-  CHARACTER SET utf8
-        COLLATE utf8_general_ci;
 
 USE prestamosbd;
 
