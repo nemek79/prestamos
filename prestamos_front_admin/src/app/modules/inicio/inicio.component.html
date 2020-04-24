@@ -28,7 +28,7 @@
           <mat-header-cell *matHeaderCellDef> Final </mat-header-cell>
           <mat-cell *matCellDef="let prestamo">
             <span class="mobile-label">F. Fin:</span>
-            {{prestamo.fechaFin}}
+            {{prestamo.fechaFin || '---'}}
           </mat-cell>
         </ng-container>
 
