@@ -1,18 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PostsComponent } from 'src/app/modules/posts/posts.component';
 import { DefaultComponent } from './default.component';
-import { HomeComponent } from 'src/app/modules/home/home.component';
 import { RouterModule } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { MatSidenavModule, MatDividerModule } from '@angular/material';
+import { InicioComponent } from 'src/app/modules/inicio/inicio.component';
+import { ErrorpageComponent } from 'src/app/modules/errorpage/errorpage.component';
 
 @NgModule({
   declarations: [
     DefaultComponent,
-    HomeComponent,
-    PostsComponent
+    InicioComponent,
+    ErrorpageComponent
   ],
   imports: [
     CommonModule,

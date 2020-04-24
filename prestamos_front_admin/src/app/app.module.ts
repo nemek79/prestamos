@@ -11,12 +11,10 @@ import { FullwidthModule } from './layouts/fullwidth/fullwidth.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthService } from './services/auth.service';
 import { TokenInterceptor } from './shared/interceptors/TokenInterceptor';
-import { ErrorpageComponent } from './modules/errorpage/errorpage.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    ErrorpageComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,

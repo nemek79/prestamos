@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { DefaultComponent } from './layouts/default/default.component';
-import { PostsComponent } from './modules/posts/posts.component';
 import { LoginComponent } from './modules/login/login.component';
 import { FullwidthComponent } from './layouts/fullwidth/fullwidth.component';
 
@@ -9,11 +8,12 @@ import { FullwidthComponent } from './layouts/fullwidth/fullwidth.component';
 import { AuthGuard } from './shared/guards/auth.guard';
 import { RoleGuard } from './shared/guards/role.guard';
 import { ErrorpageComponent } from './modules/errorpage/errorpage.component';
+import { InicioComponent } from './modules/inicio/inicio.component';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/login',
+    redirectTo: '/inicio',
     pathMatch: 'full'
   },
   {
@@ -21,8 +21,8 @@ const routes: Routes = [
     component: DefaultComponent,
     children: [
       {
-        path: 'posts',
-        component: PostsComponent,
+        path: 'inicio',
+        component: InicioComponent,
         canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_ADMIN'}
       },
       {
@@ -35,10 +35,6 @@ const routes: Routes = [
     path: '',
     component: FullwidthComponent,
     children: [
-      {
-        path: '',
-        component: LoginComponent
-      },
       {
         path: 'login',
         component: LoginComponent

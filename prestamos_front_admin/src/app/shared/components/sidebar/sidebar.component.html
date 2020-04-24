@@ -1,44 +1,37 @@
 <mat-nav-list>
     <div *ngIf="authSRV.hasRole('ROLE_ADMIN')">
-    <h2 matSubheader>Páginas</h2>
-    
-    <a  mat-list-item 
+    <h2 matSubheader>Préstamos</h2>
+
+    <a  mat-list-item
         routerLinkActive="list-item-active"
         routerLink="/">
-        <mat-icon>home</mat-icon>
+        <mat-icon>dashboard</mat-icon>
         Inicio
     </a>
-    
-    <a  mat-list-item 
+
+    <a  mat-list-item
         routerLinkActive="list-item-active"
-        routerLink="/page01">
-        <mat-icon>trending_up</mat-icon>
-        Página 01
-    </a>
-    
-    <a  mat-list-item 
-        routerLinkActive="list-item-active"
-        routerLink="/page02">
-        <mat-icon>contacts</mat-icon>
-        Página 02
+        routerLink="/prestamos">
+        <mat-icon>credit_card</mat-icon>
+        Control de préstamos
     </a>
 
     <mat-divider></mat-divider>
-    
+
     <h2 matSubheader>Maestros</h2>
 
-    <a  mat-list-item 
+    <a  mat-list-item
         routerLinkActive="list-item-active"
-        routerLink="/maestro01">
-        <mat-icon>backup</mat-icon>
-        Maestro 01
+        routerLink="/clientes">
+        <mat-icon>account_box</mat-icon>
+        Clientes
     </a>
 
-    <a  mat-list-item 
+    <a  mat-list-item
         routerLinkActive="list-item-active"
-        routerLink="/maestro02">
-        <mat-icon>calendar_today</mat-icon>
-        Maestro 02
+        routerLink="/intermediarios">
+        <mat-icon>record_voice_over</mat-icon>
+        Intermediarios
     </a>
     </div>
 </mat-nav-list>

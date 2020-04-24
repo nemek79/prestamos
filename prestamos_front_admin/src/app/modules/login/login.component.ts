@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
       this.authSRV.guardarToken(response.access_token);
 
       this.loading = false;
-      this.route.navigate(['/posts']);
+      this.route.navigate(['/']);
 
       },
       err => {
