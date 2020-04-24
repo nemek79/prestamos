@@ -1,5 +1,6 @@
 package es.vir2al.prestamos.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,100 +24,116 @@ import es.vir2al.prestamos.services.MensualidadesService;
 import es.vir2al.prestamos.services.PrestamosService;
 import es.vir2al.prestamos.utils.Utilidades;
 
-@CrossOrigin(origins = {"http://localhost:4200", "*"})
+@CrossOrigin(origins = { "http://localhost:4200", "*" })
 @RestController
 @RequestMapping("/api/prestamos")
 public class PrestamosController {
 
 	@Autowired
 	private PrestamosService prestamosSRV;
-	
+
 	@Autowired
 	private EstadosPrestamoService estadosSRV;
-	
+
 	@Autowired
 	private MensualidadesService mensualidadesSRV;
-	
+
 	@Autowired
 	private ComentariosPrestamoService comentariosSRV;
-	
-	
+
 	@GetMapping("/dashboard")
 	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
 	public ResponseEntity<?> getPrestamosDashboard() {
-		
+
 		InfoResponse response = new InfoResponse();
-		
+
 		try {
-			
+
 			List<PrestamoDTO> lstPrestamos = this.prestamosSRV.getByEstados(this.estadosSRV.getAbiertos());
 			response.setTotal(lstPrestamos.size());
 			response.setData(lstPrestamos);
-			
+
 		} catch (Exception e) {
-			
+
 			e.printStackTrace();
-			return new ResponseEntity<>("",HttpStatus.INTERNAL_SERVER_ERROR);
-			
+			return new ResponseEntity<>("", HttpStatus.INTERNAL_SERVER_ERROR);
+
 		}
 
-		return new ResponseEntity<>(response,HttpStatus.OK);
-		
+		return new ResponseEntity<>(response, HttpStatus.OK);
+
 	}
-	
+
 	@PostMapping("/pagado/{id}")
 	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
-	public ResponseEntity<?> setMensualidadPagada(
-		@PathVariable("id") Long id
-	) {
-		
+	public ResponseEntity<?> setMensualidadPagada(@PathVariable("id") Long id) {
+
 		InfoResponse response = new InfoResponse();
-		
+
 		try {
-			
+
 			this.mensualidadesSRV.setMensualidadActual(this.prestamosSRV.getById(id));
-			
+
 		} catch (Exception e) {
-			
+
 			e.printStackTrace();
-			return new ResponseEntity<>("",HttpStatus.INTERNAL_SERVER_ERROR);
-			
+			return new ResponseEntity<>("", HttpStatus.INTERNAL_SERVER_ERROR);
+
 		}
 
-		return new ResponseEntity<>(response,HttpStatus.OK);
-		
+		return new ResponseEntity<>(response, HttpStatus.OK);
+
 	}
-	
+
 	@PostMapping("/comentario/{id}")
 	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
-	public ResponseEntity<?> setComentario(
-			@PathVariable("id") Long id,
-			@RequestBody String comentarioIn
-	) {
-		
+	public ResponseEntity<?> setComentario(@PathVariable("id") Long id, @RequestBody String comentarioIn) {
+
 		InfoResponse response = new InfoResponse();
-		
+
 		ComentarioPrestamoDTO comentario = new ComentarioPrestamoDTO();
-		
+
 		try {
-			
+
 			comentario.setPrestamo(this.prestamosSRV.getById(id));
 			comentario.setComentario(comentarioIn);
 			comentario.setFecha(Utilidades.getDateActual());
-			
+
 			this.comentariosSRV.save(comentario);
-			
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+			return new ResponseEntity<>("", HttpStatus.INTERNAL_SERVER_ERROR); // TODO informar el error
+
+		}
+
+		return new ResponseEntity<>(response, HttpStatus.OK);
+	}
+
+	@GetMapping("/{id}")
+	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+	public ResponseEntity<?> getPrestamo(@PathVariable("id") Long id) {
+
+		InfoResponse response = new InfoResponse();
+		PrestamoDTO prestamo = null;
+		List<PrestamoDTO> lstPrestamos = new ArrayList<PrestamoDTO>();
+
+		try {
+
+			prestamo = this.prestamosSRV.getById(id);
+			lstPrestamos.add(prestamo);
+			response.setTotal(1);
+			response.setData(lstPrestamos);
 		
 		} catch (Exception e) {
-			
+
 			e.printStackTrace();
-			return new ResponseEntity<>("",HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<>("", HttpStatus.INTERNAL_SERVER_ERROR); // TODO informar el error
 		
 		}
-		
-		
-		
+
+
 		return new ResponseEntity<>(response,HttpStatus.OK);
 	}
-	
 }
