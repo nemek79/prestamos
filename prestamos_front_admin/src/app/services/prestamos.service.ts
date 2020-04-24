@@ -24,5 +24,16 @@ export class PrestamosService {
 
   }
 
+  /**
+   * Obtiene la información de un préstamo
+   */
+  public getPrestamo(id: number): Observable<InfoResponse> {
+
+    const urlEndpoint = environment.urlBack + '/prestamos/'+id;
+
+    return this.http.get<InfoResponse>(urlEndpoint);
+
+  }
+
 
 }

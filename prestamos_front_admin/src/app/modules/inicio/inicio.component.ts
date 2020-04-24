@@ -27,7 +27,6 @@ export class InicioComponent implements OnInit {
     this.prestamosSRV.getPrestamosAbiertos().subscribe( (response: InfoResponse) => {
 
       this.dataSource.data = response.data;
-      console.log(this.dataSource.data)
 
     });
 
@@ -42,6 +41,11 @@ export class InicioComponent implements OnInit {
   selectPrestamo(id): void {
 
     // obtener la información del prestamo
+    this.prestamosSRV.getPrestamo(id).subscribe( (response: InfoResponse) => {
+
+      console.log(response.data)
+
+    });
 
   }
 }
