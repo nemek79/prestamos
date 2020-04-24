@@ -74,7 +74,7 @@ CREATE TABLE t_prestamos
 (
 	id					INT(6)		 NOT NULL AUTO_INCREMENT,
 	fecha_ini			DATE		 NOT NULL,
-	fecha_fin			DATE		 NOT NULL,
+	fecha_fin			DATE		 ,
 	importe				DECIMAL(8,2) NOT NULL,
 	importe_inicial		DECIMAL(8,2) NOT NULL,
 	interes				DECIMAL(4,2) NOT NULL,
