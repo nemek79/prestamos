@@ -14,6 +14,9 @@ public class Conversiones {
 	 */
 	public static String dateFromBD(Date fechaIn) {
 		
+		// si la fecha es nula devolvemos un nulo
+		if (fechaIn == null) return null;
+
 		SimpleDateFormat formateador = new SimpleDateFormat(FORMATO_FECHA);
 		
 		return formateador.format(fechaIn);
@@ -24,6 +27,9 @@ public class Conversiones {
 	 * Convierte las fechas desde el formato español a fecha
 	 */
 	public static Date dateToBD(String fechaIn) throws ParseException {
+
+		// si la fecha es nula devuelve un nulo
+		if (fechaIn == null || fechaIn.trim().isEmpty()) return null;
 		
 		SimpleDateFormat formateador = new SimpleDateFormat(FORMATO_FECHA);
 		
