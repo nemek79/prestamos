@@ -15,6 +15,7 @@ export class InicioComponent implements OnInit {
   displayedColumns: string[] = ['id', 'finicio', 'ffinal', 'importe', 'interes',
                                 'cliente','intermediario','estado','mensualidad'];
   dataSource = new MatTableDataSource();
+  selectedRowIndex: number = -1;
 
   constructor(
     private prestamosSRV: PrestamosService
@@ -32,4 +33,9 @@ export class InicioComponent implements OnInit {
 
   }
 
+  highlight(row) {
+
+    this.selectedRowIndex = row.id;
+
+  }
 }

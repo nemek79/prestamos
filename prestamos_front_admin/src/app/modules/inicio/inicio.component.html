@@ -29,6 +29,7 @@
           <mat-cell *matCellDef="let prestamo">
             <span class="mobile-label">F. Fin:</span>
             {{prestamo.fechaFin || '---'}}
+
           </mat-cell>
         </ng-container>
 
@@ -88,7 +89,11 @@
 
 
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"
+          [ngClass]="{'highlight': selectedRowIndex == row.id}"
+          (mouseover)="highlight(row)"
+        >
+        </mat-row>
 
       </mat-table>
 
