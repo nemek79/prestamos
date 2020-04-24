@@ -92,6 +92,7 @@
         <mat-row *matRowDef="let row; columns: displayedColumns;"
           [ngClass]="{'highlight': selectedRowIndex == row.id}"
           (mouseover)="highlight(row)"
+          (click)="selectPrestamo(row.id)"
         >
         </mat-row>
 

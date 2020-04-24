@@ -33,9 +33,15 @@ export class InicioComponent implements OnInit {
 
   }
 
-  highlight(row) {
+  highlight(row): void {
 
     this.selectedRowIndex = row.id;
+
+  }
+
+  selectPrestamo(id): void {
+
+    // obtener la información del prestamo
 
   }
 }
