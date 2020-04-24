@@ -1,1 +1,97 @@
-<p>inicio works!</p>
+
+<div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px">
+
+  <div fxFlex="100%" fxFlex.gt-sm="60%">
+    <div class="example-container mat-elevation-z8">
+      <mat-table #table [dataSource]="dataSource">
+
+        <!-- Fecha Inicio Column -->
+        <ng-container matColumnDef="id">
+          <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
+          <mat-cell *matCellDef="let prestamo">
+            <span class="mobile-label">Id:</span>
+            {{prestamo.id}}
+          </mat-cell>
+        </ng-container>
+
+        <!-- Fecha Inicio Column -->
+        <ng-container matColumnDef="finicio">
+          <mat-header-cell *matHeaderCellDef> Inicio </mat-header-cell>
+          <mat-cell *matCellDef="let prestamo">
+            <span class="mobile-label">F. Inicio:</span>
+            {{prestamo.fechaIni}}
+          </mat-cell>
+        </ng-container>
+
+        <!-- Fecha Final Column -->
+        <ng-container matColumnDef="ffinal">
+          <mat-header-cell *matHeaderCellDef> Final </mat-header-cell>
+          <mat-cell *matCellDef="let prestamo">
+            <span class="mobile-label">F. Fin:</span>
+            {{prestamo.fechaFin}}
+          </mat-cell>
+        </ng-container>
+
+        <!-- Importe Column -->
+        <ng-container matColumnDef="importe">
+          <mat-header-cell *matHeaderCellDef> Importe </mat-header-cell>
+          <mat-cell *matCellDef="let prestamo">
+            <span class="mobile-label">Importe:</span>
+            {{prestamo.importe}}
+          </mat-cell>
+        </ng-container>
+
+        <!-- Interes Column -->
+        <ng-container matColumnDef="interes">
+          <mat-header-cell *matHeaderCellDef> Interes </mat-header-cell>
+          <mat-cell *matCellDef="let prestamo">
+            <span class="mobile-label">Interes:</span>
+            {{prestamo.interes}}
+          </mat-cell>
+        </ng-container>
+
+        <!-- Cliente Column -->
+        <ng-container matColumnDef="cliente">
+          <mat-header-cell *matHeaderCellDef> Cliente </mat-header-cell>
+          <mat-cell *matCellDef="let prestamo">
+            <span class="mobile-label">Cliente:</span>
+            {{prestamo.cliente.nombre}}
+          </mat-cell>
+        </ng-container>
+
+        <!-- Intermediario Column -->
+        <ng-container matColumnDef="intermediario">
+          <mat-header-cell *matHeaderCellDef> Intermediario </mat-header-cell>
+          <mat-cell *matCellDef="let prestamo">
+            <span class="mobile-label">Intermed.:</span>
+            {{prestamo.intermediario.nombre}}
+          </mat-cell>
+        </ng-container>
+
+        <!-- Estado Column -->
+        <ng-container matColumnDef="estado">
+          <mat-header-cell *matHeaderCellDef> Estado </mat-header-cell>
+          <mat-cell *matCellDef="let prestamo">
+            <span class="mobile-label">Estado:</span>
+            {{prestamo.estado.descripcion}}
+          </mat-cell>
+        </ng-container>
+
+        <!-- Mensualidad Column -->
+        <ng-container matColumnDef="mensualidad">
+          <mat-header-cell *matHeaderCellDef> Mes </mat-header-cell>
+          <mat-cell *matCellDef="let prestamo">
+            <span class="mobile-label">Mensualidad:</span>
+            {{prestamo.mensualidad}}
+          </mat-cell>
+        </ng-container>
+
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+      </mat-table>
+
+    </div>
+  </div>
+</div>

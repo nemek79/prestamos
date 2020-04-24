@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PrestamosService } from 'src/app/services/prestamos.service';
 import { Prestamo } from 'src/app/models/prestamo';
 import { InfoResponse } from 'src/app/models/inforesponse';
+import { MatTableDataSource, MatPaginator } from '@angular/material';
 
 @Component({
   selector: 'app-inicio',
@@ -10,8 +11,10 @@ import { InfoResponse } from 'src/app/models/inforesponse';
 })
 export class InicioComponent implements OnInit {
 
-
-  public lstPrestamos: Prestamo[]; // lista de prestamos abiertos
+  // configuracion de la tabla
+  displayedColumns: string[] = ['id', 'finicio', 'ffinal', 'importe', 'interes',
+                                'cliente','intermediario','estado','mensualidad'];
+  dataSource = new MatTableDataSource();
 
   constructor(
     private prestamosSRV: PrestamosService
@@ -22,9 +25,8 @@ export class InicioComponent implements OnInit {
     // obtener la lista de los prestamos abiertos
     this.prestamosSRV.getPrestamosAbiertos().subscribe( (response: InfoResponse) => {
 
-      this.lstPrestamos = response.data;
-
-      console.log(this.lstPrestamos)
+      this.dataSource.data = response.data;
+      console.log(this.dataSource.data)
 
     });
 
