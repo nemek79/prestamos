@@ -35,13 +35,13 @@ export class InicioComponent implements OnInit {
 
   }
 
-  highlight(row): void {
+  highlight(row: any): void {
 
     this.selectedRowIndex = row.id;
 
   }
 
-  selectPrestamo(id): void {
+  selectPrestamo(id: number): void {
 
     // obtener la información del prestamo
     this.prestamosSRV.getPrestamo(id).subscribe( (response: InfoResponse) => {
