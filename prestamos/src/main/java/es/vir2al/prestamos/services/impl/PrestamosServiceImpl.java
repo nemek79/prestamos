@@ -12,7 +12,6 @@ import es.vir2al.prestamos.dtos.EstadoPrestamoDTO;
 import es.vir2al.prestamos.dtos.PrestamoDTO;
 import es.vir2al.prestamos.models.EstadoPrestamo;
 import es.vir2al.prestamos.models.Prestamo;
-import es.vir2al.prestamos.repositories.MensualidadesDAO;
 import es.vir2al.prestamos.repositories.PrestamosDAO;
 import es.vir2al.prestamos.services.MensualidadesService;
 import es.vir2al.prestamos.services.PrestamosService;
@@ -32,11 +31,20 @@ public class PrestamosServiceImpl implements PrestamosService {
 	@Transactional(readOnly=true)
 	public PrestamoDTO getById(Long id) throws Exception {
 		
-		Prestamo prestamo = this.prestamosDAO.findById(id).orElseThrow(
+		EstadoMensualidadDTO estadoMensualidad = null;
+
+		Prestamo prestamoBD = this.prestamosDAO.findById(id).orElseThrow(
 				() -> new Exception("No se encuentra el prestamo con id: "+id)
 		);
+
+		// Calculamos el estado de la mensualidad
+		PrestamoDTO prestamo = new PrestamoDTO(prestamoBD);
+
+		estadoMensualidad = this.mensualidadesSRV.getEstadoMensualidad(prestamo, Utilidades.getMesActual(), Utilidades.getYearActual());
 		
-		return new PrestamoDTO(prestamo);
+		prestamo.setEstadoMensualidad(estadoMensualidad);
+		
+		return prestamo;
 	}
 
 	@Override

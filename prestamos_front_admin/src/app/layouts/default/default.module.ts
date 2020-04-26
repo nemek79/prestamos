@@ -4,7 +4,8 @@ import { DefaultComponent } from './default.component';
 import { RouterModule } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { MatSidenavModule, MatDividerModule, MatCardModule, MatPaginatorModule, MatTableModule } from '@angular/material';
+import { MatSidenavModule, MatDividerModule, MatCardModule, MatPaginatorModule,
+          MatTableModule, MatListModule } from '@angular/material';
 import { InicioComponent } from 'src/app/modules/inicio/inicio.component';
 import { ErrorpageComponent } from 'src/app/modules/errorpage/errorpage.component';
 import { PrestamosService } from 'src/app/services/prestamos.service';
@@ -26,7 +27,8 @@ import { PrestamosService } from 'src/app/services/prestamos.service';
     FlexLayoutModule,
     MatCardModule,
     MatPaginatorModule,
-    MatTableModule
+    MatTableModule,
+    MatListModule
   ],
   providers: [
     PrestamosService

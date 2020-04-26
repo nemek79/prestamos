@@ -1,8 +1,9 @@
 
-<div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px">
-
-  <div fxFlex="100%" fxFlex.gt-sm="60%">
-    <div class="example-container mat-elevation-z8">
+<div class="container" fxLayout="row" fxLayout.lt-md="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+  <div  fxFlex="60" 
+        fxFlex.lt-xs="100"
+        >
+    <div class="table-container mat-elevation-z8">
       <mat-table #table [dataSource]="dataSource">
 
         <!-- Fecha Inicio Column -->
@@ -97,7 +98,126 @@
         </mat-row>
 
       </mat-table>
-
+      <div 
+        *ngIf="dataSource?.data.length === 0"
+        class="nodata"
+      >
+        No se han encontrado datos
+      </div>
     </div>
   </div>
+
+  <div fxFlex="40" 
+        fxFlex.lt-xs="100">
+        <mat-card *ngIf="selectedPrestamo" >
+          <mat-card-content >
+            <mat-card class="info-prestamo">
+              <mat-card-title>
+                Información general
+              </mat-card-title>
+              <mat-card-content>
+                <div class="item-info-prestamo">
+                  <div class="item-key-prestamo">ID:</div> 
+                  <div class="item-value-prestamo">
+                    {{selectedPrestamo.id}} 
+                  </div>
+                </div>
+                <div class="item-info-prestamo">
+                  <div class="item-key-prestamo">ESTADO:</div> 
+                  <div class="item-value-prestamo">
+                    {{selectedPrestamo.estado.descripcion}}
+                  </div>
+                </div>
+                <div class="item-info-prestamo">
+                  <div class="item-key-prestamo">FECHAS:</div> 
+                  <div class="item-value-prestamo">
+                    {{selectedPrestamo.fechaIni}} - {{selectedPrestamo.fechaFin || 'En curso'}}
+                  </div>
+                </div>
+                <div class="item-info-prestamo">
+                  <div class="item-key-prestamo">IMPORTE:</div> 
+                  <div class="item-value-prestamo">
+                    {{selectedPrestamo.importe}} / {{selectedPrestamo.importeInicial}}
+                  </div>
+                </div>
+                <div class="item-info-prestamo">
+                  <div class="item-key-prestamo">INTERES:</div> 
+                  <div class="item-value-prestamo">
+                    {{selectedPrestamo.interes}}
+                  </div>
+                </div>
+                <div class="item-info-prestamo">
+                  <div class="item-key-prestamo">MENSUALIDAD:</div> 
+                  <div class="item-value-prestamo">
+                    {{selectedPrestamo.mensualidad}} - {{selectedPrestamo.estadoMensualidad.descripcion}}
+                  </div>
+                </div>
+                <div class="item-info-prestamo">
+                  <div class="item-key-prestamo">DIA:</div> 
+                  <div class="item-value-prestamo">
+                    {{selectedPrestamo.diaIntereses}}
+                  </div>
+                </div>
+              </mat-card-content>
+            </mat-card>
+            <mat-card class="info-prestamo">
+              <mat-card-title>
+                Cliente
+              </mat-card-title>
+              <mat-card-content>
+                <div class="item-info-prestamo">
+                  <div class="item-key-prestamo">NOMBRE:</div> 
+                  <div class="item-value-prestamo">
+                    {{selectedPrestamo.cliente.nombre}} {{selectedPrestamo.cliente.apellidos}}
+                  </div>
+                </div>
+                <div class="item-info-prestamo">
+                  <div class="item-key-prestamo">TELÉFONO:</div> 
+                  <div class="item-value-prestamo">
+                    {{selectedPrestamo.cliente.telefono || 'Sin información'}}
+                  </div>
+                </div>
+                <div class="item-info-prestamo">
+                  <div class="item-key-prestamo">E-MAIL:</div> 
+                  <div class="item-value-prestamo">
+                    {{selectedPrestamo.cliente.email || 'Sin información'}}
+                  </div>
+                </div>
+              </mat-card-content>
+            </mat-card>
+            <mat-card class="info-prestamo">
+              <mat-card-title>
+                Intermediario
+              </mat-card-title>
+              <mat-card-content>
+                <div class="item-info-prestamo">
+                  <div class="item-key-prestamo">NOMBRE:</div> 
+                  <div class="item-value-prestamo">
+                    {{selectedPrestamo.intermediario.nombre}} {{selectedPrestamo.intermediario.apellidos}}
+                  </div>
+                </div>
+                <div class="item-info-prestamo">
+                  <div class="item-key-prestamo">COMISIÓN:</div> 
+                  <div class="item-value-prestamo">
+                    {{selectedPrestamo.intermediario.porcComision}}
+                  </div>
+                </div>
+                <div class="item-info-prestamo">
+                  <div class="item-key-prestamo">TELÉFONO:</div> 
+                  <div class="item-value-prestamo">
+                    {{selectedPrestamo.intermediario.telefono || 'Sin información'}}
+                  </div>
+                </div>
+                <div class="item-info-prestamo">
+                  <div class="item-key-prestamo">E-MAIL:</div> 
+                  <div class="item-value-prestamo">
+                    {{selectedPrestamo.intermediario.email || 'Sin información'}}
+                  </div>
+                </div>
+              </mat-card-content>
+            </mat-card>
+          </mat-card-content>
+        </mat-card>
+  </div>
+
 </div>

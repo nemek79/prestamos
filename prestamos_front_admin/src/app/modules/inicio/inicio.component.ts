@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PrestamosService } from 'src/app/services/prestamos.service';
 import { Prestamo } from 'src/app/models/prestamo';
 import { InfoResponse } from 'src/app/models/inforesponse';
-import { MatTableDataSource, MatPaginator } from '@angular/material';
+import { MatTableDataSource } from '@angular/material';
 
 @Component({
   selector: 'app-inicio',
@@ -16,6 +16,9 @@ export class InicioComponent implements OnInit {
                                 'cliente','intermediario','estado','mensualidad'];
   dataSource = new MatTableDataSource();
   selectedRowIndex: number = -1;
+
+  // prestamo seleccionado
+  selectedPrestamo: Prestamo = null;
 
   constructor(
     private prestamosSRV: PrestamosService
@@ -43,7 +46,8 @@ export class InicioComponent implements OnInit {
     // obtener la información del prestamo
     this.prestamosSRV.getPrestamo(id).subscribe( (response: InfoResponse) => {
 
-      console.log(response.data)
+      this.selectedPrestamo = response.data[0];
+      console.log(this.selectedPrestamo)
 
     });
 

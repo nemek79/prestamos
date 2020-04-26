@@ -20,6 +20,42 @@ table {
   cursor:pointer;
 }
 
+.nodata {
+  padding: 20px;
+  text-align: center;
+  font-size: 0.75em;
+  color: #8b8a8a;
+}
+
+.info-prestamo {
+  margin-bottom: 10px;
+  color: #a0a0a0;
+}
+
+.info-prestamo .mat-card-title {
+  font-size: 0.8em;
+  font-weight: bold;
+  color: #777777;
+}
+
+.item-info-prestamo {
+  width: 100%;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  color: #666666;
+}
+
+.item-key-prestamo {
+  font-weight: bold;
+  width: 25%;
+  display: inline-block;
+  font-size: 0.85em;
+}
+
+.item-value-prestamo {
+  display: inline-block;
+  font-size: 0.8em;
+}
 
 @media (min-width: 1281px) {
 
@@ -61,11 +97,10 @@ table {
 }
 
 /*
-  ##Device = Low Resolution Tablets, Mobiles (Landscape)
-  ##Screen = B/w 481px to 767px
+  ##Device = Tablets, Mobiles (Landscape)
 */
 
-@media (min-width: 481px) and (max-width: 767px) {
+@media (min-width: 426px) and (max-width: 767px) {
 
   .mobile-label {
     width: 80px;
@@ -83,14 +118,17 @@ table {
     padding: 8px 24px;
   }
 
+  .table-container {
+    margin-bottom: 20px;
+  }
+
 }
 
 /*
-  ##Device = Most of the Smartphones Mobiles (Portrait)
-  ##Screen = B/w 320px to 479px
+  ##Device = Mobile 
 */
 
-@media (min-width: 320px) and (max-width: 480px) {
+@media (min-width: 320px) and (max-width: 425px) {
 
   .mobile-label {
     width:40%;
@@ -118,7 +156,9 @@ table {
     padding: 0;
   }
 
-
+  .table-container {
+    margin-bottom: 20px;
+  }
 }
 
 
