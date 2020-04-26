@@ -1,0 +1,39 @@
+.infocard {
+    padding: 10px;
+    background-color: #ffffff;
+    border: 1px solid #eeeeee;
+    display: inline-block; 
+    border-radius: 5px;
+}
+
+.infocard-title {
+
+    padding: 2px;
+    font-weight: bold;
+    color: #777777;
+}
+
+.infocard-data {
+
+    padding: 5px;
+    font-weight: bold;
+    font-size: 3em;
+    text-align: center;
+
+}
+
+.infocard-data.warning {
+    color: #f1b613;
+}
+
+.infocard-data.success {
+    color: #14e42f;
+}
+
+.infocard-data.danger {
+    color: #db4242;
+}
+
+.infocard-data.info {
+    color: #8d8d8d;
+}

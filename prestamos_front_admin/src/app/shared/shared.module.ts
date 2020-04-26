@@ -5,14 +5,16 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { MatDividerModule, MatToolbarModule, MatIconModule, MatButtonModule, MatMenuModule, MatListModule } from '@angular/material';
+import { MatDividerModule, MatToolbarModule, MatIconModule, MatButtonModule, MatMenuModule, MatListModule, MatCardModule } from '@angular/material';
+import { InfocardComponent } from './widgets/infocard/infocard.component';
 
 
 @NgModule({
   declarations: [
     HeaderComponent,
     SidebarComponent,
-    FooterComponent
+    FooterComponent,
+    InfocardComponent
   ],
   imports: [
     CommonModule,
@@ -24,11 +26,13 @@ import { MatDividerModule, MatToolbarModule, MatIconModule, MatButtonModule, Mat
     FlexLayoutModule,
     MatMenuModule,
     MatListModule,
+    MatCardModule
   ],
   exports: [
     HeaderComponent,
     SidebarComponent,
-    FooterComponent
+    FooterComponent,
+    InfocardComponent
   ]
 })
 export class SharedModule { }
