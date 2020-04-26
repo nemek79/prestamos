@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatDividerModule, MatToolbarModule, MatIconModule, MatButtonModule, MatMenuModule, MatListModule, MatCardModule } from '@angular/material';
 import { InfocardComponent } from './widgets/infocard/infocard.component';
+import { NavegacionComponent } from './widgets/navegacion/navegacion.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { InfocardComponent } from './widgets/infocard/infocard.component';
     HeaderComponent,
     SidebarComponent,
     FooterComponent,
-    InfocardComponent
+    InfocardComponent,
+    NavegacionComponent
   ],
   imports: [
     CommonModule,
@@ -32,7 +34,8 @@ import { InfocardComponent } from './widgets/infocard/infocard.component';
     HeaderComponent,
     SidebarComponent,
     FooterComponent,
-    InfocardComponent
+    InfocardComponent,
+    NavegacionComponent
   ]
 })
 export class SharedModule { }
