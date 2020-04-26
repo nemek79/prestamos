@@ -9,6 +9,9 @@ import { AuthGuard } from './shared/guards/auth.guard';
 import { RoleGuard } from './shared/guards/role.guard';
 import { ErrorpageComponent } from './modules/errorpage/errorpage.component';
 import { InicioComponent } from './modules/inicio/inicio.component';
+import { PrestamosComponent } from './modules/prestamos/prestamos.component';
+import { ClientesComponent } from './modules/clientes/clientes.component';
+import { IntermediariosComponent } from './modules/intermediarios/intermediarios.component';
 
 const routes: Routes = [
   {
@@ -23,6 +26,21 @@ const routes: Routes = [
       {
         path: 'inicio',
         component: InicioComponent,
+        canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_ADMIN'}
+      },
+      {
+        path: 'prestamos',
+        component: PrestamosComponent,
+        canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_ADMIN'}
+      },
+      {
+        path: 'clientes',
+        component: ClientesComponent,
+        canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_ADMIN'}
+      },
+      {
+        path: 'intermediarios',
+        component: IntermediariosComponent,
         canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_ADMIN'}
       },
       {

@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { PrestamosService } from 'src/app/services/prestamos.service';
-import { Prestamo } from 'src/app/models/prestamo';
 import { InfoResponse } from 'src/app/models/inforesponse';
+import { PrestamosService } from 'src/app/services/prestamos.service';
 import { MatTableDataSource } from '@angular/material';
+import { Prestamo } from 'src/app/models/prestamo';
 
 @Component({
-  selector: 'app-inicio',
-  templateUrl: './inicio.component.html',
-  styleUrls: ['./inicio.component.scss']
+  selector: 'app-prestamos',
+  templateUrl: './prestamos.component.html',
+  styleUrls: ['./prestamos.component.scss']
 })
-export class InicioComponent implements OnInit {
+export class PrestamosComponent implements OnInit {
 
   // configuracion de la tabla
   displayedColumns: string[] = ['id', 'finicio', 'ffinal', 'importe', 'interes',
@@ -51,4 +51,5 @@ export class InicioComponent implements OnInit {
     });
 
   }
+
 }

@@ -9,11 +9,17 @@ import { MatSidenavModule, MatDividerModule, MatCardModule, MatPaginatorModule,
 import { InicioComponent } from 'src/app/modules/inicio/inicio.component';
 import { ErrorpageComponent } from 'src/app/modules/errorpage/errorpage.component';
 import { PrestamosService } from 'src/app/services/prestamos.service';
+import { ClientesComponent } from 'src/app/modules/clientes/clientes.component';
+import { IntermediariosComponent } from 'src/app/modules/intermediarios/intermediarios.component';
+import { PrestamosComponent } from 'src/app/modules/prestamos/prestamos.component';
 
 @NgModule({
   declarations: [
     DefaultComponent,
     InicioComponent,
+    ClientesComponent,
+    IntermediariosComponent,
+    PrestamosComponent,
     ErrorpageComponent
   ],
   imports: [
