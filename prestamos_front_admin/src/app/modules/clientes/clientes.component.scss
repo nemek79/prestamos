@@ -1,0 +1,241 @@
+table {
+    width: 100%;
+  }
+  
+.mat-table {
+    overflow: auto;
+    max-height: 500px;
+}
+  
+.mat-cell {
+    font-size: 0.7em;
+}
+
+.mat-column-id {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 5% !important;
+  width: 5% !important;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+
+  word-break: break-word;
+
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+
+.mat-column-nombre {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 15% !important;
+  width: 15% !important;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+
+  word-break: break-word;
+
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+
+.mat-column-apellidos {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 20% !important;
+  width: 20% !important;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+
+  word-break: break-word;
+
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+
+.mat-column-comentario {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 20% !important;
+  width: 20% !important;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+
+  word-break: break-word;
+
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+
+.mat-column-telefono {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 20% !important;
+  width: 20% !important;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+
+  word-break: break-word;
+
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+
+.mat-column-email {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+
+  word-break: break-word;
+
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+  
+.mobile-label {
+    display: none;
+}
+  
+.highlight{
+    background: rgb(218, 218, 219);
+    cursor:pointer;
+}
+  
+.nodata {
+    padding: 20px;
+    text-align: center;
+    font-size: 0.75em;
+    color: #8b8a8a;
+}
+  
+// .mat-cell:last-of-type, 
+// .mat-footer-cell:last-of-type, 
+// .mat-header-cell:last-of-type {
+//   padding: 0;
+// }
+
+// .mat-cell:first-of-type, 
+// .mat-footer-cell:first-of-type, 
+// .mat-header-cell:first-of-type {
+//   padding: 0;
+// }
+  
+  @media (min-width: 1281px) {
+  
+    //CSS
+  
+  }
+  
+  /*
+    ##Device = Laptops, Desktops
+    ##Screen = B/w 1025px to 1280px
+  */
+  
+  @media (min-width: 1025px) and (max-width: 1280px) {
+  
+    //CSS
+  
+  }
+  
+  /*
+    ##Device = Tablets, Ipads (portrait)
+    ##Screen = B/w 768px to 1024px
+  */
+  
+  @media (min-width: 768px) and (max-width: 1024px) {
+  
+    //CSS
+  
+  }
+  
+  /*
+    ##Device = Tablets, Ipads (landscape)
+    ##Screen = B/w 768px to 1024px
+  */
+  
+  @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+  
+    //CSS
+  
+  }
+  
+  /*
+    ##Device = Tablets, Mobiles (Landscape)
+  */
+  
+  @media (min-width: 426px) and (max-width: 767px) {
+  
+    .mobile-label {
+      width: 80px;
+      display: inline-block;
+      font-weight: bold;
+    }
+  
+    .mat-header-row {
+      display: none;
+    }
+  
+    .mat-row {
+      flex-direction: column;
+      align-items: start;
+      padding: 8px 24px;
+    }
+  
+    .table-container {
+      margin-bottom: 20px;
+    }
+  
+  }
+  
+  /*
+    ##Device = Mobile 
+  */
+  
+  @media (min-width: 320px) and (max-width: 425px) {
+  
+    .mobile-label {
+      width:40%;
+      display: inline-block;
+      font-weight: bold;
+      text-align: left;
+    }
+  
+    .mat-header-row {
+      display: none;
+    }
+  
+    .mat-row {
+      flex-direction: column;
+      align-items: start;
+      padding: 8px 24px;
+    }
+  
+    .mat-cell {
+      font-size: 1em;
+      width: 100%;
+    }
+  
+    mat-cell:first-of-type {
+      padding: 0;
+    }
+  
+    .table-container {
+      margin-bottom: 20px;
+    }
+  }
+  
+  
+  

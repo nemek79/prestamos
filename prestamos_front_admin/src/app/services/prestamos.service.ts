@@ -1,7 +1,7 @@
 import { environment } from './../../environments/environment.prod';
 import { InfoResponse } from '../models/inforesponse';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({

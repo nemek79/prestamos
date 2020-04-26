@@ -12,6 +12,7 @@ import { PrestamosService } from 'src/app/services/prestamos.service';
 import { ClientesComponent } from 'src/app/modules/clientes/clientes.component';
 import { IntermediariosComponent } from 'src/app/modules/intermediarios/intermediarios.component';
 import { PrestamosComponent } from 'src/app/modules/prestamos/prestamos.component';
+import { ClientesService } from 'src/app/services/clientes.service';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { PrestamosComponent } from 'src/app/modules/prestamos/prestamos.componen
     MatListModule
   ],
   providers: [
-    PrestamosService
+    PrestamosService,
+    ClientesService
   ]
 })
 export class DefaultModule { }

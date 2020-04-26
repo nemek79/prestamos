@@ -1,1 +1,80 @@
-<p>clientes works!</p>
+<div class="container" 
+    fxLayout="row"  
+    fxLayout.lt-md="row" 
+    fxLayoutWrap fxLayoutGap="0.5%" 
+    fxLayoutAlign="center">
+
+    <div  fxFlex="90" 
+          fxFlex.lt-xs="100"
+          >
+        <div class="table-container mat-elevation-z8">
+            <mat-table #table [dataSource]="dataSource">
+
+                <!-- Nombre Column -->
+                <ng-container matColumnDef="id">
+                    <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
+                    <mat-cell *matCellDef="let cliente">
+                    <span class="mobile-label">ID:</span>
+                    {{cliente.id}}
+                    </mat-cell>
+                </ng-container>
+
+                <!-- Nombre Column -->
+                <ng-container matColumnDef="nombre">
+                    <mat-header-cell *matHeaderCellDef> NOMBRE </mat-header-cell>
+                    <mat-cell *matCellDef="let cliente">
+                    <span class="mobile-label">NOMBRE:</span>
+                    {{cliente.nombre}}
+                    </mat-cell>
+                </ng-container>
+
+                <!-- Apellidos Column -->
+                <ng-container matColumnDef="apellidos">
+                    <mat-header-cell *matHeaderCellDef> APELLIDOS </mat-header-cell>
+                    <mat-cell *matCellDef="let cliente">
+                    <span class="mobile-label">APELLIDOS:</span>
+                    {{cliente.apellidos}}
+                    </mat-cell>
+                </ng-container>
+
+                <!-- Comentario Column -->
+                <ng-container matColumnDef="comentario">
+                    <mat-header-cell *matHeaderCellDef> COMENTARIO </mat-header-cell>
+                    <mat-cell *matCellDef="let cliente">
+                    <span class="mobile-label">COMENTARIO:</span>
+                    {{cliente.comentario}}
+                    </mat-cell>
+                </ng-container>
+
+                <!-- Teléfono Column -->
+                <ng-container matColumnDef="telefono">
+                    <mat-header-cell *matHeaderCellDef> TELEFONO </mat-header-cell>
+                    <mat-cell *matCellDef="let cliente">
+                    <span class="mobile-label">TELEFONO:</span>
+                    {{cliente.telefono}}
+                    </mat-cell>
+                </ng-container>
+
+                <!-- e-mail Column -->
+                <ng-container matColumnDef="email">
+                    <mat-header-cell *matHeaderCellDef> E-MAIL </mat-header-cell>
+                    <mat-cell *matCellDef="let cliente">
+                    <span class="mobile-label">E-MAIL:</span>
+                    {{cliente.email}}
+                    </mat-cell>
+                </ng-container>
+
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;"
+                [ngClass]="{'highlight': selectedRowIndex == row.id}"
+                (mouseover)="highlight(row)"
+                (click)="selectCliente(row.id)"
+                >
+                </mat-row>
+
+            </mat-table>
+        </div>
+    </div>
+
+</div>
+
