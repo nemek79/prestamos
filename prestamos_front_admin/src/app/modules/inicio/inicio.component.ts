@@ -46,8 +46,7 @@ export class InicioComponent implements OnInit {
     // obtener la información del prestamo
     this.prestamosSRV.getPrestamo(id).subscribe( (response: InfoResponse) => {
 
-      this.selectedPrestamo = response.data[0];
-      console.log(this.selectedPrestamo)
+      this.selectedPrestamo = response.data.shift();
 
     });
 
