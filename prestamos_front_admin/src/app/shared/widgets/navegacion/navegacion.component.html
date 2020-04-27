@@ -1,13 +1,17 @@
-<div class="breadcrumb">
-    <h4>{{ activePage }}</h4>
-    <ul>
-      <li *ngFor="let items of parts; let i = index" [ngClass]="{ 'inicio': i === 0, 'separator': i % 2 === 0 && i > 0 }">
-        <div *ngIf="i % 2 !== 0 && i > 0">
-          <a routerLink='{{ url[i] }}'>
-            {{ items }}
-          </a>
-        </div>
-        <div *ngIf="i % 2 === 0 && i > 0">-</div>
-      </li>
-    </ul>
+<div class="navigation">
+  <div class="breadcrumb">
+      <ul>
+        <li *ngFor="let items of parts; let i = index" [ngClass]="{ 'inicio': i === 0, 'separator': i % 2 === 0 && i > 0 }">
+          <div *ngIf="i % 2 !== 0 && i > 0">
+            <a routerLink='{{ url[i] | lowercase  }}'>
+              {{ items }}
+            </a>
+          </div>
+          <div *ngIf="i % 2 === 0 && i > 0">/</div>
+        </li>
+        <li class="activePage">
+          /{{activePage}}
+        </li>
+      </ul>
+  </div>
 </div>

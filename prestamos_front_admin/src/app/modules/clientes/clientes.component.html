@@ -1,6 +1,6 @@
 <app-navegacion 
-    [activePage]="'Bocinas'" 
-    [parts]="['Inicio', 'Accesorios para Computadora', 'Bocinas']">
+    [activePage]="'Clientes'" 
+    [parts]="['Inicio','prueba']">
 </app-navegacion>
 
 <div class="container" 
@@ -68,6 +68,7 @@
                     {{cliente.email}}
                     </mat-cell>
                 </ng-container>
+
 
                 <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
                 <mat-row *matRowDef="let row; columns: displayedColumns;"

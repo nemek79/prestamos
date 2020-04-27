@@ -9,7 +9,7 @@ export class NavegacionComponent implements OnInit {
 
   @Input() parts: any;
   @Input() activePage: any;
-  private url =  [];
+  public url =  [];
 
   constructor() { }
 
