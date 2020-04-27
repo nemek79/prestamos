@@ -13,6 +13,8 @@ import { ClientesComponent } from 'src/app/modules/clientes/clientes.component';
 import { IntermediariosComponent } from 'src/app/modules/intermediarios/intermediarios.component';
 import { PrestamosComponent } from 'src/app/modules/prestamos/prestamos.component';
 import { ClientesService } from 'src/app/services/clientes.service';
+import {TableModule} from 'primeng/table';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,7 @@ import { ClientesService } from 'src/app/services/clientes.service';
   ],
   imports: [
     CommonModule,
+    BrowserAnimationsModule,
     RouterModule,
     FlexLayoutModule,
     SharedModule,
@@ -35,7 +38,8 @@ import { ClientesService } from 'src/app/services/clientes.service';
     MatCardModule,
     MatPaginatorModule,
     MatTableModule,
-    MatListModule
+    MatListModule,
+    TableModule
   ],
   providers: [
     PrestamosService,

@@ -13,7 +13,7 @@ export class ClientesComponent implements OnInit {
 
   // configuracion de la tabla
   displayedColumns: string[] = ['id', 'nombre', 'apellidos', 'comentario', 'telefono', 'email'];
-  dataSource = new MatTableDataSource();
+  clientes: Cliente[];
   selectedRowIndex = -1;
 
   // cliente seleccionado
@@ -28,7 +28,7 @@ export class ClientesComponent implements OnInit {
     // Obtener la lista de clientes
     this.clientesSRV.getClientes().subscribe( (response: InfoResponse) => {
 
-      this.dataSource.data = response.data;
+      this.clientes = response.data;
 
     });
 
