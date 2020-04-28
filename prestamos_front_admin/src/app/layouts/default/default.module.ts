@@ -14,6 +14,7 @@ import { IntermediariosComponent } from 'src/app/modules/intermediarios/intermed
 import { PrestamosComponent } from 'src/app/modules/prestamos/prestamos.component';
 import { ClientesService } from 'src/app/services/clientes.service';
 import {TableModule} from 'primeng/table';
+import {ButtonModule} from 'primeng/button';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
@@ -39,7 +40,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     MatPaginatorModule,
     MatTableModule,
     MatListModule,
-    TableModule
+    TableModule,
+    ButtonModule
   ],
   providers: [
     PrestamosService,

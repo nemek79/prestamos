@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { MatTableDataSource } from '@angular/material';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Cliente } from 'src/app/models/cliente';
 import { ClientesService } from 'src/app/services/clientes.service';
 import { InfoResponse } from 'src/app/models/inforesponse';
+declare var $;
 
 @Component({
   selector: 'app-clientes',
@@ -10,6 +10,9 @@ import { InfoResponse } from 'src/app/models/inforesponse';
   styleUrls: ['./clientes.component.scss']
 })
 export class ClientesComponent implements OnInit {
+
+  @ViewChild('dataTable', {static: false}) table;
+  dataTable: any;
 
   // configuracion de la tabla
   displayedColumns: string[] = ['id', 'nombre', 'apellidos', 'comentario', 'telefono', 'email'];
@@ -30,6 +33,9 @@ export class ClientesComponent implements OnInit {
 
       this.clientes = response.data;
 
+      this.dataTable = $(this.table.nativeElement);
+      this.dataTable.DataTable();
+
     });
 
   }
@@ -49,6 +55,10 @@ export class ClientesComponent implements OnInit {
 
     // });
 
+  }
+
+  showDialogToAdd() {
+    console.log('show dialog to add')
   }
 
 }

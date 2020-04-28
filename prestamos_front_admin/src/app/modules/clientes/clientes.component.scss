@@ -1,3 +1,8 @@
+table {
+  *border-collapse: collapse; /* IE7 and lower */
+  border-spacing: 0;
+}
+
 @media only all {
   th.ui-p-6,
   td.ui-p-6,
