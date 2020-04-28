@@ -14,11 +14,6 @@ export class ClientesComponent implements OnInit {
   @ViewChild('dataTable', {static: false}) table;
   dataTable: any;
 
-  // configuracion de la tabla
-  displayedColumns: string[] = ['id', 'nombre', 'apellidos', 'comentario', 'telefono', 'email'];
-  clientes: Cliente[];
-  selectedRowIndex = -1;
-
   // cliente seleccionado
   selectedCliente: Cliente = null;
 
@@ -31,34 +26,32 @@ export class ClientesComponent implements OnInit {
     // Obtener la lista de clientes
     this.clientesSRV.getClientes().subscribe( (response: InfoResponse) => {
 
-      this.clientes = response.data;
+      console.log(response.data)
 
       this.dataTable = $(this.table.nativeElement);
-      this.dataTable.DataTable();
+      this.dataTable.DataTable({
+        paging:   false,
+        ordering: false,
+        info:     false,
+        searching: false,
+        rowReorder: {
+          selector: 'td:nth-child(2)'
+        },
+        responsive: true,
+        data: response.data,
+        columns: [
+            { title: 'ID', data: 'id' },
+            { title: 'NOMBRE', data: 'nombre' },
+            { title: 'APELLIDOS', data: 'apellidos' },
+            { title: 'COMENTARIO', data: 'comentario' },
+            { title: 'TELEFONO', data: 'telefono' },
+            { title: 'EMAIL', data: 'email' }
+        ]
+      });
 
     });
 
   }
 
-  highlight(row: any): void {
-
-    this.selectedRowIndex = row.id;
-
-  }
-
-  selectCliente(id: number): void {
-
-    // // obtener la información del prestamo
-    // this.prestamosSRV.getPrestamo(id).subscribe( (response: InfoResponse) => {
-
-    //   this.selectedPrestamo = response.data.shift();
-
-    // });
-
-  }
-
-  showDialogToAdd() {
-    console.log('show dialog to add')
-  }
 
 }
