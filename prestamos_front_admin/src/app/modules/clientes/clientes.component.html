@@ -17,7 +17,8 @@
             &nbsp;
             </div>
             <div class="right">
-            <button pButton type="button" label="Nuevo" (click)="addNewCliente($event)"></button>
+              <button type="button" (click)="addNewCliente($event)" pButton icon="pi pi-plus-circle
+              " label="Nuevo"></button>
             </div>
         </div>
         <table #dataTable class="display nowrap" style="width:100%">
@@ -27,3 +28,14 @@
 
 </div>
 
+<p-dialog
+  [(visible)]="mdlCliente"
+  >
+  <p-header>
+    Header content here
+  </p-header>
+    Content
+  <p-footer>
+    buttons
+  </p-footer>
+</p-dialog>

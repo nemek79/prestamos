@@ -3,6 +3,8 @@ import { Cliente } from 'src/app/models/cliente';
 import { ClientesService } from 'src/app/services/clientes.service';
 import { InfoResponse } from 'src/app/models/inforesponse';
 import {MenuItem} from 'primeng/api';
+import {DialogModule} from 'primeng/dialog';
+
 declare var $;
 
 @Component({
@@ -14,6 +16,7 @@ export class ClientesComponent implements OnInit {
 
   items: MenuItem[];
   home: MenuItem;
+  mdlCliente: boolean = false; // modal de crear un nuevo cliente
 
   @ViewChild('dataTable', {static: false}) table;
   dataTable: any;
@@ -62,7 +65,9 @@ export class ClientesComponent implements OnInit {
   }
 
   addNewCliente(event: any): void {
-    console.log(event)
+
+    this.mdlCliente = true;
+
   }
 
 

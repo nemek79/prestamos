@@ -15,6 +15,7 @@ import { PrestamosComponent } from 'src/app/modules/prestamos/prestamos.componen
 import { ClientesService } from 'src/app/services/clientes.service';
 import {TableModule} from 'primeng/table';
 import {ButtonModule} from 'primeng/button';
+import {DialogModule} from 'primeng/dialog';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {BreadcrumbModule} from 'primeng/breadcrumb';
 
@@ -44,7 +45,8 @@ import {BreadcrumbModule} from 'primeng/breadcrumb';
     MatListModule,
     TableModule,
     ButtonModule,
-    BreadcrumbModule
+    BreadcrumbModule,
+    DialogModule
   ],
   providers: [
     PrestamosService,
