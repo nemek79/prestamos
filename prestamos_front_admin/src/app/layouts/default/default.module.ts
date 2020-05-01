@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { MatSidenavModule, MatDividerModule, MatCardModule, MatPaginatorModule,
-          MatTableModule, MatListModule, MatButtonModule } from '@angular/material';
+          MatTableModule, MatListModule, } from '@angular/material';
 import { InicioComponent } from 'src/app/modules/inicio/inicio.component';
 import { ErrorpageComponent } from 'src/app/modules/errorpage/errorpage.component';
 import { PrestamosService } from 'src/app/services/prestamos.service';
@@ -16,6 +16,8 @@ import { ClientesService } from 'src/app/services/clientes.service';
 import {TableModule} from 'primeng/table';
 import {ButtonModule} from 'primeng/button';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {BreadcrumbModule} from 'primeng/breadcrumb';
+
 
 @NgModule({
   declarations: [
@@ -42,7 +44,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     MatListModule,
     TableModule,
     ButtonModule,
-    MatButtonModule
+    BreadcrumbModule
   ],
   providers: [
     PrestamosService,

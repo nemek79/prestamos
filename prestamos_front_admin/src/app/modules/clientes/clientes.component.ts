@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Cliente } from 'src/app/models/cliente';
 import { ClientesService } from 'src/app/services/clientes.service';
 import { InfoResponse } from 'src/app/models/inforesponse';
+import {MenuItem} from 'primeng/api';
 declare var $;
 
 @Component({
@@ -10,6 +11,9 @@ declare var $;
   styleUrls: ['./clientes.component.scss']
 })
 export class ClientesComponent implements OnInit {
+
+  items: MenuItem[];
+  home: MenuItem;
 
   @ViewChild('dataTable', {static: false}) table;
   dataTable: any;
@@ -23,10 +27,14 @@ export class ClientesComponent implements OnInit {
 
   ngOnInit() {
 
+    this.items = [
+      {label: 'Clientes', url: 'clientes', icon: 'pi pi-user'}
+    ];
+
+    this.home = {icon: 'pi pi-home'};
+
     // Obtener la lista de clientes
     this.clientesSRV.getClientes().subscribe( (response: InfoResponse) => {
-
-      console.log(response.data)
 
       this.dataTable = $(this.table.nativeElement);
       this.dataTable.DataTable({
@@ -51,6 +59,10 @@ export class ClientesComponent implements OnInit {
 
     });
 
+  }
+
+  addNewCliente(event: any): void {
+    console.log(event)
   }
 
 
