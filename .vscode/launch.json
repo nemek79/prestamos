@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-PrestamosApplication<prestamos>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "es.vir2al.prestamos.PrestamosApplication",
+            "projectName": "prestamos",
+            "args": ""
+        }
+    ]
+}
