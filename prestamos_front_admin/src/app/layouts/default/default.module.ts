@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { DefaultComponent } from './default.component';
 import { RouterModule } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -18,6 +19,7 @@ import {ButtonModule} from 'primeng/button';
 import {DialogModule} from 'primeng/dialog';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {BreadcrumbModule} from 'primeng/breadcrumb';
+import {InputTextModule} from 'primeng/inputtext';
 
 
 @NgModule({
@@ -32,6 +34,7 @@ import {BreadcrumbModule} from 'primeng/breadcrumb';
   imports: [
     CommonModule,
     BrowserAnimationsModule,
+    FormsModule,
     RouterModule,
     FlexLayoutModule,
     SharedModule,
@@ -46,7 +49,8 @@ import {BreadcrumbModule} from 'primeng/breadcrumb';
     TableModule,
     ButtonModule,
     BreadcrumbModule,
-    DialogModule
+    DialogModule,
+    InputTextModule
   ],
   providers: [
     PrestamosService,

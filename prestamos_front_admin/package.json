@@ -26,6 +26,7 @@
     "datatables.net": "^1.10.20",
     "datatables.net-bs4": "^1.10.20",
     "datatables.net-dt": "^1.10.20",
+    "primeflex": "^1.0.0",
     "primeicons": "^2.0.0",
     "primeng": "^9.0.6",
     "rxjs": "~6.4.0",

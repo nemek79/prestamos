@@ -26,37 +26,112 @@
     float: right;
 }
 
+.botonera button {
+    margin-left: 5px;
+}
 
-@media only all {
+/* modal dialog for clients */
+:host ::ng-deep {
+    height: 100%;
+    .mdlCliente{
+        width:75%;
+        height: 100%;
+        overflow: visible;
+    }
+}
+
+.frmCliente {
+    display: inline-block;
+}
+
+.v2l-inputgroup {
+
+    width: 100%;
+    padding: 0;
 
 }
 
-/* Show priority 1 at 320px (20em x 16px) */
-@media screen and (min-width: 20em) {
+.v2l-inputgroup input {
+    display: block;
+    width: 100%;
+}
+
+.v2l-inputgroup label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+@media (min-width: 1281px) {
+
+//CSS
 
 }
 
-/* Show priority 2 at 480px (30em x 16px) */
-@media screen and (min-width: 30em) {
+/*
+##Device = Laptops, Desktops
+##Screen = B/w 1025px to 1280px
+*/
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+
+//CSS
 
 }
 
-/* Show priority 3 at 640px (40em x 16px) */
-@media screen and (min-width: 40em) {
+/*
+##Device = Tablets, Ipads (portrait)
+##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) {
+
+//CSS
 
 }
 
-/* Show priority 4 at 800px (50em x 16px) */
-@media screen and (min-width: 50em) {
+/*
+##Device = Tablets, Ipads (landscape)
+##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+
+//CSS
 
 }
 
-/* Show priority 5 at 960px (60em x 16px) */
-@media screen and (min-width: 60em) {
+/*
+##Device = Tablets, Mobiles (Landscape)
+*/
+
+@media (min-width: 426px) and (max-width: 767px) {
 
 }
 
-/* Show priority 6 at 1,120px (70em x 16px) */
-@media screen and (min-width: 70em) {
+
+/*
+  ##Device = Mobile 
+*/
+
+@media (min-width: 320px) and (max-width: 425px) {
+
+    /* modal dialog for clients */
+    :host ::ng-deep {
+        .mdlCliente{
+            width:100%;
+            overflow: visible;
+        }
+    }
+
+    .v2l-inputgroup input {
+        display: block;
+        width: 100%;
+    }
+    
+    .v2l-inputgroup label {
+        display: block;
+        margin-bottom: 5px;
+        width: 100%;
+    }
 
 }

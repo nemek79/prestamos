@@ -17,11 +17,32 @@
             &nbsp;
             </div>
             <div class="right">
-              <button type="button" (click)="addNewCliente($event)" pButton icon="pi pi-plus-circle
-              " label="Nuevo"></button>
+              <button type="button" 
+                      (click)="addNewClienteShow($event)" 
+                      pButton 
+                      class="ui-button-info"
+                      icon="pi pi-plus-circle" 
+                      label="Nuevo">
+              </button>
+              <button type="button" 
+                      (click)="addNewClienteShow($event)"
+                      [disabled]="selectedChecks.length != 1"
+                      pButton 
+                      class="ui-button-info"
+                      icon="pi pi-pencil" 
+                      label="Editar">
+              </button>
+              <button type="button" 
+                      (click)="addNewClienteShow($event)"
+                      [disabled]="selectedChecks.length < 1"
+                      pButton 
+                      class="ui-button-danger"
+                      icon="pi pi-trash" 
+                      label="Eliminar">
+              </button>
             </div>
         </div>
-        <table #dataTable class="display nowrap" style="width:100%">
+        <table #dataTable id="tblClientes" class="display nowrap" style="width:100%">
         </table>
 
     </div>
@@ -30,12 +51,69 @@
 
 <p-dialog
   [(visible)]="mdlCliente"
-  >
+  [baseZIndex]="10000"
+  [modal]="true"
+  [draggable]="false" 
+  [resizable]="false"
+  styleClass="mdlCliente"
+>
   <p-header>
-    Header content here
+    Añadir nuevo cliente
   </p-header>
-    Content
+    <div class="p-grid">
+      <div class="p-col-12 p-md-6">
+        <div class="v2l-inputgroup">
+          <label for="nombre">Nombre</label>
+          <input type="text" 
+                  id="nombre" 
+                  pInputText 
+                  [(ngModel)]="selectedCliente.nombre"
+          >
+        </div>
+      </div>
+      <div class="p-col-12 p-md-6">
+        <div class="v2l-inputgroup">
+          <label for="apellidos">Apellidos</label>
+          <input type="text" 
+                  id="apellidos" 
+                  pInputText 
+                  [(ngModel)]="selectedCliente.apellidos"
+          >
+        </div>
+      </div>
+      <div class="p-col-12 p-md-6">
+        <div class="v2l-inputgroup">
+          <label for="telefono">Teléfono</label>
+          <input type="text" 
+                  id="telefono" 
+                  pInputText 
+                  [(ngModel)]="selectedCliente.telefono"
+          >
+        </div>
+      </div>
+      <div class="p-col-12 p-md-6">
+        <div class="v2l-inputgroup">
+          <label for="email">E-mail</label>
+          <input type="text" 
+                  id="email" 
+                  pInputText 
+                  [(ngModel)]="selectedCliente.email"
+          >
+        </div>
+      </div>
+      <div class="p-col-12">
+        <div class="v2l-inputgroup">
+          <label for="Comentario">Comentario</label>
+          <input type="text" 
+                  id="comentario" 
+                  pInputText 
+                  [(ngModel)]="selectedCliente.comentario"
+          >
+        </div>
+      </div>
+    </div>
   <p-footer>
-    buttons
+    <button type="button" pButton icon="pi pi-check" (click)="createCliente()" label="Aceptar"></button>
+    <button type="button" pButton icon="pi pi-times" (click)="discardCliente()" label="Cancelar" class="ui-button-secondary"></button>
   </p-footer>
 </p-dialog>
