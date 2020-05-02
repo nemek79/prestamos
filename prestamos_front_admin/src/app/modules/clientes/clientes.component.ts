@@ -17,6 +17,8 @@ export class ClientesComponent implements OnInit {
   items: MenuItem[];
   home: MenuItem;
   mdlCliente: boolean = false; // modal de crear un nuevo cliente
+  registrosBorrados = false;
+  timerMensaje;
 
   selectedChecks: number[];
 
@@ -117,6 +119,37 @@ export class ClientesComponent implements OnInit {
 
   }
 
+  /**
+   * Elimina los clientes indicados en el array de seleccionados
+   */
+  deleteClientes() {
+
+    const table = this.dataTable.DataTable();
+
+    this.clientesSRV.deleteClientes(this.selectedChecks).subscribe( response => {
+
+      table.rows( ( idx, data, node ) => {
+
+        if (this.selectedChecks.indexOf(data.id.toString()) > -1) {
+
+          return true;
+        }
+
+        return false;
+
+      } )
+      .remove().draw();
+
+      this.selectedChecks = [];
+
+      this.registrosBorrados = true;
+
+      this.timerMensaje = setTimeout(() => { this.releaseMensaje(); }, 3000);
+
+    });
+
+  }
+
   // ========================================
   // FUNCIONES PRIVADAS
   // ========================================
@@ -150,6 +183,10 @@ export class ClientesComponent implements OnInit {
 
     });
 
+  }
+
+  private releaseMensaje() {
+    this.registrosBorrados = false;
   }
 
 }

@@ -12,6 +12,12 @@
           <p-breadcrumb [model]="items" [home]="home"></p-breadcrumb>
         </div>
 
+        <p-message  *ngIf="registrosBorrados"
+                    severity="success" 
+                    text="Los registros se han eliminado correctamente">
+
+        </p-message>
+
         <div class="botonera">
             <div class="left">
             &nbsp;
@@ -33,8 +39,8 @@
                       label="Editar">
               </button>
               <button type="button" 
-                      (click)="addNewClienteShow($event)"
-                      [disabled]="selectedChecks.length < 1"
+                      (click)="deleteClientes()"
+                      [disabled]="selectedChecks.length == 0"
                       pButton 
                       class="ui-button-danger"
                       icon="pi pi-trash" 

@@ -37,4 +37,15 @@ export class ClientesService {
 
   }
 
+  /**
+   * Elimina un conjunto de clientes
+   */
+  public deleteClientes(clientes: number[]): Observable<any> {
+
+    const urlEndpoint = environment.urlBack + '/clientes/delete';
+
+    return this.http.post<any>(urlEndpoint, clientes);
+
+  }
+
 }

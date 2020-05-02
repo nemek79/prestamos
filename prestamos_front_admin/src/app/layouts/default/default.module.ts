@@ -20,6 +20,8 @@ import {DialogModule} from 'primeng/dialog';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {BreadcrumbModule} from 'primeng/breadcrumb';
 import {InputTextModule} from 'primeng/inputtext';
+import {MessagesModule} from 'primeng/messages';
+import {MessageModule} from 'primeng/message';
 
 
 @NgModule({
@@ -50,7 +52,9 @@ import {InputTextModule} from 'primeng/inputtext';
     ButtonModule,
     BreadcrumbModule,
     DialogModule,
-    InputTextModule
+    InputTextModule,
+    MessagesModule,
+    MessageModule
   ],
   providers: [
     PrestamosService,

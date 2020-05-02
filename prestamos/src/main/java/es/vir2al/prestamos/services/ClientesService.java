@@ -11,5 +11,6 @@ public interface ClientesService {
 	public ClienteDTO save(ClienteDTO cliente) throws Exception;
 	public void delete(ClienteDTO cliente) throws Exception;
 	public void delete(Long id) throws Exception;
+	public void delete(List<Long> lstCientes) throws Exception;
 	
 }

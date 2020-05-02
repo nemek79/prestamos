@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -70,9 +71,9 @@ public class ClientesController {
 
 			ClienteDTO cliente = this.clientesSRV.save(clienteIn);
 			response.setData(cliente);
-		
+
 		} catch (Exception e) {
-			
+
 			List<String> lstErrors = new ArrayList<String>();
 			ErrorResponse errorResponse = new ErrorResponse();
 
@@ -82,11 +83,37 @@ public class ClientesController {
 
 			e.printStackTrace();
 
-			return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR); 
+			return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 
+	/**
+	 * Guarda un nuevo cliente en la base de datos
+	 */
+	@PostMapping("/delete")
+	@PreAuthorize("hasRole('ADMIN')")
+	public ResponseEntity<?> delClientes(@Valid @RequestBody List<Long> lstClientesIn, BindingResult result) {
+
+		try {
+			this.clientesSRV.delete(lstClientesIn);
+		} catch (Exception e) {
+
+			List<String> lstErrors = new ArrayList<String>();
+			ErrorResponse errorResponse = new ErrorResponse();
+
+			lstErrors.add(e.getMessage());
+
+			errorResponse.setErrors(lstErrors);
+
+			e.printStackTrace();
+
+			return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+
+		}
+
+		return new ResponseEntity<>(null, HttpStatus.OK);
+	}
     
 }
