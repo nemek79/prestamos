@@ -68,4 +68,15 @@ public class IntermediariosServiceImpl implements IntermediariosService {
 
 	}
 
+	@Override
+	public void delete(List<Long> lstIntermediarios) throws Exception {
+
+		for (Long idIntermediario : lstIntermediarios) {
+			
+			this.intermediariosDAO.deleteById(idIntermediario);
+
+		}
+
+	}
+
 }

@@ -3,6 +3,7 @@ package es.vir2al.prestamos.dtos;
 import java.io.Serializable;
 
 import es.vir2al.prestamos.models.Intermediario;
+import es.vir2al.prestamos.utils.Conversiones;
 
 public class IntermediarioDTO implements Serializable {
 
@@ -14,13 +15,13 @@ public class IntermediarioDTO implements Serializable {
 	private String comentario;
 	private String telefono;
 	private String email;
-	private Float porcComision;
+	private String porcComision;
 	
 	public IntermediarioDTO() {
 	
 	}
 
-	public IntermediarioDTO(Intermediario intermediario) {
+	public IntermediarioDTO(Intermediario intermediario) throws Exception {
 		
 		this.id = intermediario.getId();
 		this.nombre = intermediario.getNombre();
@@ -28,11 +29,11 @@ public class IntermediarioDTO implements Serializable {
 		this.comentario = intermediario.getComentario();
 		this.telefono = intermediario.getTelefono();
 		this.email = intermediario.getEmail();
-		this.porcComision = intermediario.getPorcComision();
+		this.porcComision = Conversiones.formatPorcentaje(intermediario.getPorcComision());
 		
 	}
 	
-	public Intermediario asIntermediario() {
+	public Intermediario asIntermediario() throws Exception {
 		
 		Intermediario intermediarioBD = new Intermediario();
 		
@@ -42,7 +43,7 @@ public class IntermediarioDTO implements Serializable {
 		intermediarioBD.setComentario(this.comentario);
 		intermediarioBD.setTelefono(this.telefono);
 		intermediarioBD.setEmail(this.email);
-		intermediarioBD.setPorcComision(this.porcComision);
+		intermediarioBD.setPorcComision(Conversiones.porcentajeToNumber(this.porcComision));
 		
 		return intermediarioBD;
 		
@@ -96,11 +97,11 @@ public class IntermediarioDTO implements Serializable {
 		this.email = email;
 	}
 
-	public Float getPorcComision() {
+	public String getPorcComision() {
 		return porcComision;
 	}
 
-	public void setPorcComision(Float porcComision) {
+	public void setPorcComision(String porcComision) {
 		this.porcComision = porcComision;
 	}
 	

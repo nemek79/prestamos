@@ -11,5 +11,6 @@ public interface IntermediariosService {
 	public IntermediarioDTO save(IntermediarioDTO intermediario) throws Exception;
 	public void delete(IntermediarioDTO intermediario) throws Exception;
 	public void delete(Long id) throws Exception;
+	public void delete(List<Long> lstIntermediarios) throws Exception;
 	
 }

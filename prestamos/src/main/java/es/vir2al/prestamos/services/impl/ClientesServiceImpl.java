@@ -70,9 +70,9 @@ public class ClientesServiceImpl implements ClientesService {
 	}
 
 	@Override
-	public void delete(List<Long> lstCientes) throws Exception {
+	public void delete(List<Long> lstClientes) throws Exception {
 		
-		for (Long idCliente : lstCientes) {
+		for (Long idCliente : lstClientes) {
 			
 			this.clientesDAO.deleteById(idCliente);
 

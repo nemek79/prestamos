@@ -21,31 +21,32 @@ import org.springframework.web.bind.annotation.RestController;
 import es.vir2al.prestamos.data.responses.DataResponse;
 import es.vir2al.prestamos.data.responses.ErrorResponse;
 import es.vir2al.prestamos.data.responses.InfoResponse;
-import es.vir2al.prestamos.dtos.ClienteDTO;
-import es.vir2al.prestamos.services.ClientesService;
+import es.vir2al.prestamos.dtos.IntermediarioDTO;
+import es.vir2al.prestamos.services.IntermediariosService;
 
-/**
- * ClientesController
- */
 @CrossOrigin(origins = { "http://localhost:4200", "*" })
 @RestController
-@RequestMapping("/api/clientes")
-public class ClientesController {
+@RequestMapping("/api/intermediarios")
+public class IntermediariosController {
+    
+    @Autowired
+    private IntermediariosService intermediariosSRV;
 
-	@Autowired
-	private ClientesService clientesSRV;
-
+    /**
+     * Obtiene la lista de intermediarios
+     * @return
+     */
 	@GetMapping("")
 	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
-	public ResponseEntity<?> getClientes() {
+	public ResponseEntity<?> getIntermediarios() {
 
 		InfoResponse response = new InfoResponse();
 
 		try {
 
-			List<ClienteDTO> lstClientes = this.clientesSRV.getAll();
-			response.setTotal(lstClientes.size());
-			response.setData(lstClientes);
+			List<IntermediarioDTO> lstIntermediarios = this.intermediariosSRV.getAll();
+			response.setTotal(lstIntermediarios.size());
+			response.setData(lstIntermediarios);
 
 		} catch (Exception e) {
 
@@ -56,24 +57,24 @@ public class ClientesController {
 
 		return new ResponseEntity<>(response, HttpStatus.OK);
 
-	}
-
+    }
+    
 	/**
-	 * Obtiene el cliente por su id
+	 * Obtiene el intermediario por su id
 	 * @return
 	 */
 	@GetMapping("/{id}")
 	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
-	public ResponseEntity<?> getCliente(
+	public ResponseEntity<?> getIntermediario(
 		@PathVariable Long id
 	) {
 
-		DataResponse<ClienteDTO> response = new DataResponse<ClienteDTO>();
+		DataResponse<IntermediarioDTO> response = new DataResponse<IntermediarioDTO>();
 
 		try {
 
-			ClienteDTO cliente = this.clientesSRV.getById(id);
-			response.setData(cliente);
+			IntermediarioDTO intermediario = this.intermediariosSRV.getById(id);
+			response.setData(intermediario);
 
 		} catch (Exception e) {
 
@@ -91,21 +92,22 @@ public class ClientesController {
 	
 		return new ResponseEntity<>(response, HttpStatus.OK);
 
-	}
-
+    }
+    
 	/**
-	 * Crea o edita el cliente
+	 * Crea o edita el intermediario
 	 */
 	@PostMapping("")
 	@PreAuthorize("hasRole('ADMIN')")
-	public ResponseEntity<?> saveCliente(@Valid @RequestBody ClienteDTO clienteIn, BindingResult result) {
+    public ResponseEntity<?> saveIntermediario(@Valid @RequestBody IntermediarioDTO intermediarioIn, 
+                                                             BindingResult result) {
 
-		DataResponse<ClienteDTO> response = new DataResponse<ClienteDTO>();
+		DataResponse<IntermediarioDTO> response = new DataResponse<IntermediarioDTO>();
 
 		try {
 
-			ClienteDTO cliente = this.clientesSRV.save(clienteIn);
-			response.setData(cliente);
+			IntermediarioDTO intermediario = this.intermediariosSRV.save(intermediarioIn);
+			response.setData(intermediario);
 
 		} catch (Exception e) {
 
@@ -122,17 +124,17 @@ public class ClientesController {
 		}
 
 		return new ResponseEntity<>(response, HttpStatus.OK);
-	}
-
+    }
+    
 	/**
-	 * Elimina una lista de clientes
+	 * Elimina una lista de intermediarios
 	 */
 	@PostMapping("/delete")
 	@PreAuthorize("hasRole('ADMIN')")
-	public ResponseEntity<?> delClientes(@Valid @RequestBody List<Long> lstClientesIn, BindingResult result) {
+	public ResponseEntity<?> delIntermediarios(@Valid @RequestBody List<Long> lstClientesIn, BindingResult result) {
 
 		try {
-			this.clientesSRV.delete(lstClientesIn);
+			this.intermediariosSRV.delete(lstClientesIn);
 		} catch (Exception e) {
 
 			List<String> lstErrors = new ArrayList<String>();
@@ -150,5 +152,5 @@ public class ClientesController {
 
 		return new ResponseEntity<>(null, HttpStatus.OK);
 	}
-    
+
 }

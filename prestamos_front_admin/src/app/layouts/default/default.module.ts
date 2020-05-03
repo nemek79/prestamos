@@ -22,6 +22,7 @@ import {BreadcrumbModule} from 'primeng/breadcrumb';
 import {InputTextModule} from 'primeng/inputtext';
 import {MessagesModule} from 'primeng/messages';
 import {MessageModule} from 'primeng/message';
+import { IntermediariosService } from 'src/app/services/intermediarios.service';
 
 
 @NgModule({
@@ -58,7 +59,8 @@ import {MessageModule} from 'primeng/message';
   ],
   providers: [
     PrestamosService,
-    ClientesService
+    ClientesService,
+    IntermediariosService
   ]
 })
 export class DefaultModule { }
