@@ -12,11 +12,7 @@
           <p-breadcrumb [model]="items" [home]="home"></p-breadcrumb>
         </div>
 
-        <p-message  *ngIf="registrosBorrados"
-                    severity="success" 
-                    text="Los registros se han eliminado correctamente">
-
-        </p-message>
+        <p-messages [(value)]="msgs"></p-messages>
 
         <div class="botonera">
             <div class="left">
@@ -24,14 +20,15 @@
             </div>
             <div class="right">
               <button type="button" 
-                      (click)="addNewClienteShow($event)" 
+                      (click)="mdlClienteShow($event)" 
+                      [disabled]="selectedChecks.length != 0"
                       pButton 
                       class="ui-button-info"
                       icon="pi pi-plus-circle" 
                       label="Nuevo">
               </button>
               <button type="button" 
-                      (click)="addNewClienteShow($event)"
+                      (click)="mdlClienteShow($event)"
                       [disabled]="selectedChecks.length != 1"
                       pButton 
                       class="ui-button-info"
@@ -119,7 +116,7 @@
       </div>
     </div>
   <p-footer>
-    <button type="button" pButton icon="pi pi-check" (click)="createCliente()" label="Aceptar"></button>
+    <button type="button" pButton icon="pi pi-check" (click)="saveCliente()" label="Aceptar"></button>
     <button type="button" pButton icon="pi pi-times" (click)="discardCliente()" label="Cancelar" class="ui-button-secondary"></button>
   </p-footer>
 </p-dialog>

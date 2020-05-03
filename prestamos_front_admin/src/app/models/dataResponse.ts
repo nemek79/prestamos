@@ -1,4 +1,4 @@
-export class InfoResponse {
+export class DataResponse {
 
     data: any;
     info: string;

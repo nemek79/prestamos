@@ -17,8 +17,7 @@ export class ClientesComponent implements OnInit {
   items: MenuItem[];
   home: MenuItem;
   mdlCliente: boolean = false; // modal de crear un nuevo cliente
-  registrosBorrados = false;
-  timerMensaje;
+  msgs = [];
 
   selectedChecks: number[];
 
@@ -79,6 +78,13 @@ export class ClientesComponent implements OnInit {
       });
 
       this.loadDataEvents();
+    }, err => {
+
+      this.msgs.push({severity: 'error',
+      summary: 'Error!',
+      detail: 'No se han podido recuperar los datos de los clientes'});
+
+      setTimeout(() => { this.releaseMensaje(); }, 5000);
     });
 
   }
@@ -86,9 +92,33 @@ export class ClientesComponent implements OnInit {
   /**
    * Muestra el modal de cliente
    */
-  addNewClienteShow(event: any): void {
+  mdlClienteShow(event: any): void {
 
-    this.mdlCliente = true;
+    // comprobar si es modo edición o crear nuevo cliente
+    if (this.selectedChecks.length > 0) {
+
+      // recuperar los datos del cliente
+      this.clientesSRV.getCliente(this.selectedChecks[0]).subscribe( response => {
+
+        this.selectedCliente = response.data;
+        this.mdlCliente = true;
+
+      }, err => {
+
+        this.msgs.push({severity: 'error',
+        summary: 'Error!',
+        detail: 'No se han podido recuperar los datos del cliente'});
+
+        setTimeout(() => { this.releaseMensaje(); }, 5000);
+      }
+      );
+
+    } else {
+
+      this.selectedCliente = new Cliente();
+      this.mdlCliente = true;
+
+    }
 
   }
 
@@ -103,18 +133,36 @@ export class ClientesComponent implements OnInit {
   }
 
   /**
-   * Crear nuevo cliente
+   * Crear nuevo cliente o editarlo si ya existe
    */
-  createCliente() {
+  saveCliente() {
 
     const table = this.dataTable.DataTable();
 
-    this.clientesSRV.createCliente(this.selectedCliente).subscribe( response => {
+    this.clientesSRV.saveCliente(this.selectedCliente).subscribe( response => {
 
-      table.row.add(response.data).draw(false);
+      if (this.selectedChecks.length === 0) {
+
+        table.row.add(response.data).draw(false);
+
+      } else {
+        // modificar la línea editada
+        this.modRow(this.selectedChecks[0], response.data);
+      }
+
       this.mdlCliente = false;
       this.selectedCliente = new Cliente();
+      if (this.selectedChecks.length === 0) {
+        this.setOnClickTable();
+      }
 
+    }, err => {
+
+      this.msgs.push({severity: 'error',
+      summary: 'Error!',
+      detail: 'No se ha podido guardar el cliente'});
+
+      setTimeout(() => { this.releaseMensaje(); }, 5000);
     });
 
   }
@@ -142,10 +190,19 @@ export class ClientesComponent implements OnInit {
 
       this.selectedChecks = [];
 
-      this.registrosBorrados = true;
+      this.msgs.push({severity: 'success',
+                      summary: 'Borrado correcto.',
+                      detail: 'Todos los clientes seleccionados han sido eliminados'});
 
-      this.timerMensaje = setTimeout(() => { this.releaseMensaje(); }, 3000);
+      setTimeout(() => { this.releaseMensaje(); }, 5000);
 
+    }, err => {
+
+      this.msgs.push({severity: 'error',
+      summary: 'Error!',
+      detail: 'No se ha podido eliminar el cliente'});
+
+      setTimeout(() => { this.releaseMensaje(); }, 5000);
     });
 
   }
@@ -153,6 +210,23 @@ export class ClientesComponent implements OnInit {
   // ========================================
   // FUNCIONES PRIVADAS
   // ========================================
+
+  private modRow(id: any, cliente: Cliente) {
+
+    const table = this.dataTable.DataTable();
+
+    const row = table.rows( ( idx, data, node ) => {
+
+      if (data.id == id) {
+        return true;
+      }
+      return false;
+    });
+
+    table.row(row).data(cliente).draw(false);
+
+    this.selectedChecks = [];
+  }
 
   private checkSelected(id: any) {
 
@@ -168,7 +242,19 @@ export class ClientesComponent implements OnInit {
 
   }
 
+  /**
+   * carga eventos en general tras la carga de la tabla de clientes
+   */
   private loadDataEvents() {
+
+    this.setOnClicksTable();
+
+  }
+
+  /**
+   * Establece los onclicks de los checks de la tabla de clientes
+   */
+  private setOnClicksTable() {
 
     const inputs  = document.querySelectorAll('input[type="checkbox"]');
 
@@ -185,8 +271,28 @@ export class ClientesComponent implements OnInit {
 
   }
 
+  /**
+   * Estable el onclick para una fila
+   */
+  private setOnClickTable() {
+
+    const inputs = document.querySelectorAll('input[type="checkbox"]');
+    const input = inputs[inputs.length - 1];
+
+    input.addEventListener('click', (event) => {
+
+      this.checkSelected(input.getAttribute('value'));
+
+    }
+
+  );
+
+  }
+
   private releaseMensaje() {
-    this.registrosBorrados = false;
+
+    this.msgs = [];
+
   }
 
 }

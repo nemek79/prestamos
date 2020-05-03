@@ -11,8 +11,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -59,11 +59,46 @@ public class ClientesController {
 	}
 
 	/**
-	 * Guarda un nuevo cliente en la base de datos
+	 * Obtiene el cliente por su id
+	 * @return
+	 */
+	@GetMapping("/{id}")
+	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+	public ResponseEntity<?> getClientes(
+		@PathVariable Long id
+	) {
+
+		DataResponse<ClienteDTO> response = new DataResponse<ClienteDTO>();
+
+		try {
+
+			ClienteDTO cliente = this.clientesSRV.getById(id);
+			response.setData(cliente);
+
+		} catch (Exception e) {
+
+			List<String> lstErrors = new ArrayList<String>();
+			ErrorResponse errorResponse = new ErrorResponse();
+
+			lstErrors.add(e.getMessage());
+
+			errorResponse.setErrors(lstErrors);
+
+			e.printStackTrace();
+
+			return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	
+		return new ResponseEntity<>(response, HttpStatus.OK);
+
+	}
+
+	/**
+	 * Crea o edita el cliente
 	 */
 	@PostMapping("")
 	@PreAuthorize("hasRole('ADMIN')")
-	public ResponseEntity<?> addCliente(@Valid @RequestBody ClienteDTO clienteIn, BindingResult result) {
+	public ResponseEntity<?> saveCliente(@Valid @RequestBody ClienteDTO clienteIn, BindingResult result) {
 
 		DataResponse<ClienteDTO> response = new DataResponse<ClienteDTO>();
 
