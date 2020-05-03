@@ -85,7 +85,7 @@ public class TestController {
 		
 		intermediario.setNombre("Edwin");
 		intermediario.setApellidos("Cruz Villalobos");
-		intermediario.setPorcComision(20f);
+		// intermediario.setPorcComision(20f);
 		intermediario.setTelefono("654231564");
 		intermediario.setComentario("Principal intermediario");
 		

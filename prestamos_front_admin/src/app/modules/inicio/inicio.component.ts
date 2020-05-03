@@ -3,6 +3,7 @@ import { PrestamosService } from 'src/app/services/prestamos.service';
 import { Prestamo } from 'src/app/models/prestamo';
 import { InfoResponse } from 'src/app/models/inforesponse';
 import { MatTableDataSource } from '@angular/material';
+import { DataResponse } from 'src/app/models/dataResponse';
 
 @Component({
   selector: 'app-inicio',
@@ -44,7 +45,7 @@ export class InicioComponent implements OnInit {
   selectPrestamo(id: number): void {
 
     // obtener la información del prestamo
-    this.prestamosSRV.getPrestamo(id).subscribe( (response: InfoResponse) => {
+    this.prestamosSRV.getPrestamo(id).subscribe( (response: DataResponse) => {
 
       this.selectedPrestamo = response.data.shift();
 

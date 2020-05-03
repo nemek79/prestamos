@@ -2,6 +2,7 @@ import { EstadoMensualidad } from './EstadoMensualidad';
 import { Intermediario } from './intermediario';
 import { Cliente } from './cliente';
 import { EstadoPrestamo } from './estadoprestamo';
+import {  } from './prestamoInput';
 
 export class Prestamo {
 

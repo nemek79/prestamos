@@ -4,6 +4,8 @@ import { IntermediariosService } from 'src/app/services/intermediarios.service';
 import { InfoResponse } from 'src/app/models/inforesponse';
 import {MenuItem} from 'primeng/api';
 
+declare var $;
+
 @Component({
   selector: 'app-intermediarios',
   templateUrl: './intermediarios.component.html',

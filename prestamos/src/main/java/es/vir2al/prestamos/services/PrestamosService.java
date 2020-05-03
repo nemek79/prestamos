@@ -12,6 +12,7 @@ public interface PrestamosService {
 	public PrestamoDTO save(PrestamoDTO prestamo) throws Exception;
 	public void delete(PrestamoDTO prestamo) throws Exception;
 	public void delete(Long id) throws Exception;
+	public void delete(List<Long> lstPrestamos) throws Exception;
 	
 	/**
 	 * Obtiene la lista de prestamos que no están cerrados

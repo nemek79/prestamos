@@ -73,8 +73,10 @@ public class PrestamoDTO implements Serializable {
 		
 		mensualidad = prestamo.getImporte() * prestamo.getInteres() / 100;
 		
-		if (intermediario != null && intermediario.getPorcComision() != null && intermediario.getPorcComision() > 0) {
-			mensualidad -= mensualidad * intermediario.getPorcComision() / 100;
+		if (intermediario != null && 
+			Conversiones.porcentajeToNumber(intermediario.getPorcComision()) != null && 
+			Conversiones.porcentajeToNumber(intermediario.getPorcComision()) > 0) {
+			mensualidad -= mensualidad * Conversiones.porcentajeToNumber(intermediario.getPorcComision()) / 100;
 		}
 		
 		this.mensualidad = Conversiones.formatImporte(mensualidad);

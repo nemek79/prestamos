@@ -3,10 +3,13 @@ package es.vir2al.prestamos.controllers;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import es.vir2al.prestamos.data.responses.DataResponse;
+import es.vir2al.prestamos.data.responses.ErrorResponse;
 import es.vir2al.prestamos.data.responses.InfoResponse;
 import es.vir2al.prestamos.dtos.ComentarioPrestamoDTO;
 import es.vir2al.prestamos.dtos.PrestamoDTO;
@@ -115,16 +120,13 @@ public class PrestamosController {
 	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
 	public ResponseEntity<?> getPrestamo(@PathVariable("id") Long id) {
 
-		InfoResponse response = new InfoResponse();
+		DataResponse<PrestamoDTO> response = new DataResponse<PrestamoDTO>();
 		PrestamoDTO prestamo = null;
-		List<PrestamoDTO> lstPrestamos = new ArrayList<PrestamoDTO>();
 
 		try {
 
 			prestamo = this.prestamosSRV.getById(id);
-			lstPrestamos.add(prestamo);
-			response.setTotal(1);
-			response.setData(lstPrestamos);
+			response.setData(prestamo);
 		
 		} catch (Exception e) {
 
@@ -136,4 +138,64 @@ public class PrestamosController {
 
 		return new ResponseEntity<>(response,HttpStatus.OK);
 	}
+
+
+	/**
+	 * Crea o edita el prestamo
+	 */
+	@PostMapping("")
+	@PreAuthorize("hasRole('ADMIN')")
+	public ResponseEntity<?> savePrestamo(@Valid @RequestBody PrestamoDTO prestamoIn, BindingResult result) {
+
+		DataResponse<PrestamoDTO> response = new DataResponse<PrestamoDTO>();
+
+		try {
+
+			PrestamoDTO prestamo = this.prestamosSRV.save(prestamoIn);
+			response.setData(prestamo);
+
+		} catch (Exception e) {
+
+			List<String> lstErrors = new ArrayList<String>();
+			ErrorResponse errorResponse = new ErrorResponse();
+
+			lstErrors.add(e.getMessage());
+
+			errorResponse.setErrors(lstErrors);
+
+			e.printStackTrace();
+
+			return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+
+		return new ResponseEntity<>(response, HttpStatus.OK);
+	}
+
+	/**
+	 * Elimina una lista de prestamos
+	 */
+	@PostMapping("/delete")
+	@PreAuthorize("hasRole('ADMIN')")
+	public ResponseEntity<?> delPrestamos(@Valid @RequestBody List<Long> lstPrestamosIn, BindingResult result) {
+
+		try {
+			this.prestamosSRV.delete(lstPrestamosIn);
+		} catch (Exception e) {
+
+			List<String> lstErrors = new ArrayList<String>();
+			ErrorResponse errorResponse = new ErrorResponse();
+
+			lstErrors.add(e.getMessage());
+
+			errorResponse.setErrors(lstErrors);
+
+			e.printStackTrace();
+
+			return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+
+		}
+
+		return new ResponseEntity<>(null, HttpStatus.OK);
+	}
+
 }

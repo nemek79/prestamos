@@ -3,6 +3,8 @@ import { InfoResponse } from '../models/inforesponse';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Prestamo } from '../models/prestamo';
+import { DataResponse } from '../models/dataResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -27,11 +29,33 @@ export class PrestamosService {
   /**
    * Obtiene la información de un préstamo
    */
-  public getPrestamo(id: number): Observable<InfoResponse> {
+  public getPrestamo(id: number): Observable<DataResponse> {
 
-    const urlEndpoint = environment.urlBack + '/prestamos/'+id;
+    const urlEndpoint = environment.urlBack + '/prestamos/' + id;
 
-    return this.http.get<InfoResponse>(urlEndpoint);
+    return this.http.get<DataResponse>(urlEndpoint);
+
+  }
+
+  /**
+   * Crea o edita (si ya existe) un prestamo
+   */
+  public savePrestamo(prestamo: Prestamo): Observable<any> {
+
+    const urlEndpoint = environment.urlBack + '/prestamos';
+
+    return this.http.post<any>(urlEndpoint, prestamo);
+
+  }
+
+  /**
+   * Elimina un conjunto de clientes
+   */
+  public deletePrestamos(prestamos: number[]): Observable<any> {
+
+    const urlEndpoint = environment.urlBack + '/prestamos/delete';
+
+    return this.http.post<any>(urlEndpoint, prestamos);
 
   }
 

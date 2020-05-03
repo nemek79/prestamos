@@ -23,6 +23,8 @@ import {InputTextModule} from 'primeng/inputtext';
 import {MessagesModule} from 'primeng/messages';
 import {MessageModule} from 'primeng/message';
 import { IntermediariosService } from 'src/app/services/intermediarios.service';
+import {DropdownModule} from 'primeng/dropdown';
+import { HelperService } from 'src/app/services/helper.service';
 
 
 @NgModule({
@@ -55,12 +57,14 @@ import { IntermediariosService } from 'src/app/services/intermediarios.service';
     DialogModule,
     InputTextModule,
     MessagesModule,
-    MessageModule
+    MessageModule,
+    DropdownModule
   ],
   providers: [
     PrestamosService,
     ClientesService,
-    IntermediariosService
+    IntermediariosService,
+    HelperService
   ]
 })
 export class DefaultModule { }

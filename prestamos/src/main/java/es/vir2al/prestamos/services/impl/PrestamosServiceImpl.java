@@ -119,5 +119,16 @@ public class PrestamosServiceImpl implements PrestamosService {
 		
 		return lstPrestamos;
 	}
+
+	@Override
+	public void delete(List<Long> lstPrestamos) throws Exception {
+		
+		for (Long idPrestamo : lstPrestamos) {
+			
+			this.prestamosDAO.deleteById(idPrestamo);
+
+		}
+
+	}
 	
 }

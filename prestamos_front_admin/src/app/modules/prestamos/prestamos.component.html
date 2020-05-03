@@ -1,224 +1,140 @@
+<div class="breadcrumb">
+  <p-breadcrumb [model]="items" [home]="home"></p-breadcrumb>
+</div>
 
-<div class="container" fxLayout="row" fxLayout.lt-md="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
-    <div  fxFlex="60" 
+<div class="container"
+    fxLayout="row"
+    fxLayout.lt-md="row"
+    fxLayoutWrap fxLayoutGap="0.5%"
+    fxLayoutAlign="center">
+
+    <div  fxFlex="90"
           fxFlex.lt-xs="100"
-          >
-      <div class="table-container mat-elevation-z8">
-        <mat-table #table [dataSource]="dataSource">
-  
-          <!-- Fecha Inicio Column -->
-          <ng-container matColumnDef="id">
-            <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
-            <mat-cell *matCellDef="let prestamo">
-              <span class="mobile-label">Id:</span>
-              {{prestamo.id}}
-            </mat-cell>
-          </ng-container>
-  
-          <!-- Fecha Inicio Column -->
-          <ng-container matColumnDef="finicio">
-            <mat-header-cell *matHeaderCellDef> Inicio </mat-header-cell>
-            <mat-cell *matCellDef="let prestamo">
-              <span class="mobile-label">F. Inicio:</span>
-              {{prestamo.fechaIni}}
-            </mat-cell>
-          </ng-container>
-  
-          <!-- Fecha Final Column -->
-          <ng-container matColumnDef="ffinal">
-            <mat-header-cell *matHeaderCellDef> Final </mat-header-cell>
-            <mat-cell *matCellDef="let prestamo">
-              <span class="mobile-label">F. Fin:</span>
-              {{prestamo.fechaFin || '---'}}
-  
-            </mat-cell>
-          </ng-container>
-  
-          <!-- Importe Column -->
-          <ng-container matColumnDef="importe">
-            <mat-header-cell *matHeaderCellDef> Importe </mat-header-cell>
-            <mat-cell *matCellDef="let prestamo">
-              <span class="mobile-label">Importe:</span>
-              {{prestamo.importe}}
-            </mat-cell>
-          </ng-container>
-  
-          <!-- Interes Column -->
-          <ng-container matColumnDef="interes">
-            <mat-header-cell *matHeaderCellDef> Interes </mat-header-cell>
-            <mat-cell *matCellDef="let prestamo">
-              <span class="mobile-label">Interes:</span>
-              {{prestamo.interes}}
-            </mat-cell>
-          </ng-container>
-  
-          <!-- Cliente Column -->
-          <ng-container matColumnDef="cliente">
-            <mat-header-cell *matHeaderCellDef> Cliente </mat-header-cell>
-            <mat-cell *matCellDef="let prestamo">
-              <span class="mobile-label">Cliente:</span>
-              {{prestamo.cliente.nombre}}
-            </mat-cell>
-          </ng-container>
-  
-          <!-- Intermediario Column -->
-          <ng-container matColumnDef="intermediario">
-            <mat-header-cell *matHeaderCellDef> Intermediario </mat-header-cell>
-            <mat-cell *matCellDef="let prestamo">
-              <span class="mobile-label">Intermed.:</span>
-              {{prestamo.intermediario.nombre}}
-            </mat-cell>
-          </ng-container>
-  
-          <!-- Estado Column -->
-          <ng-container matColumnDef="estado">
-            <mat-header-cell *matHeaderCellDef> Estado </mat-header-cell>
-            <mat-cell *matCellDef="let prestamo">
-              <span class="mobile-label">Estado:</span>
-              {{prestamo.estado.descripcion}}
-            </mat-cell>
-          </ng-container>
-  
-          <!-- Mensualidad Column -->
-          <ng-container matColumnDef="mensualidad">
-            <mat-header-cell *matHeaderCellDef> Mes </mat-header-cell>
-            <mat-cell *matCellDef="let prestamo">
-              <span class="mobile-label">Mensualidad:</span>
-              {{prestamo.mensualidad}}
-            </mat-cell>
-          </ng-container>
-  
-  
-          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-          <mat-row *matRowDef="let row; columns: displayedColumns;"
-            [ngClass]="{'highlight': selectedRowIndex == row.id}"
-            (mouseover)="highlight(row)"
-            (click)="selectPrestamo(row.id)"
-          >
-          </mat-row>
-  
-        </mat-table>
-        <div 
-          *ngIf="dataSource?.data.length === 0"
-          class="nodata"
         >
-          No se han encontrado datos
+      <p-messages [(value)]="msgs"></p-messages>
+
+      <div class="botonera">
+          <div class="left">
+          &nbsp;
+          </div>
+          <div class="right">
+            <button type="button" 
+                    (click)="mdlPrestamoShow($event)" 
+                    [disabled]="selectedChecks.length != 0"
+                    pButton 
+                    class="ui-button-info"
+                    icon="pi pi-plus-circle" 
+                    label="Nuevo">
+            </button>
+            <button type="button" 
+                    (click)="mdlPrestamoShow($event)"
+                    [disabled]="selectedChecks.length != 1"
+                    pButton 
+                    class="ui-button-info"
+                    icon="pi pi-pencil" 
+                    label="Editar">
+            </button>
+            <button type="button" 
+                    (click)="deletePrestamos()"
+                    [disabled]="selectedChecks.length == 0"
+                    pButton 
+                    class="ui-button-danger"
+                    icon="pi pi-trash" 
+                    label="Eliminar">
+            </button>
+          </div>
+      </div>
+      <table #dataTable id="tblPrestamos" class="display nowrap" style="width:100%">
+      </table>
+    </div>
+</div>
+
+<p-dialog
+  [(visible)]="mdlPrestamo"
+  [baseZIndex]="10000"
+  [modal]="true"
+  [draggable]="false" 
+  [resizable]="false"
+  styleClass="mdlPrestamo"
+>
+  <p-header>
+    Añadir nuevo prestamo
+  </p-header>
+    <div class="p-grid">
+      <div class="p-col-12 p-md-3">
+        <div class="v2l-inputgroup">
+          <label for="fInicio">Fecha Inicio</label>
+          <input type="text" 
+                  id="fInicio" 
+                  pInputText 
+                  [(ngModel)]="selectedPrestamo.fechaIni"
+          >
+        </div>
+      </div>
+      <div class="p-col-12 p-md-3">
+        <div class="v2l-inputgroup">
+          <label for="fFinal">Fecha Final</label>
+          <input type="text" 
+                  id="fFinal" 
+                  pInputText 
+                  [(ngModel)]="selectedPrestamo.fechaFin"
+          >
+        </div>
+      </div>
+      <div class="p-col-12 p-md-3">
+        <div class="v2l-inputgroup">
+          <label for="importe">Importe</label>
+          <input type="text" 
+                  id="importe" 
+                  pInputText 
+                  [(ngModel)]="selectedPrestamo.importe"
+          >
+        </div>
+      </div>
+      <div class="p-col-12 p-md-3">
+        <div class="v2l-inputgroup">
+          <label for="importeInicial">Importe inicial</label>
+          <input type="text" 
+                  id="importeInicial" 
+                  pInputText 
+                  [(ngModel)]="selectedPrestamo.importeInicial"
+          >
+        </div>
+      </div>
+      <div class="p-col-12 p-md-2">
+        <div class="v2l-inputgroup">
+          <label for="interes">Interes</label>
+          <input type="text" 
+                  id="interes" 
+                  pInputText 
+                  [(ngModel)]="selectedPrestamo.interes"
+          >
+        </div>
+      </div>
+      <div class="p-col-12 p-md-5">
+        <div class="v2l-inputgroup">
+          <label for="intermediario">Intermediario</label>
+          <p-dropdown [options]="lstIntermediarios" 
+                      [(ngModel)]="selectedPrestamo.intermediario" 
+                      optionLabel="nombre">
+          </p-dropdown>
+        </div>
+
+      </div>
+      <div class="p-col-12 p-md-5">
+        <div class="v2l-inputgroup">
+          <label for="cliente">Cliente</label>
+          <p-dropdown [options]="lstClientes" 
+                      [(ngModel)]="selectedPrestamo.cliente" 
+                      optionLabel="nombre">
+          </p-dropdown>
         </div>
       </div>
     </div>
-  
-    <div fxFlex="40" 
-          fxFlex.lt-xs="100">
-          <mat-card *ngIf="selectedPrestamo" >
-            <mat-card-content >
-              <mat-card class="info-prestamo">
-                <mat-card-title>
-                  Información general
-                </mat-card-title>
-                <mat-card-content>
-                  <div class="item-info-prestamo">
-                    <div class="item-key-prestamo">ID:</div> 
-                    <div class="item-value-prestamo">
-                      {{selectedPrestamo.id}} 
-                    </div>
-                  </div>
-                  <div class="item-info-prestamo">
-                    <div class="item-key-prestamo">ESTADO:</div> 
-                    <div class="item-value-prestamo">
-                      {{selectedPrestamo.estado.descripcion}}
-                    </div>
-                  </div>
-                  <div class="item-info-prestamo">
-                    <div class="item-key-prestamo">FECHAS:</div> 
-                    <div class="item-value-prestamo">
-                      {{selectedPrestamo.fechaIni}} - {{selectedPrestamo.fechaFin || 'En curso'}}
-                    </div>
-                  </div>
-                  <div class="item-info-prestamo">
-                    <div class="item-key-prestamo">IMPORTE:</div> 
-                    <div class="item-value-prestamo">
-                      {{selectedPrestamo.importe}} / {{selectedPrestamo.importeInicial}}
-                    </div>
-                  </div>
-                  <div class="item-info-prestamo">
-                    <div class="item-key-prestamo">INTERES:</div> 
-                    <div class="item-value-prestamo">
-                      {{selectedPrestamo.interes}}
-                    </div>
-                  </div>
-                  <div class="item-info-prestamo">
-                    <div class="item-key-prestamo">MENSUALIDAD:</div> 
-                    <div class="item-value-prestamo">
-                      {{selectedPrestamo.mensualidad}} - {{selectedPrestamo.estadoMensualidad.descripcion}}
-                    </div>
-                  </div>
-                  <div class="item-info-prestamo">
-                    <div class="item-key-prestamo">DIA:</div> 
-                    <div class="item-value-prestamo">
-                      {{selectedPrestamo.diaIntereses}}
-                    </div>
-                  </div>
-                </mat-card-content>
-              </mat-card>
-              <mat-card class="info-prestamo">
-                <mat-card-title>
-                  Cliente
-                </mat-card-title>
-                <mat-card-content>
-                  <div class="item-info-prestamo">
-                    <div class="item-key-prestamo">NOMBRE:</div> 
-                    <div class="item-value-prestamo">
-                      {{selectedPrestamo.cliente.nombre}} {{selectedPrestamo.cliente.apellidos}}
-                    </div>
-                  </div>
-                  <div class="item-info-prestamo">
-                    <div class="item-key-prestamo">TELÉFONO:</div> 
-                    <div class="item-value-prestamo">
-                      {{selectedPrestamo.cliente.telefono || 'Sin información'}}
-                    </div>
-                  </div>
-                  <div class="item-info-prestamo">
-                    <div class="item-key-prestamo">E-MAIL:</div> 
-                    <div class="item-value-prestamo">
-                      {{selectedPrestamo.cliente.email || 'Sin información'}}
-                    </div>
-                  </div>
-                </mat-card-content>
-              </mat-card>
-              <mat-card class="info-prestamo">
-                <mat-card-title>
-                  Intermediario
-                </mat-card-title>
-                <mat-card-content>
-                  <div class="item-info-prestamo">
-                    <div class="item-key-prestamo">NOMBRE:</div> 
-                    <div class="item-value-prestamo">
-                      {{selectedPrestamo.intermediario.nombre}} {{selectedPrestamo.intermediario.apellidos}}
-                    </div>
-                  </div>
-                  <div class="item-info-prestamo">
-                    <div class="item-key-prestamo">COMISIÓN:</div> 
-                    <div class="item-value-prestamo">
-                      {{selectedPrestamo.intermediario.porcComision}}
-                    </div>
-                  </div>
-                  <div class="item-info-prestamo">
-                    <div class="item-key-prestamo">TELÉFONO:</div> 
-                    <div class="item-value-prestamo">
-                      {{selectedPrestamo.intermediario.telefono || 'Sin información'}}
-                    </div>
-                  </div>
-                  <div class="item-info-prestamo">
-                    <div class="item-key-prestamo">E-MAIL:</div> 
-                    <div class="item-value-prestamo">
-                      {{selectedPrestamo.intermediario.email || 'Sin información'}}
-                    </div>
-                  </div>
-                </mat-card-content>
-              </mat-card>
-            </mat-card-content>
-          </mat-card>
-    </div>
-  
-  </div>
+  <p-footer>
+    <button type="button" pButton icon="pi pi-check" (click)="savePrestamo()" label="Aceptar"></button>
+    <button type="button" pButton icon="pi pi-times" (click)="discardPrestamo()" label="Cancelar" class="ui-button-secondary"></button>
+  </p-footer>
+</p-dialog>
+
   
