@@ -34,7 +34,7 @@ export class IntermediariosComponent implements OnInit {
     this.selectedChecks = [];
 
     this.items = [
-      {label: 'Intermediarios', url: 'intermediarios', icon: 'pi pi-user'}
+      {label: 'Intermediarios', url: 'intermediarios', icon: 'pi pi-user-plus'}
     ];
 
     this.home = {icon: 'pi pi-home'};
