@@ -3,11 +3,7 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false,
-  client: 'PRESTAMOS',
-  clientPass: 'Prestamo$01P@sswd',
-  urlEndPointAuth: 'http://vir2al.es:8099',
-  urlBack: 'http://localhost:8092/api'
+  production: false
 };
 
 /*
