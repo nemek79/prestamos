@@ -1,0 +1,30 @@
+<mat-toolbar color="primary">
+
+    <mat-toolbar-row>
+
+        <button mat-icon-button (click)="toggleSideBar()">
+            <mat-icon>menu</mat-icon>
+        </button>
+        
+        <span>APP LOGO</span>
+    
+        <div fxFlex fxLayout="row" fxLayoutAlign="flex-end">
+            <ul fxLayout="row" fxLayoutGap="20px">
+                <li>
+                    <button mat-button [matMenuTriggerFor]="menu"> 
+                        <mat-icon>person_outline</mat-icon> 
+                        {{authSRV.getUsuario().username}}
+                    </button>
+                    <mat-menu #menu="matMenu">
+                        <button mat-menu-item (click)="cerrar_sesion()"> 
+                            <mat-icon>exit_to_app</mat-icon>
+                            cerrar sesión
+                        </button>
+                    </mat-menu>
+                </li>
+            </ul>
+        </div>
+    
+    </mat-toolbar-row>
+
+</mat-toolbar>
