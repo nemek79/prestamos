@@ -20,7 +20,7 @@ export class PrestamosComponent implements OnInit {
 
     this.prestamosSRV.getPrestamosAbiertos().subscribe( (response: InfoResponse) => {
 
-
+      console.log(response.data);
 
     });
 

@@ -4,12 +4,19 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+// HTTP
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 // MODULOS
 import { FullwidthModule } from './layouts/fullwidth/fullwidth.module';
 import { DefaultModule } from './layouts/default/default.module';
 import { RouterModule } from '@angular/router';
+
+// SERVICIOS
+import { AuthService } from './services/auth.service';
+
+// INTERCEPTORS
+import { TokenInterceptor } from './interceptors/token.interceptor';
 
 @NgModule({
   declarations: [
@@ -23,7 +30,14 @@ import { RouterModule } from '@angular/router';
     FullwidthModule,
     DefaultModule
   ],
-  providers: [],
+  providers: [
+    AuthService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

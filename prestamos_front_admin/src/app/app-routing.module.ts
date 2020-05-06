@@ -7,6 +7,8 @@ import { ClientesComponent } from './pages/clientes/clientes.component';
 import { PrestamosComponent } from './pages/prestamos/prestamos.component';
 import { InicioComponent } from './pages/inicio/inicio.component';
 import { DefaultComponent } from './layouts/default/default.component';
+import { AuthGuard } from './guards/auth.guard';
+import { RoleGuard } from './guards/role.guard';
 
 
 const routes: Routes = [
@@ -21,19 +23,23 @@ const routes: Routes = [
     children: [
       {
         path: 'inicio',
-        component: InicioComponent
+        component: InicioComponent,
+        canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_ADMIN'}
       },
       {
         path: 'prestamos',
-        component: PrestamosComponent
+        component: PrestamosComponent,
+        canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_ADMIN'}
       },
       {
         path: 'clientes',
-        component: ClientesComponent
+        component: ClientesComponent,
+        canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_ADMIN'}
       },
       {
         path: 'intermediarios',
-        component: IntermediariosComponent
+        component: IntermediariosComponent,
+        canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_ADMIN'}
       }
     ]
   },
