@@ -1,3 +1,14 @@
+table {
+    font-size: 0.8em;
+}
+
+:host ::ng-deep {
+    table tbody tr td.number{
+        text-align: right;
+        padding-right: 5px;
+    }
+  }
+
 @media (min-width: 1281px) {
 
 //CSS

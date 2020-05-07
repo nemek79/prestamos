@@ -27,15 +27,37 @@ export class PrestamosComponent implements OnInit {
       this.dataTable = $(this.table.nativeElement);
 
       this.dataTable.DataTable({
-
-        paging:   false,
+        pageLength: 10,
+        language: {
+          processing:     'cargando...',
+          search:         'Buscar',
+          lengthMenu:    'Mostrar _MENU_ registros',
+          info:           'Mostrando _START_ a _END_ de _TOTAL_ registros',
+          infoEmpty:      'Mostrando 0 a 0 de 0 registros',
+          infoFiltered:   '(filtrado de _MAX_ elementos en total)',
+          infoPostFix:    '',
+          loadingRecords: 'Cargando datos...',
+          zeroRecords:    'No se han encontrado datos.',
+          emptyTable:     'No se han encontrado datos',
+          paginate: {
+              first:      'Primer',
+              previous:   'Anterior',
+              next:       'Siguiente',
+              last:       'Último'
+          },
+          aria: {
+              sortAscending:  '',
+              sortDescending: ''
+          }
+        },
+        paging:   true,
         ordering: false,
-        info:     false,
-        searching: false,
+        info:     true,
+        searching: true,
+        responsive: true,
         rowReorder: {
           selector: 'td:nth-child(2)'
         },
-        responsive: true,
         data: response.data,
         columnDefs: [
           {
@@ -51,7 +73,7 @@ export class PrestamosComponent implements OnInit {
           { title: 'ID', data: 'id', orderable: false, className: '', targets:  1 },
           { title: 'F. INICIO', data: 'fechaIni', orderable: false, className: '', targets:  2 },
           { title: 'F. FINAL', data: 'fechaFin', orderable: false, className: '', targets:  3 },
-          { title: 'IMPORTE', data: 'importe', orderable: false, className: '', targets:  4 },
+          { title: 'IMPORTE', data: 'importe', orderable: false, className: '', targets:  4 , class:'number'},
           { title: 'IMPORTE INI.', data: 'importeInicial', orderable: false, className: '', targets:  5 },
           { title: 'INTERES', data: 'interes', orderable: false, className: '', targets:  6 },
           { title: 'INTERMEDIARIO', data: 'intermediario.nombre', orderable: false, className: '', targets:  7},
