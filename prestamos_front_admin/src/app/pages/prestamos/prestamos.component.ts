@@ -22,10 +22,6 @@ export class PrestamosComponent implements OnInit {
 
   ngOnInit() {
 
-
-    const altura_pantalla = $(window).height();
-    const obj = $("#divID");
-
     this.prestamosSRV.getPrestamosAbiertos().subscribe( (response: InfoResponse) => {
 
       this.dataTable = $(this.table.nativeElement);
@@ -66,10 +62,10 @@ export class PrestamosComponent implements OnInit {
         ]
 
       });
-
+      new adminlte.Layout(document).fixLayoutHeight();
     });
 
-    new adminlte.Layout(document).fixLayoutHeight();
+    
 
   }
 
