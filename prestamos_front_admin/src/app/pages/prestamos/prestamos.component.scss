@@ -1,5 +1,47 @@
+.number {
+    text-align: right;
+}
 table {
     font-size: 0.8em;
+}
+
+.card-header {
+    background-color: #6CA0D1;
+}
+
+.card-title {
+    color: #F6FCFC;
+    font-size: 1.5em;
+    font-weight: bold;
+    display: inline-block;
+    width: 50%;
+}
+
+.card-buttons {
+    display: inline-block;
+    width: 50%;
+}
+
+.card-buttons button {
+    float: right;
+    margin-right: 5px;
+}
+
+.card-buttons button.btn.btn-table {
+    background-color: #ffffff;
+}
+
+.card-buttons button.btn.btn-table:hover {
+    background-color: #eeeeee;
+}
+
+.btn-group {
+    display: none;
+}
+
+.btn-group button {
+    float: right;
+    margin-right: 5px;
 }
 
 :host ::ng-deep {
@@ -22,7 +64,6 @@ table {
 
 @media (min-width: 1025px) and (max-width: 1280px) {
 
-//CSS
 
 }
 
@@ -33,7 +74,6 @@ table {
 
 @media (min-width: 768px) and (max-width: 1024px) {
 
-//CSS
 
 }
 
@@ -44,7 +84,14 @@ table {
 
 @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
 
-//CSS
+    .card-buttons {
+        display: none;
+    }
+
+    .btn-group {
+        display: inline-block;
+        width: 50%;
+    }
 
 }
 
@@ -53,6 +100,15 @@ table {
 */
 
 @media (min-width: 426px) and (max-width: 767px) {
+
+    .card-buttons {
+        display: none;
+    }
+
+    .btn-group {
+        display: inline-block;
+        width: 50%;
+    }
 
 }
 
@@ -63,23 +119,13 @@ table {
 
 @media (min-width: 320px) and (max-width: 425px) {
 
-  /* modal dialog for clients */
-  :host ::ng-deep {
-      .mdlPrestamo{
-          width:100%;
-          overflow: visible;
-      }
-  }
+    .card-buttons {
+        display: none;
+    }
 
-  .v2l-inputgroup input {
-      display: block;
-      width: 100%;
-  }
-
-  .v2l-inputgroup label {
-      display: block;
-      margin-bottom: 5px;
-      width: 100%;
-  }
+    .btn-group {
+        display: inline-block;
+        width: 50%;
+    }
 
 }

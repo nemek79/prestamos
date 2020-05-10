@@ -8,7 +8,7 @@ import { PrestamosComponent } from 'src/app/pages/prestamos/prestamos.component'
 import { SharedModule } from 'src/app/shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { PrestamosService } from 'src/app/services/prestamos.service';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -22,7 +22,9 @@ import { PrestamosService } from 'src/app/services/prestamos.service';
   imports: [
     CommonModule,
     RouterModule,
-    SharedModule
+    SharedModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     PrestamosService

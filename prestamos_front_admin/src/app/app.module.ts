@@ -14,9 +14,12 @@ import { RouterModule } from '@angular/router';
 
 // SERVICIOS
 import { AuthService } from './services/auth.service';
+import { ClientesService } from './services/clientes.service';
+import { IntermediariosService } from './services/intermediarios.service';
 
 // INTERCEPTORS
 import { TokenInterceptor } from './interceptors/token.interceptor';
+import { MaestrosService } from './services/maestros.service';
 
 @NgModule({
   declarations: [
@@ -36,7 +39,10 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
       multi: true
-    }
+    },
+    ClientesService,
+    IntermediariosService,
+    MaestrosService
   ],
   bootstrap: [AppComponent]
 })
