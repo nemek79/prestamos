@@ -2,8 +2,6 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { PrestamosService } from 'src/app/services/prestamos.service';
 import { InfoResponse } from 'src/app/models/inforesponse';
 
-import * as Inputmask from 'inputmask';
-import * as AutoNumeric from 'autonumeric';
 import { AppSettings } from 'src/app/utiles/appsettings';
 import { IntermediariosService } from 'src/app/services/intermediarios.service';
 import { ClientesService } from 'src/app/services/clientes.service';
@@ -13,6 +11,10 @@ import { Prestamo } from 'src/app/models/prestamo';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import { EstadoPrestamo } from 'src/app/models/estadoprestamo';
 import { MaestrosService } from 'src/app/services/maestros.service';
+import { formatDate } from "@angular/common";
+
+import * as Inputmask from 'inputmask';
+import * as AutoNumeric from 'autonumeric';
 
 declare var $;
 
@@ -150,13 +152,15 @@ export class PrestamosComponent implements OnInit {
    */
   openModalPrestamos() {
 
+    const format = 'dd/MM/yyyy';
+    const formattedDate = formatDate(new Date(), format, 'en-US');
 
     if (this.idsSeleccionados.length === 0) {
 
       this.frmPrestamo.controls.intermediarioIn.setValue( this.lstIntermediarios[0]);
       this.frmPrestamo.controls.clienteIn.setValue( this.lstClientes[0]);
       this.frmPrestamo.controls.estadoIn.setValue( this.lstEstadosPrestamo[0]);
-      this.frmPrestamo.controls.fechaIniIn.setValue( '');
+      this.frmPrestamo.controls.fechaIniIn.setValue( formattedDate);
       this.frmPrestamo.controls.fechaFinIn.setValue( '');
       this.autonumerics['importe'].set(0);
       this.autonumerics['importeInicial'].set(0);
