@@ -162,9 +162,13 @@ export class PrestamosComponent implements OnInit {
       this.frmPrestamo.controls.estadoIn.setValue( this.lstEstadosPrestamo[0]);
       this.frmPrestamo.controls.fechaIniIn.setValue( formattedDate);
       this.frmPrestamo.controls.fechaFinIn.setValue( '');
+      this.frmPrestamo.controls.importeIn.setValue(0);
       this.autonumerics['importe'].set(0);
+      this.frmPrestamo.controls.importeInicialIn.setValue(0);
       this.autonumerics['importeInicial'].set(0);
+      this.frmPrestamo.controls.interesIn.setValue(0);
       this.autonumerics['interes'].set(6);
+      this.frmPrestamo.controls.diaIn.setValue(0);
       this.autonumerics['dia'].set(1);
 
     }
@@ -177,6 +181,13 @@ export class PrestamosComponent implements OnInit {
    * Crea un prestamos si no existe o lo actualiza si ya existe
    */
   savePrestamo() {
+
+    console.log(this.frmPrestamo)
+
+    if (!this.frmPrestamo.valid) {
+      console.log('El formulario no es válido')
+      return;
+    }
 
     let prestamoIn: Prestamo = new Prestamo();
 
