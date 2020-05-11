@@ -11,7 +11,7 @@ import { Prestamo } from 'src/app/models/prestamo';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import { EstadoPrestamo } from 'src/app/models/estadoprestamo';
 import { MaestrosService } from 'src/app/services/maestros.service';
-import { formatDate } from "@angular/common";
+import { formatDate } from '@angular/common';
 
 import * as Inputmask from 'inputmask';
 import * as AutoNumeric from 'autonumeric';
@@ -182,10 +182,20 @@ export class PrestamosComponent implements OnInit {
    */
   savePrestamo() {
 
-    console.log(this.frmPrestamo)
+    // la validación de los campos autonuméricos se debe hacer a mano
+    if (this.autonumerics['importe'].get() < 100) {
+      this.frmPrestamo.controls.importeIn.setErrors({ invalid: true });
+    }
+
+    if (this.autonumerics['importeInicial'].get() < 100) {
+      this.frmPrestamo.controls.importeInicialIn.setErrors({ invalid: true });
+    }
+
+    if (this.autonumerics['interes'].get() < 4) {
+      this.frmPrestamo.controls.importeInicialIn.setErrors({ invalid: true });
+    }
 
     if (!this.frmPrestamo.valid) {
-      console.log('El formulario no es válido')
       return;
     }
 
@@ -209,6 +219,12 @@ export class PrestamosComponent implements OnInit {
       console.log(response)
 
     });
+
+  }
+
+  get f() {
+
+    return this.frmPrestamo.controls;
 
   }
 
@@ -312,11 +328,11 @@ export class PrestamosComponent implements OnInit {
     this.frmPrestamo = this.formBuilder.group({
       fechaIniIn: ['', Validators.required],
       fechaFinIn: [''],
-      importeIn: ['', Validators.required],
-      importeInicialIn: ['', Validators.required],
-      interesIn: ['', Validators.required],
+      importeIn: [''],
+      importeInicialIn: [''],
+      interesIn: [''],
       intermediarioIn: ['', Validators.required],
-      clienteIn: ['', Validators.required],
+      clienteIn: [''],
       estadoIn: ['', Validators.required],
       diaIn: ['', Validators.required],
     });
