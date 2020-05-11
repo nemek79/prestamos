@@ -112,7 +112,12 @@
                         data-inputmask-alias="datetime" 
                         data-inputmask-inputformat="dd/mm/yyyy" 
                         data-mask="" 
-                        im-insert="false">
+                        im-insert="false"
+                        [ngClass]="{'is-invalid': f.fechaIniIn.invalid && statusSubmited}"
+                >
+                <div *ngIf="!f.fechaIniIn.valid && statusSubmited">
+                  <span class="text-invalid">La fecha inicial no puede ser nula</span>
+                </div>
               </div>
             </div>
             <div class="col-sm-12 col-lg-3">
@@ -139,9 +144,11 @@
                       id="importeIn" 
                       formControlName="importeIn"
                       class="form-control number"
-                      maxlength="5"
+                      [ngClass]="{'is-invalid': f.importeIn.invalid}"
                 >
-                <div *ngIf="!f.importeIn.valid">{{f.importeIn.errors| json}}</div>
+                <div *ngIf="!f.importeIn.valid">
+                  <span class="text-invalid">Importe de al menos 100€</span>
+                </div>
               </div>
             </div>
             <div class="col-sm-12 col-lg-3">
@@ -151,7 +158,11 @@
                       id="importeInicialIn"
                       formControlName="importeInicialIn"
                       class="form-control number" 
+                      [ngClass]="{'is-invalid': f.importeInicialIn.invalid}"
                 >
+                <div *ngIf="!f.importeInicialIn.valid">
+                  <span class="text-invalid">Importe de al menos 100€</span>
+                </div>
               </div>
             </div>
             <div class="col-sm-12 col-lg-3">
@@ -161,7 +172,11 @@
                       id="interesIn"
                       formControlName="interesIn"
                       class="form-control number" 
+                      [ngClass]="{'is-invalid': f.interesIn.invalid}"
                 >
+                <div *ngIf="!f.interesIn.valid">
+                  <span class="text-invalid">Interes al menos 4%</span>
+                </div>
               </div>
             </div>
             <div class="col-sm-12 col-lg-3">

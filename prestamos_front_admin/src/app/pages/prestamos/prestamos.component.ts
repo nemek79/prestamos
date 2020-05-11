@@ -40,6 +40,7 @@ export class PrestamosComponent implements OnInit {
 
   prestamo: Prestamo;
   public frmPrestamo: FormGroup;
+  public statusSubmited = false;
 
   constructor(
     private prestamosSRV: PrestamosService,
@@ -88,7 +89,7 @@ export class PrestamosComponent implements OnInit {
           className: 'dt-body-center',
           render( data, type, row, meta ) {
               return '<input type="checkbox" name="checkId[' + row.id + ']" value="'
-                      + row.id + '"/>';
+                      + row.id + '" (click)="toggleCheckId(' + row.id + ')" class="chkClassName" />';
             }
           },
           { title: 'ID', data: 'id', orderable: false, className: '', targets:  1 , class: 'number' },
@@ -121,6 +122,7 @@ export class PrestamosComponent implements OnInit {
       new adminlte.Layout(document).fixLayoutHeight();
 
       this.setOnClicksTable();
+
     });
 
     this.ready();
@@ -132,18 +134,36 @@ export class PrestamosComponent implements OnInit {
    */
   setOnClicksTable() {
 
-    const inputs  = document.querySelectorAll('input[type="checkbox"]');
+    // const inputs  = document.querySelectorAll('input[type="checkbox"]');
 
-    inputs.forEach(input => {
+    // inputs.forEach(input => {
 
-      input.addEventListener('click', (event) => {
+    //   console.log(input);
 
-          this.toggleCheckId(input.getAttribute('value'));
+    //   input.addEventListener('click', (event) => {
 
-        }
-      );
+    //       this.toggleCheckId(input.getAttribute('value'));
 
-    });
+    //     }
+    //   );
+
+    // });
+
+    $('#tblPrestamos').on('change', '.chkClassName', function(event) {
+
+      var checkedBoxes = $('#tblPrestamos :input[type="checkbox"]:checked');
+      
+console.log(checkedBoxes)
+
+      // if (checkedBoxes > 0) {
+      //     $('#lnkLock').show();
+      //     $('#lnkDelete').show();
+      // } else {
+      //     $('#lnkLock').hide();
+      //     $('#lnkDelete').hide();
+      // }
+  });
+
 
   }
 
@@ -182,6 +202,8 @@ export class PrestamosComponent implements OnInit {
    */
   savePrestamo() {
 
+    this.statusSubmited = true;
+
     // la validación de los campos autonuméricos se debe hacer a mano
     if (this.autonumerics['importe'].get() < 100) {
       this.frmPrestamo.controls.importeIn.setErrors({ invalid: true });
@@ -192,7 +214,7 @@ export class PrestamosComponent implements OnInit {
     }
 
     if (this.autonumerics['interes'].get() < 4) {
-      this.frmPrestamo.controls.importeInicialIn.setErrors({ invalid: true });
+      this.frmPrestamo.controls.interesIn.setErrors({ invalid: true });
     }
 
     if (!this.frmPrestamo.valid) {
@@ -216,12 +238,19 @@ export class PrestamosComponent implements OnInit {
 
     this.prestamosSRV.savePrestamo(prestamoIn).subscribe( response => {
 
-      console.log(response)
+      const table = this.dataTable.DataTable();
+
+      // añadir la nueva línea al final de la tabla
+      table.row.add(response.data).draw(false);
+      this.setOnClickTable();
 
     });
 
   }
 
+  /**
+   * Permite acceder a los campos del formulario en la vista de manera más fácil
+   */
   get f() {
 
     return this.frmPrestamo.controls;
@@ -250,7 +279,9 @@ export class PrestamosComponent implements OnInit {
    * Controla el array de ids seleccionados
    * @param id identificador del prestamo seleccionado/deseleccionado
    */
-  private toggleCheckId(id: string): void {
+  public toggleCheckId(id: string): void {
+
+    console.log('TOGGLEEEEEEEEEEEEEEEE')
 
     const exists = this.idsSeleccionados.indexOf( id );
 
@@ -336,5 +367,21 @@ export class PrestamosComponent implements OnInit {
       estadoIn: ['', Validators.required],
       diaIn: ['', Validators.required],
     });
+  }
+
+  /**
+   * Estable el onclick para una fila
+   */
+  private setOnClickTable() {
+
+    const inputs = document.querySelectorAll('input[type="checkbox"]');
+    const input = inputs[inputs.length - 1];
+
+    input.addEventListener('click', (event) => {
+
+      this.toggleCheckId(input.getAttribute('value'));
+
+    });
+
   }
 }
