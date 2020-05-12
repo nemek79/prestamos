@@ -226,7 +226,12 @@ export class PrestamosComponent implements OnInit {
 
     let prestamoIn: Prestamo = new Prestamo();
 
-    prestamoIn.id = this.frmPrestamo.value.id;
+    if (this.idsSeleccionados.length > 0) {
+      prestamoIn.id = this.idsSeleccionados[0];
+    } else {
+      prestamoIn.id = null;
+    }
+
     prestamoIn.fechaIni = this.frmPrestamo.value.fechaIniIn;
     prestamoIn.fechaFin = this.frmPrestamo.value.fechaFinIn;
     prestamoIn.importe = this.autonumerics['importe'].get();
@@ -243,9 +248,14 @@ export class PrestamosComponent implements OnInit {
 
       const table = this.dataTable.DataTable();
 
-      // añadir la nueva línea al final de la tabla
-      table.row.add(response.data).draw(false);
+      if (this.idsSeleccionados.length === 0) {
+        // añadir la nueva línea al final de la tabla
+        table.row.add(response.data).draw(false);
+      } else {
+        this.modRow(this.idsSeleccionados[0], response.data);
+      }
 
+      $('#mdlPrestamos').modal('hide');
     });
 
   }
@@ -370,6 +380,28 @@ export class PrestamosComponent implements OnInit {
       estadoIn: ['', Validators.required],
       diaIn: ['', Validators.required],
     });
+  }
+
+  /**
+   * Modifica los datos de una linea de la tabla
+   * @param id 
+   * @param prestamo 
+   */
+  private modRow(id: any, prestamo: Prestamo) {
+
+    const table = this.dataTable.DataTable();
+
+    const row = table.rows( ( idx, data, node ) => {
+
+      if (data.id == id) {
+        return true;
+      }
+      return false;
+    });
+
+    table.row(row).data(prestamo).draw(false);
+
+    this.idsSeleccionados = [];
   }
 
 }
