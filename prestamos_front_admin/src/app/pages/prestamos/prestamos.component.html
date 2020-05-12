@@ -28,7 +28,9 @@
                   Nuevo
                 </button>
                 <button class="btn btn-table" 
-                        [disabled]="idsSeleccionados.length != 1">
+                        [disabled]="idsSeleccionados.length != 1"
+                        (click) = "openModalPrestamos()"
+                >
                   Modificar
                 </button>
                 <button class="btn btn-danger" 
@@ -50,8 +52,7 @@
                   <li>
                     <button class="dropdown-item"
                       [disabled]="idsSeleccionados.length != 0"
-                      data-toggle="modal" 
-                      data-target="#mdlPrestamos"
+                      (click) = "openModalPrestamos()"
                     >
                       Nuevo
                   </button>
@@ -59,8 +60,7 @@
                   <li>
                     <button class="dropdown-item" 
                       [disabled]="idsSeleccionados.length != 1"
-                      data-toggle="modal" 
-                      data-target="#mdlPrestamos"
+                      (click) = "openModalPrestamos()"
                     >
                       Modificar
                     </button>
@@ -203,7 +203,9 @@
                         tabindex="-1" 
                         aria-hidden="true"
                 >
-                  <option *ngFor="let intermediario of lstIntermediarios; let i = index" [ngValue]="intermediario">
+                  <option *ngFor="let intermediario of lstIntermediarios; let i = index" 
+                          [ngValue]="intermediario" 
+                          [selected]="intermediario.id == selectedIntermediario.id">
                     {{ intermediario.nombre }} {{ intermediario.apellidos }}
                   </option>
                 </select>
@@ -220,7 +222,9 @@
                         tabindex="-1" 
                         aria-hidden="true"
                 >
-                  <option *ngFor="let cliente of lstClientes; let i = index" [ngValue]="cliente">
+                  <option *ngFor="let cliente of lstClientes; let i = index" 
+                          [ngValue]="cliente"
+                          [selected]="cliente.id == selectedCliente.id">
                     {{ cliente.nombre }} {{ cliente.apellidos }}
                   </option>
                 </select>
@@ -237,7 +241,9 @@
                         tabindex="-1" 
                         aria-hidden="true"
                 >
-                  <option *ngFor="let estado of lstEstadosPrestamo; let i = index" [ngValue]="estado">
+                  <option *ngFor="let estado of lstEstadosPrestamo; let i = index" 
+                          [ngValue]="estado"
+                          [selected]="estado.id == selectedEstadoPrestamo.id">
                     {{ estado.descripcion }}
                   </option>
                 </select>

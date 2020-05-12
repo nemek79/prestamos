@@ -34,8 +34,11 @@ export class PrestamosComponent implements OnInit {
   autonumerics = new Array();
 
   lstClientes: Cliente[] = [];
+  selectedCliente: Cliente;
   lstIntermediarios: Intermediario[] = [];
+  selectedIntermediario: Intermediario;
   lstEstadosPrestamo: EstadoPrestamo[] = [];
+  selectedEstadoPrestamo: EstadoPrestamo;
 
 
   prestamo: Prestamo;
@@ -83,8 +86,6 @@ export class PrestamosComponent implements OnInit {
         data: response.data,
         rowCallback: (row: Node, data: any, index: number) => {
           const self = this;
-
-          console.log(data.id)
 
           // Unbind first in order to avoid any duplicate handler
           // (see https://github.com/l-lin/angular-datatables/issues/87)
@@ -152,6 +153,7 @@ export class PrestamosComponent implements OnInit {
     if (this.idsSeleccionados.length === 0) {
 
       this.frmPrestamo.controls.intermediarioIn.setValue( this.lstIntermediarios[0]);
+      this.selectedIntermediario = this.lstIntermediarios[0];
       this.frmPrestamo.controls.clienteIn.setValue( this.lstClientes[0]);
       this.frmPrestamo.controls.estadoIn.setValue( this.lstEstadosPrestamo[0]);
       this.frmPrestamo.controls.fechaIniIn.setValue( formattedDate);
@@ -164,6 +166,33 @@ export class PrestamosComponent implements OnInit {
       this.autonumerics['interes'].set(6);
       this.frmPrestamo.controls.diaIn.setValue(0);
       this.autonumerics['dia'].set(1);
+
+    } else {
+
+      let idSeleccionado = this.idsSeleccionados[0];
+
+      this.prestamosSRV.getPrestamo(parseInt(idSeleccionado, 10)).subscribe( response => {
+
+        let prestamo: Prestamo = response.data;
+
+        this.frmPrestamo.controls.intermediarioIn.setValue(this.lstIntermediarios[0]);
+        this.selectedIntermediario = prestamo.intermediario;
+        this.frmPrestamo.controls.clienteIn.setValue(this.lstClientes[0]);
+        this.selectedCliente = prestamo.cliente;
+        this.frmPrestamo.controls.estadoIn.setValue(this.lstEstadosPrestamo[0]);
+        this.selectedEstadoPrestamo = prestamo.estado;
+        this.frmPrestamo.controls.fechaIniIn.setValue(prestamo.fechaIni);
+        this.frmPrestamo.controls.fechaFinIn.setValue(prestamo.fechaFin);
+        this.frmPrestamo.controls.importeIn.setValue(prestamo.importe);
+        this.autonumerics['importe'].set(prestamo.importe);
+        this.frmPrestamo.controls.importeInicialIn.setValue(prestamo.importeInicial);
+        this.autonumerics['importeInicial'].set(prestamo.importeInicial);
+        this.frmPrestamo.controls.interesIn.setValue(prestamo.interes);
+        this.autonumerics['interes'].set(prestamo.interes);
+        this.frmPrestamo.controls.diaIn.setValue(prestamo.diaIntereses);
+        this.autonumerics['dia'].set(prestamo.diaIntereses);
+
+      });
 
     }
 
@@ -262,8 +291,6 @@ export class PrestamosComponent implements OnInit {
       this.idsSeleccionados.push(id);
     }
 
-    console.log(this.idsSeleccionados)
-
   }
 
   /**
@@ -286,6 +313,7 @@ export class PrestamosComponent implements OnInit {
     this.clientesSRV.getClientes().subscribe(
       response => {
         this.lstClientes = response.data;
+        this.selectedCliente = this.lstClientes[0];
       }, err => {
         this.lstClientes = null;
       }
@@ -301,6 +329,7 @@ export class PrestamosComponent implements OnInit {
     this.intermediariosSRV.getIntermediarios().subscribe(
       response => {
         this.lstIntermediarios = response.data;
+        this.selectedIntermediario = this.lstIntermediarios[0];
       }, err => {
         this.lstIntermediarios = null;
       }
@@ -317,6 +346,7 @@ export class PrestamosComponent implements OnInit {
 
       response => {
         this.lstEstadosPrestamo = response.data;
+        this.selectedEstadoPrestamo = this.lstEstadosPrestamo[0];
       }, err => {
         this.lstEstadosPrestamo = null;
       }
