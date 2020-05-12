@@ -81,6 +81,19 @@ export class PrestamosComponent implements OnInit {
           selector: 'td:nth-child(2)'
         },
         data: response.data,
+        rowCallback: (row: Node, data: any, index: number) => {
+          const self = this;
+
+          console.log(data.id)
+
+          // Unbind first in order to avoid any duplicate handler
+          // (see https://github.com/l-lin/angular-datatables/issues/87)
+          $('td', row).unbind('click');
+          $('td', row).bind('click', () => {
+            self.toggleCheckId(data.id);
+          });
+          return row;
+        },
         columnDefs: [
           {
           targets: 0,
@@ -121,51 +134,12 @@ export class PrestamosComponent implements OnInit {
 
       new adminlte.Layout(document).fixLayoutHeight();
 
-      this.setOnClicksTable();
-
     });
 
     this.ready();
 
   }
 
-  /**
-   * Establece los onclicks de los checks de la tabla de prestamos
-   */
-  setOnClicksTable() {
-
-    // const inputs  = document.querySelectorAll('input[type="checkbox"]');
-
-    // inputs.forEach(input => {
-
-    //   console.log(input);
-
-    //   input.addEventListener('click', (event) => {
-
-    //       this.toggleCheckId(input.getAttribute('value'));
-
-    //     }
-    //   );
-
-    // });
-
-    $('#tblPrestamos').on('change', '.chkClassName', function(event) {
-
-      var checkedBoxes = $('#tblPrestamos :input[type="checkbox"]:checked');
-      
-console.log(checkedBoxes)
-
-      // if (checkedBoxes > 0) {
-      //     $('#lnkLock').show();
-      //     $('#lnkDelete').show();
-      // } else {
-      //     $('#lnkLock').hide();
-      //     $('#lnkDelete').hide();
-      // }
-  });
-
-
-  }
 
   /**
    * Abre el modal de prestamos
@@ -242,7 +216,6 @@ console.log(checkedBoxes)
 
       // añadir la nueva línea al final de la tabla
       table.row.add(response.data).draw(false);
-      this.setOnClickTable();
 
     });
 
@@ -281,8 +254,6 @@ console.log(checkedBoxes)
    */
   public toggleCheckId(id: string): void {
 
-    console.log('TOGGLEEEEEEEEEEEEEEEE')
-
     const exists = this.idsSeleccionados.indexOf( id );
 
     if (exists > -1) {
@@ -290,6 +261,8 @@ console.log(checkedBoxes)
     } else {
       this.idsSeleccionados.push(id);
     }
+
+    console.log(this.idsSeleccionados)
 
   }
 
@@ -369,19 +342,4 @@ console.log(checkedBoxes)
     });
   }
 
-  /**
-   * Estable el onclick para una fila
-   */
-  private setOnClickTable() {
-
-    const inputs = document.querySelectorAll('input[type="checkbox"]');
-    const input = inputs[inputs.length - 1];
-
-    input.addEventListener('click', (event) => {
-
-      this.toggleCheckId(input.getAttribute('value'));
-
-    });
-
-  }
 }
