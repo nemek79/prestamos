@@ -51,7 +51,7 @@ export class ClientesService {
   /**
    * Elimina un conjunto de clientes
    */
-  public deleteClientes(clientes: number[]): Observable<any> {
+  public deleteClientes(clientes: string[]): Observable<any> {
 
     const urlEndpoint = environment.urlBack + '/clientes/delete';
 

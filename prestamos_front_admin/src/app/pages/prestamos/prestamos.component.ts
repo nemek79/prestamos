@@ -201,6 +201,8 @@ export class PrestamosComponent implements OnInit {
         this.frmPrestamo.controls.diaIn.setValue(prestamo.diaIntereses);
         this.autonumerics['dia'].set(prestamo.diaIntereses);
 
+        $('#mdlPrestamos').modal('show');
+
       }, err => {
 
         this.showMdlError = true;
@@ -208,8 +210,6 @@ export class PrestamosComponent implements OnInit {
       });
 
     }
-
-    $('#mdlPrestamos').modal('show');
 
   }
 
@@ -279,6 +279,10 @@ export class PrestamosComponent implements OnInit {
       }
 
       $('#mdlPrestamos').modal('hide');
+    }, err => {
+
+      this.showMdlError = true;
+      $('#mdlPrestamos').modal('hide');
     });
 
   }
@@ -310,6 +314,7 @@ export class PrestamosComponent implements OnInit {
     }, err => {
 
       this.showMdlError = true;
+      $('#mdlBorrar').modal('hide');
 
     });
 
