@@ -201,6 +201,15 @@ export class PrestamosComponent implements OnInit {
   }
 
   /**
+   * Abre el modal para preguntar si de verdad se quieren eliminar los prestamos
+   */
+  openAvisoBorrarPrestamos() {
+
+    $('#mdlBorrar').modal('show');
+
+  }
+
+  /**
    * Crea un prestamos si no existe o lo actualiza si ya existe
    */
   savePrestamo() {
@@ -256,6 +265,34 @@ export class PrestamosComponent implements OnInit {
       }
 
       $('#mdlPrestamos').modal('hide');
+    });
+
+  }
+
+  /**
+   * Elimina la lista de prestamos seleccionados
+   */
+  eliminarPrestamos() {
+
+    const table = this.dataTable.DataTable();
+
+    this.prestamosSRV.deletePrestamos(this.idsSeleccionados).subscribe( response => {
+
+      table.rows( ( idx, data, node ) => {
+
+        if (this.idsSeleccionados.indexOf(data.id) > -1) {
+
+          return true;
+        }
+
+        return false;
+
+      } )
+      .remove().draw();
+
+      this.idsSeleccionados = [];
+
+      $('#mdlBorrar').modal('hide');
     });
 
   }

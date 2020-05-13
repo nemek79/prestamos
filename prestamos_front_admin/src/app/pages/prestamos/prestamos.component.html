@@ -34,7 +34,9 @@
                   Modificar
                 </button>
                 <button class="btn btn-danger" 
-                        [disabled]="idsSeleccionados.length == 0">
+                        [disabled]="idsSeleccionados.length == 0"
+                        (click) = "openAvisoBorrarPrestamos()"
+                >
                   Eliminar
                 </button>
               </div>
@@ -68,6 +70,7 @@
                   <li>
                     <button class="dropdown-item"
                             [disabled]="idsSeleccionados.length == 0"
+                            (click) = "openAvisoBorrarPrestamos()"
                     >
                       Eliminar
                     </button>
@@ -256,6 +259,29 @@
       <div class="modal-footer justify-content-between">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
         <button type="button" class="btn btn-primary" (click)="savePrestamo()">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="mdlBorrar" style="display: none;" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Atención!</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Se van a eliminar los préstamos seleccionados</p>
+        <p>
+          <small>Una vez eliminados se perderán los datos y no se podrán recuperar</small>
+        </p>
+      </div>
+      <div class="modal-footer justify-content-between">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-danger" (click)="eliminarPrestamos()">Eliminar</button>
       </div>
     </div>
   </div>

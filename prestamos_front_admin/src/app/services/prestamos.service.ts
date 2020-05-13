@@ -51,7 +51,7 @@ export class PrestamosService {
   /**
    * Elimina un conjunto de clientes
    */
-  public deletePrestamos(prestamos: number[]): Observable<any> {
+  public deletePrestamos(prestamos: string[]): Observable<any> {
 
     const urlEndpoint = environment.urlBack + '/prestamos/delete';
 
