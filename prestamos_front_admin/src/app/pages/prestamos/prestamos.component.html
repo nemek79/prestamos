@@ -16,6 +16,7 @@
     </section>
     <section class="content">
       <div class="container-fluid">
+        <div class="container-load" *ngIf="!cargando">
           <div class="card">
             <div class="card-header">
               <div class="card-title">PRÉSTAMOS</div>
@@ -89,6 +90,10 @@
               </table>
             </div>
           </div>
+        </div>
+        <div class="container-loading" *ngIf="cargando">
+          cargando...
+        </div>
       </div>
     </section>
 </div>
@@ -283,6 +288,21 @@
         <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
         <button type="button" class="btn btn-danger" (click)="eliminarPrestamos()">Eliminar</button>
       </div>
+    </div>
+  </div>
+</div>
+
+<div id="toastsContainerTopRight" class="toasts-top-right fixed" *ngIf="showMdlError">
+  <div class="toast bg-danger fade show" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-header">
+      <i class="mr-2 fas fa-envelope fa-lg"></i>
+      <strong class="mr-auto">Error!</strong>
+      <button data-dismiss="toast" type="button" class="ml-2 mb-1 close" aria-label="Close">
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+    <div class="toast-body">
+      Se ha producido un error en la acción.
     </div>
   </div>
 </div>

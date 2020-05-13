@@ -40,10 +40,14 @@ export class PrestamosComponent implements OnInit {
   lstEstadosPrestamo: EstadoPrestamo[] = [];
   selectedEstadoPrestamo: EstadoPrestamo;
 
+  public showMdlError = false; // muestra el modal de error
+
 
   prestamo: Prestamo;
   public frmPrestamo: FormGroup;
   public statusSubmited = false;
+
+  public cargando = false;
 
   constructor(
     private prestamosSRV: PrestamosService,
@@ -54,6 +58,8 @@ export class PrestamosComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+
+    this.cargando = false;
 
     this.idsSeleccionados = [];
 
@@ -135,6 +141,9 @@ export class PrestamosComponent implements OnInit {
 
       new adminlte.Layout(document).fixLayoutHeight();
 
+    }, err => {
+
+        this.showMdlError = true;
     });
 
     this.ready();
@@ -192,6 +201,10 @@ export class PrestamosComponent implements OnInit {
         this.frmPrestamo.controls.diaIn.setValue(prestamo.diaIntereses);
         this.autonumerics['dia'].set(prestamo.diaIntereses);
 
+      }, err => {
+
+        this.showMdlError = true;
+
       });
 
     }
@@ -213,6 +226,7 @@ export class PrestamosComponent implements OnInit {
    * Crea un prestamos si no existe o lo actualiza si ya existe
    */
   savePrestamo() {
+
 
     this.statusSubmited = true;
 
@@ -293,6 +307,10 @@ export class PrestamosComponent implements OnInit {
       this.idsSeleccionados = [];
 
       $('#mdlBorrar').modal('hide');
+    }, err => {
+
+      this.showMdlError = true;
+
     });
 
   }
@@ -378,9 +396,10 @@ export class PrestamosComponent implements OnInit {
         this.lstIntermediarios = response.data;
         this.selectedIntermediario = this.lstIntermediarios[0];
       }, err => {
-        this.lstIntermediarios = null;
-      }
-    );
+
+        this.showMdlError = true;
+
+    });
 
   }
 
@@ -395,10 +414,10 @@ export class PrestamosComponent implements OnInit {
         this.lstEstadosPrestamo = response.data;
         this.selectedEstadoPrestamo = this.lstEstadosPrestamo[0];
       }, err => {
-        this.lstEstadosPrestamo = null;
-      }
 
-    );
+        this.showMdlError = true;
+
+      });
 
   }
 
