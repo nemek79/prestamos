@@ -1,0 +1,137 @@
+.number {
+  text-align: right;
+}
+
+table {
+  font-size: 0.8em;
+}
+
+.text-invalid {
+  font-size: 0.7em;
+  color: rgb(197, 64, 64);
+}
+
+.card-header {
+  background-color: #6CA0D1;
+}
+
+.card-title {
+  color: #F6FCFC;
+  font-size: 1.5em;
+  font-weight: bold;
+  display: inline-block;
+  width: 50%;
+}
+
+.card-buttons {
+  display: inline-block;
+  width: 50%;
+}
+
+.card-buttons button {
+  float: right;
+  margin-right: 5px;
+}
+
+.card-buttons button.btn.btn-table {
+  background-color: #ffffff;
+}
+
+.card-buttons button.btn.btn-table:hover {
+  background-color: #eeeeee;
+}
+
+.btn-group {
+  display: none;
+}
+
+.btn-group button {
+  float: right;
+  margin-right: 5px;
+}
+
+:host ::ng-deep {
+  table tbody tr td.number{
+      text-align: right;
+      padding-right: 5px;
+  }
+}
+
+@media (min-width: 1281px) {
+
+//CSS
+
+}
+
+/*
+##Device = Laptops, Desktops
+##Screen = B/w 1025px to 1280px
+*/
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+
+
+}
+
+/*
+##Device = Tablets, Ipads (portrait)
+##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) {
+
+
+}
+
+/*
+##Device = Tablets, Ipads (landscape)
+##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+
+  .card-buttons {
+      display: none;
+  }
+
+  .btn-group {
+      display: inline-block;
+      width: 50%;
+  }
+
+}
+
+/*
+##Device = Tablets, Mobiles (Landscape)
+*/
+
+@media (min-width: 426px) and (max-width: 767px) {
+
+  .card-buttons {
+      display: none;
+  }
+
+  .btn-group {
+      display: inline-block;
+      width: 50%;
+  }
+
+}
+
+
+/*
+##Device = Mobile
+*/
+
+@media (min-width: 320px) and (max-width: 425px) {
+
+  .card-buttons {
+      display: none;
+  }
+
+  .btn-group {
+      display: inline-block;
+      width: 50%;
+  }
+
+}

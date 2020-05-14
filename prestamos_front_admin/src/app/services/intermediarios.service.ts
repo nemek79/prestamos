@@ -50,7 +50,7 @@ public saveIntermediario(intermediario: Intermediario): Observable<any> {
 /**
  * Elimina un conjunto de intermediarios
  */
-public deleteIntermediarios(intermediarios: number[]): Observable<any> {
+public deleteIntermediarios(intermediarios: string[]): Observable<any> {
 
     const urlEndpoint = environment.urlBack + '/intermediarios/delete';
 

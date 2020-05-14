@@ -1,12 +1,13 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-
-import * as Inputmask from 'inputmask';
-import * as AutoNumeric from 'autonumeric';
 import { Cliente } from 'src/app/models/cliente';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ClientesService } from 'src/app/services/clientes.service';
 import { InfoResponse } from 'src/app/models/inforesponse';
 import { AppSettings } from 'src/app/utiles/appsettings';
+
+import * as Inputmask from 'inputmask';
+import * as AutoNumeric from 'autonumeric';
+
 
 declare var $;
 
