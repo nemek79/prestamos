@@ -20,21 +20,21 @@
           <div class="card">
             <div class="card-header">
               <div class="card-title">PRÉSTAMOS</div>
-              
+
               <div class="card-buttons">
-                <button class="btn btn-table" 
+                <button class="btn btn-table"
                         [disabled]="idsSeleccionados.length != 0"
                         (click) = "openModalPrestamos()"
                 >
                   Nuevo
                 </button>
-                <button class="btn btn-table" 
+                <button class="btn btn-table"
                         [disabled]="idsSeleccionados.length != 1"
                         (click) = "openModalPrestamos()"
                 >
                   Modificar
                 </button>
-                <button class="btn btn-danger" 
+                <button class="btn btn-danger"
                         [disabled]="idsSeleccionados.length == 0"
                         (click) = "openAvisoBorrarPrestamos()"
                 >
@@ -43,13 +43,13 @@
               </div>
 
               <div class="btn-group">
-                <button type="button" 
-                        class="btn btn-default dropdown-toggle" 
-                        data-toggle="dropdown" 
+                <button type="button"
+                        class="btn btn-default dropdown-toggle"
+                        data-toggle="dropdown"
                         aria-expanded="false">
                 </button>
-                <ul class="dropdown-menu" 
-                    x-placement="bottom-start" 
+                <ul class="dropdown-menu"
+                    x-placement="bottom-start"
                     style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-10px, 38px, 0px);"
                 >
                   <li>
@@ -61,7 +61,7 @@
                   </button>
                   </li>
                   <li>
-                    <button class="dropdown-item" 
+                    <button class="dropdown-item"
                       [disabled]="idsSeleccionados.length != 1"
                       (click) = "openModalPrestamos()"
                     >
@@ -78,7 +78,7 @@
                   </li>
                 </ul>
               </div>
-            
+
             </div>
             <div class="card-body">
               <table #dataTable
@@ -113,13 +113,13 @@
             <div class="col-sm-12 col-lg-3">
               <div class="form-group">
                 <label>Fecha Inicio</label>
-                <input type="text" 
+                <input type="text"
                         id="fechaIniIn"
                         formControlName="fechaIniIn"
-                        class="form-control" 
-                        data-inputmask-alias="datetime" 
-                        data-inputmask-inputformat="dd/mm/yyyy" 
-                        data-mask="" 
+                        class="form-control"
+                        data-inputmask-alias="datetime"
+                        data-inputmask-inputformat="dd/mm/yyyy"
+                        data-mask=""
                         im-insert="false"
                         [ngClass]="{'is-invalid': f.fechaIniIn.invalid && statusSubmited}"
                 >
@@ -134,10 +134,10 @@
                 <input type="text"
                       id="fechaFinIn"
                       formControlName="fechaFinIn"
-                      class="form-control fecha" 
-                      data-inputmask-alias="datetime" 
-                      data-inputmask-inputformat="dd/mm/yyyy" 
-                      data-mask="" 
+                      class="form-control fecha"
+                      data-inputmask-alias="datetime"
+                      data-inputmask-inputformat="dd/mm/yyyy"
+                      data-mask=""
                       im-insert="false"
                 >
               </div>
@@ -149,7 +149,7 @@
               <div class="form-group">
                 <label>Importe</label>
                 <input type="text"
-                      id="importeIn" 
+                      id="importeIn"
                       formControlName="importeIn"
                       class="form-control number"
                       [ngClass]="{'is-invalid': f.importeIn.invalid}"
@@ -165,7 +165,7 @@
                 <input type="text"
                       id="importeInicialIn"
                       formControlName="importeInicialIn"
-                      class="form-control number" 
+                      class="form-control number"
                       [ngClass]="{'is-invalid': f.importeInicialIn.invalid}"
                 >
                 <div *ngIf="!f.importeInicialIn.valid">
@@ -176,10 +176,10 @@
             <div class="col-sm-12 col-lg-3">
               <div class="form-group">
                 <label>Interes</label>
-                <input type="text" 
+                <input type="text"
                       id="interesIn"
                       formControlName="interesIn"
-                      class="form-control number" 
+                      class="form-control number"
                       [ngClass]="{'is-invalid': f.interesIn.invalid}"
                 >
                 <div *ngIf="!f.interesIn.valid">
@@ -190,10 +190,10 @@
             <div class="col-sm-12 col-lg-3">
               <div class="form-group">
                 <label>Día Pago</label>
-                <input type="text" 
+                <input type="text"
                       id="diaIn"
                       formControlName="diaIn"
-                      class="form-control number" 
+                      class="form-control number"
                 >
               </div>
             </div>
@@ -203,16 +203,16 @@
             <div class="col-sm-12 col-lg-4">
               <div class="form-group">
                 <label>Intermediario</label>
-                <select class="form-control" 
+                <select class="form-control"
                         name="intermediarioIn"
                         id="intermediarioIn"
                         formControlName="intermediarioIn"
-                        style="width: 100%;" 
-                        tabindex="-1" 
+                        style="width: 100%;"
+                        tabindex="-1"
                         aria-hidden="true"
                 >
-                  <option *ngFor="let intermediario of lstIntermediarios; let i = index" 
-                          [ngValue]="intermediario" 
+                  <option *ngFor="let intermediario of lstIntermediarios; let i = index"
+                          [ngValue]="intermediario"
                           [selected]="intermediario.id == selectedIntermediario.id">
                     {{ intermediario.nombre }} {{ intermediario.apellidos }}
                   </option>
@@ -222,15 +222,15 @@
             <div class="col-sm-12 col-lg-4">
               <div class="form-group">
                 <label>Cliente</label>
-                <select class="form-control" 
+                <select class="form-control"
                         name="clienteIn"
                         id="clienteIn"
                         formControlName="clienteIn"
-                        style="width: 100%;" 
-                        tabindex="-1" 
+                        style="width: 100%;"
+                        tabindex="-1"
                         aria-hidden="true"
                 >
-                  <option *ngFor="let cliente of lstClientes; let i = index" 
+                  <option *ngFor="let cliente of lstClientes; let i = index"
                           [ngValue]="cliente"
                           [selected]="cliente.id == selectedCliente.id">
                     {{ cliente.nombre }} {{ cliente.apellidos }}
@@ -241,15 +241,15 @@
             <div class="col-sm-12 col-lg-4">
               <div class="form-group">
                 <label>Estado</label>
-                <select class="form-control" 
+                <select class="form-control"
                         name="estadoIn"
                         id="estadoIn"
                         formControlName="estadoIn"
-                        style="width: 100%;" 
-                        tabindex="-1" 
+                        style="width: 100%;"
+                        tabindex="-1"
                         aria-hidden="true"
                 >
-                  <option *ngFor="let estado of lstEstadosPrestamo; let i = index" 
+                  <option *ngFor="let estado of lstEstadosPrestamo; let i = index"
                           [ngValue]="estado"
                           [selected]="estado.id == selectedEstadoPrestamo.id">
                     {{ estado.descripcion }}
@@ -295,12 +295,17 @@
 <div id="toastsContainerTopRight" class="toasts-top-right fixed" *ngIf="showMdlError">
   <div class="toast bg-danger fade show" role="alert" aria-live="assertive" aria-atomic="true">
     <div class="toast-header">
-      <i class="mr-2 fas fa-envelope fa-lg"></i>
+      <i class="mr-2 fas fa-exclamation-circle fa-lg"></i>
       <strong class="mr-auto">Error!</strong>
-      <button data-dismiss="toast" type="button" class="ml-2 mb-1 close" aria-label="Close">
-        <span aria-hidden="true">×</span>
+      <button data-dismiss="toast"
+              type="button"
+              class="ml-2 mb-1 close"
+              aria-label="Close"
+              (click)="showMdlError=false"
+              >
+          <span aria-hidden="true">×</span>
       </button>
-    </div>
+      </div>
     <div class="toast-body">
       Se ha producido un error en la acción.
     </div>
