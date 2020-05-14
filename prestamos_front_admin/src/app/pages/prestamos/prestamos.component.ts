@@ -176,6 +176,8 @@ export class PrestamosComponent implements OnInit {
       this.frmPrestamo.controls.diaIn.setValue(0);
       this.autonumerics['dia'].set(1);
 
+      $('#mdlPrestamos').modal('show');
+
     } else {
 
       let idSeleccionado = this.idsSeleccionados[0];
@@ -445,8 +447,8 @@ export class PrestamosComponent implements OnInit {
 
   /**
    * Modifica los datos de una linea de la tabla
-   * @param id 
-   * @param prestamo 
+   * @param id
+   * @param prestamo
    */
   private modRow(id: any, prestamo: Prestamo) {
 

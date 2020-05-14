@@ -120,6 +120,7 @@ export class ClientesComponent implements OnInit {
       this.frmCliente.controls.telefonoIn.setValue('');
       this.frmCliente.controls.emailIn.setValue('');
       this.frmCliente.controls.comentarioIn.setValue('');
+      $('#mdlClientes').modal('show');
 
     } else {
 
