@@ -3,13 +3,13 @@
         <div class="card">
             <div class="card-body login-card-body">
                 <p class="login-box-msg">PRESTAMOS ADMIN</p>
-        
+
                 <form [formGroup]="formGroup">
                     <div class="input-group mb-3">
-                        <input  
+                        <input
                                 formControlName="username"
-                                type="text" 
-                                class="form-control" 
+                                type="text"
+                                class="form-control"
                                 placeholder="Usuario"
                                 [ngClass]="displayCssFor('username')"
                         >
@@ -20,8 +20,8 @@
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <input  type="password" 
-                                class="form-control" 
+                        <input  type="password"
+                                class="form-control"
                                 placeholder="Contraseña"
                                 formControlName="password"
                                 [ngClass]="displayCssFor('password')"
@@ -42,7 +42,10 @@
                         </div>
                         </div>
                         <div class="col-4">
-                            <button class="btn btn-primary btn-block" (click)="login()">Entrar</button>
+                            <button class="btn btn-primary btn-block" (click)="login()">
+                              Entrar
+                              <i *ngIf="loading" class="fas fa-circle-notch fa-spin"></i>
+                            </button>
                         </div>
                     </div>
                 </form>
@@ -50,5 +53,6 @@
         </div>
     </div>
 </div>
-    
-    
+
+
+

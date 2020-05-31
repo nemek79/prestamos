@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
   public usuario: Usuario;
   public formGroup: FormGroup;
   public modify: boolean = false;
+  public loading: boolean = false;
 
   constructor(
     private authSRV: AuthService,
@@ -38,7 +39,7 @@ export class LoginComponent implements OnInit {
     this.usuario.username = this.formGroup.value.username;
     this.usuario.password = this.formGroup.value.password;
 
-    //this.loading = true;
+    this.loading = true;
 
     this.authSRV.login(this.usuario).subscribe( response => {
 
@@ -46,7 +47,7 @@ export class LoginComponent implements OnInit {
       this.authSRV.guardarUsuario(response.access_token);
       this.authSRV.guardarToken(response.access_token);
 
-      //this.loading = false;
+      this.loading = false;
       this.route.navigate(['/']);
 
     }, err => {
@@ -65,11 +66,11 @@ export class LoginComponent implements OnInit {
         // });
       }
 
-      // this.loading = false;
+      this.loading = false;
     });
 
   }
-  
+
   public getError(controlName: string): string {
 
     let error = '';
