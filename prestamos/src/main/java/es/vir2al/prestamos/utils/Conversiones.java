@@ -1,6 +1,7 @@
 package es.vir2al.prestamos.utils;
 
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -47,8 +48,13 @@ public class Conversiones {
 		
 		if (f == null) return null;
 
+		DecimalFormatSymbols simbolos = new DecimalFormatSymbols();
+		simbolos.setDecimalSeparator(',');
+		simbolos.setGroupingSeparator('.');
+
     	String pattern = "###,###,##0.00";
-    	DecimalFormat myFormatter = new DecimalFormat(pattern);
+		DecimalFormat myFormatter = new DecimalFormat(pattern,simbolos);
+
     	String output = myFormatter.format(f);
     	
     	output += " €";
@@ -67,8 +73,12 @@ public class Conversiones {
 		
 		if (f == null) return null;
 
+		DecimalFormatSymbols simbolos = new DecimalFormatSymbols();
+		simbolos.setDecimalSeparator(',');
+		simbolos.setGroupingSeparator('.');
+
     	String pattern = "#0.00";
-    	DecimalFormat myFormatter = new DecimalFormat(pattern);
+    	DecimalFormat myFormatter = new DecimalFormat(pattern,simbolos);
     	String output = myFormatter.format(f);
     	
     	output += " %";
