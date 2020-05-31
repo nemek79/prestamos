@@ -171,9 +171,9 @@ export class PrestamosComponent implements OnInit {
       this.autonumerics['importe'].set(0);
       this.frmPrestamo.controls.importeInicialIn.setValue(0);
       this.autonumerics['importeInicial'].set(0);
-      this.frmPrestamo.controls.interesIn.setValue(0);
+      this.frmPrestamo.controls.interesIn.setValue(6);
       this.autonumerics['interes'].set(6);
-      this.frmPrestamo.controls.diaIn.setValue(0);
+      this.frmPrestamo.controls.diaIn.setValue(1);
       this.autonumerics['dia'].set(1);
 
       $('#mdlPrestamos').modal('show');
