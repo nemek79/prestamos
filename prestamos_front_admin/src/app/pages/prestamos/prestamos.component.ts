@@ -95,8 +95,8 @@ export class PrestamosComponent implements OnInit {
 
           // Unbind first in order to avoid any duplicate handler
           // (see https://github.com/l-lin/angular-datatables/issues/87)
-          $('td', row).unbind('click');
-          $('td', row).bind('click', () => {
+          $('td input', row).unbind('click');
+          $('td input', row).bind('click', () => {
             self.toggleCheckId(data.id);
           });
           return row;
