@@ -32,6 +32,8 @@ export class IntermediariosComponent implements OnInit {
 
   public cargando = false;
 
+  public titMdlIntermediarios = '';
+
   constructor(
     private intermediariosSRV: IntermediariosService,
     private formBuilder: FormBuilder
@@ -115,6 +117,8 @@ export class IntermediariosComponent implements OnInit {
 
     if (this.idsSeleccionados.length === 0) {
 
+      this.titMdlIntermediarios = 'Nuevo intermediario';
+
       this.frmIntermediario.controls.nombreIn.setValue('');
       this.frmIntermediario.controls.apellidosIn.setValue('');
       this.frmIntermediario.controls.telefonoIn.setValue('');
@@ -124,6 +128,8 @@ export class IntermediariosComponent implements OnInit {
       $('#mdlIntermediarios').modal('show');
 
     } else {
+
+      this.titMdlIntermediarios = 'Editar intermediario';
 
       const idSeleccionado = this.idsSeleccionados[0];
 

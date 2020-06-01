@@ -49,6 +49,8 @@ export class PrestamosComponent implements OnInit {
 
   public cargando = false;
 
+  public titMdlPrestamos = '';
+
   constructor(
     private prestamosSRV: PrestamosService,
     private intermediariosSRV: IntermediariosService,
@@ -161,6 +163,8 @@ export class PrestamosComponent implements OnInit {
 
     if (this.idsSeleccionados.length === 0) {
 
+      this.titMdlPrestamos = 'Nuevo préstamo';
+
       this.frmPrestamo.controls.intermediarioIn.setValue( this.lstIntermediarios[0]);
       this.selectedIntermediario = this.lstIntermediarios[0];
       this.frmPrestamo.controls.clienteIn.setValue( this.lstClientes[0]);
@@ -179,6 +183,8 @@ export class PrestamosComponent implements OnInit {
       $('#mdlPrestamos').modal('show');
 
     } else {
+
+      this.titMdlPrestamos = 'Editar préstamo';
 
       let idSeleccionado = this.idsSeleccionados[0];
 

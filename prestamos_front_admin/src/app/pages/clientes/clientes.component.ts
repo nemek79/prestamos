@@ -33,6 +33,7 @@ export class ClientesComponent implements OnInit {
   public statusSubmited = false;
 
   public cargando = false;
+  public titMdlClientes = '';
 
   constructor(
     private clientesSRV: ClientesService,
@@ -116,6 +117,8 @@ export class ClientesComponent implements OnInit {
 
     if (this.idsSeleccionados.length === 0) {
 
+      this.titMdlClientes = 'Nuevo cliente';
+
       this.frmCliente.controls.nombreIn.setValue('');
       this.frmCliente.controls.apellidosIn.setValue('');
       this.frmCliente.controls.telefonoIn.setValue('');
@@ -124,6 +127,8 @@ export class ClientesComponent implements OnInit {
       $('#mdlClientes').modal('show');
 
     } else {
+
+      this.titMdlClientes = 'Editar cliente';
 
       const idSeleccionado = this.idsSeleccionados[0];
 
