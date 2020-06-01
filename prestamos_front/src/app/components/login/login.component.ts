@@ -21,9 +21,16 @@ export class LoginComponent implements OnInit {
     public authSRV: AuthService,
     private formBuilder: FormBuilder,
     private route: Router
-  ) { }
+  ) {
+
+  }
 
   ngOnInit() {
+
+
+    if (this.authSRV.isAuthenticated()) {
+      this.route.navigate(['/dashboard']);
+    }
 
     this.usuario = new Usuario();
 

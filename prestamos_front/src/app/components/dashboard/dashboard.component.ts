@@ -28,10 +28,6 @@ export class DashboardComponent implements OnInit {
     this.showMdlComentario = false;
     this.comentarioPrestamoId = null;
 
-    if (!this.authSRV.isAuthenticated()) {
-      this.route.navigate(['/login']);
-    }
-
     this.prestamosSRV.getPrestamosAbiertos().subscribe( (response: InfoResponse) => {
 
       this.lstPrestamos = response.data;
