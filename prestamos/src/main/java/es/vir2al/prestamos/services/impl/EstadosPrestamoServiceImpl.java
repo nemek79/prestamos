@@ -53,7 +53,11 @@ public class EstadosPrestamoServiceImpl implements EstadosPrestamoService {
 		Iterable<EstadoPrestamo> it = this.estadosPrestamoDAO.findAll();
 		
 		for (EstadoPrestamo estado : it) {
-			if (estado.getDescripcion() != "PAGADO") lstEstados.add(new EstadoPrestamoDTO(estado));
+
+			if (estado.getId() < 3) {
+				lstEstados.add(new EstadoPrestamoDTO(estado));
+			}
+
 		}
 		
 		return lstEstados;
