@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
   public formGroup: FormGroup;
   public modify: boolean = false;
   public loading: boolean = false;
+  public error: string = null;
 
   constructor(
     private authSRV: AuthService,
@@ -23,6 +24,8 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+
+    this.error = null;
 
     if (this.authSRV.isAuthenticated()) {
       this.route.navigate(['/inicio']);
@@ -34,6 +37,7 @@ export class LoginComponent implements OnInit {
 
   login(): void {
 
+    this.error = null;
     this.modify = true;
 
     if (!this.checkFormulario()) {
@@ -41,8 +45,10 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    this.usuario.username = this.formGroup.value.username;
+    this.usuario.username = this.formGroup.value.username.toLowerCase();
     this.usuario.password = this.formGroup.value.password;
+
+    console.log(this.usuario)
 
     this.loading = true;
 
@@ -58,13 +64,15 @@ export class LoginComponent implements OnInit {
     }, err => {
 
       if (err.error.error === 'unauthorized' || err.error.error === 'invalid_grant') {
-        console.log('Las credenciales no son correctas')
+        console.log('Las credenciales no son correctas');
+        this.error = 'Las credenciales no son correctas';
         // this.Toast.fire({
         //   type: 'error',
         //   title: 'Las credenciales no son correctas'
         // });
       } else {
         console.log('Error desconocido. Por favor, póngase en contacto con el administrador de la aplicación');
+        this.error = 'Error desconocido. Por favor, póngase en contacto con el administrador de la aplicación';
         // this.Toast.fire({
         //   type: 'error',
         //   title: 'Error desconocido. Por favor, póngase en contacto con el administrador de la aplicación'

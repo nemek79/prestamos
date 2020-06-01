@@ -15,7 +15,8 @@ export class LoginComponent implements OnInit {
 
   public usuario: Usuario;
   public loginForm: FormGroup;
-  public badCredentials = false;
+  public error: string = null;
+  public loading: boolean = false;
 
   constructor(
     public authSRV: AuthService,
@@ -27,6 +28,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
 
+    this.error = null;
 
     if (this.authSRV.isAuthenticated()) {
       this.route.navigate(['/dashboard']);
@@ -45,25 +47,31 @@ export class LoginComponent implements OnInit {
 
   public login(): void {
 
-    this.usuario.username = this.loginForm.controls.username.value;
+    this.error = null;
+
+    this.usuario.username = this.loginForm.controls.username.value.toLowerCase();
     this.usuario.password = this.loginForm.controls.password.value;
+
+    this.loading = true;
 
     this.authSRV.login(this.usuario).subscribe( response => {
 
       this.authSRV.guardarUsuario(response.access_token);
       this.authSRV.guardarToken(response.access_token);
 
+      this.loading = false;
       this.route.navigate(['/dashboard']);
 
     },
     err => {
-      this.usuario = new Usuario();
-      console.log('ERROR EN LA PETICIÓN');
-      console.log(err);
-      // swal.fire('Error Login', 'El usuario o la contraseña no son válidas', 'error');
-      this.badCredentials = true;
-    }
-    );
+      console.log(err)
+      if (err.error.error === 'unauthorized' || err.error.error === 'invalid_grant') {
+        this.error = 'Las credenciales no son correctas';
+      } else {
+        this.error = 'Error desconocido. Por favor, póngase en contacto con el administrador de la aplicación';
+      }
+      this.loading = false;
+    });
 
   }
 
