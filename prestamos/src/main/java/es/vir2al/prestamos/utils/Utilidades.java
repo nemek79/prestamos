@@ -16,6 +16,21 @@ public class Utilidades {
 		
 		return fecha.get(Calendar.MONTH) + 1;
 	}
+
+	/**
+	 * Obtiene el numeral del mes siguiente
+	 * @return
+	 */
+	public static Integer getMesSiguiente() {
+		
+		Calendar fecha = Calendar.getInstance();
+
+		int mesActual = fecha.get(Calendar.MONTH) + 1;
+
+		if (mesActual == 12) return 1;
+		
+		return fecha.get(Calendar.MONTH) + 2;
+	}
 	
 	/**
 	 * Obtiene el año actual

@@ -2,6 +2,7 @@ package es.vir2al.prestamos.enums;
 
 public enum MensualidadEnum {
 
+	ABIERTO("ABIERTO"),
 	PENDIENTE("PENDIENTE"),
 	PAGADO("PAGADO"),
 	RETRASO("RETRASO");

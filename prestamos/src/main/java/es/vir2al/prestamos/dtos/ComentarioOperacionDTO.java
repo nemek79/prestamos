@@ -1,7 +1,6 @@
 package es.vir2al.prestamos.dtos;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import es.vir2al.prestamos.models.ComentarioOperacion;
 import es.vir2al.prestamos.utils.Conversiones;

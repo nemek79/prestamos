@@ -26,6 +26,13 @@ public class EstadoMensualidadDTO implements Serializable {
 	public void setEstado(MensualidadEnum estado) {
 		
 		switch (estado) {
+
+		case ABIERTO:
+			
+			this.descripcion = "Abierto";
+			this.color = "secondary";
+			
+			break;		
 		
 		case PENDIENTE:
 			
