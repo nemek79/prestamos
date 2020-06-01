@@ -1,0 +1,14 @@
+Id,Proyecto,Versión del producto,Categoría,Fecha de envío,Actualizada,Resumen,Estado,Resolución,Resuelta en versión
+18,Prestamos,0.0.1,Correctivo,2020-05-31,2020-06-01,Revisar título ventanas modales,resuelta,corregida,0.0.2
+14,Prestamos Admin,0.0.1,Pequeño evolutivo,2020-05-31,2020-06-01,Cambiar icono y nombre de aplicación en menú,resuelta,corregida,0.0.2
+19,Prestamos,0.0.1,Correctivo,2020-05-31,2020-06-01,Ajustes ventana login,resuelta,corregida,0.0.3
+15,Prestamos Admin,0.0.1,Incidencia,2020-05-31,2020-06-01,Error check item tabla,resuelta,corregida,0.0.2
+22,Préstamos front,0.0.1,Correctivo,2020-06-01,2020-06-01,Usuario logueado que enra en login se redirije automaticamente a dashboard,resuelta,corregida,0.0.2
+16,Prestamos Back,0.0.1,Incidencia,2020-05-31,2020-06-01,Mes creación préstamo no pedir mensualidad,resuelta,corregida,0.0.2
+21,Prestamos Back,0.0.1,Incidencia,2020-06-01,2020-06-01,Error al enviar prestamos para visualizar en el dashboard del front,resuelta,corregida,0.0.2
+11,Prestamos,0.0.1,Incidencia,2020-05-31,2020-06-01,No funciona logout,resuelta,corregida,0.0.2
+8,Prestamos Admin,0.0.1,Pequeño evolutivo,2020-05-31,2020-05-31,Indicador de carga mientras se hace petición http,resuelta,corregida,0.0.2
+7,Prestamos Admin,0.0.1,Correctivo,2020-05-31,2020-05-31,No se puede ocultar menú en modo tablet y movil,resuelta,corregida,0.0.2
+1,Prestamos Admin,0.0.1,Incidencia,2020-05-30,2020-05-31,Erro cálculo mensualidad,resuelta,corregida,0.0.2
+6,Prestamos,0.0.1,Incidencia,2020-05-31,2020-05-31,símbolo miles y decimales cambiado en producción,resuelta,corregida,0.0.2
+5,Prestamos Admin,0.0.1,Incidencia,2020-05-31,2020-05-31,Error al modificar un prestamo,resuelta,corregida,0.0.2
