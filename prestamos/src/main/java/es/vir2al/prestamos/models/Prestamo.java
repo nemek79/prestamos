@@ -132,6 +132,26 @@ public class Prestamo extends V2lAudit {
 		this.diaIntereses = diaIntereses;
 	}
 
+	public Float getInteresesMes() {
+
+		return (this.importe * this.interes)/100;
+
+	}
+
+	public Float getInteresesMesNetos() {
+
+		Float interesesMes = (this.importe * this.interes)/100;
+		Float interesesIntermediario = 0f;
+
+		if (this.intermediario != null) {
+			interesesIntermediario = 
+				(interesesMes * this.intermediario.getPorcComision()) / 100;
+		}
+
+		return interesesMes - interesesIntermediario;
+
+	}
+
 	@Override
 	public String toString() {
 		return "Prestamo [id=" + id + ", fechaIni=" + fechaIni + ", fechaFin=" + fechaFin + ", importe=" + importe

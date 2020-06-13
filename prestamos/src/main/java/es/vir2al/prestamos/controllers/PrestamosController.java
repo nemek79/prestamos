@@ -1,7 +1,9 @@
 package es.vir2al.prestamos.controllers;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.validation.Valid;
 
@@ -127,18 +129,16 @@ public class PrestamosController {
 
 			prestamo = this.prestamosSRV.getById(id);
 			response.setData(prestamo);
-		
+
 		} catch (Exception e) {
 
 			e.printStackTrace();
 			return new ResponseEntity<>("", HttpStatus.INTERNAL_SERVER_ERROR); // TODO informar el error
-		
+
 		}
 
-
-		return new ResponseEntity<>(response,HttpStatus.OK);
+		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
-
 
 	/**
 	 * Crea o edita el prestamo
@@ -198,4 +198,30 @@ public class PrestamosController {
 		return new ResponseEntity<>(null, HttpStatus.OK);
 	}
 
+	/**
+	 * Datos para mostrar en el dashboard de entrada del front
+	 */
+	@GetMapping("/front/dashboard")
+	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+	public ResponseEntity<?> getFrontDashboardInfo() {
+
+		DataResponse<Map<String, String>> response = new DataResponse<Map<String, String>>();
+		Map<String, String> data = new HashMap<String, String>();
+
+		try {
+
+			data = this.prestamosSRV.getInfoDashboardFront(this.estadosSRV.getAbiertos());
+			
+			response.setData(data);
+
+		} catch (Exception e) {
+		
+			e.printStackTrace();
+			return new ResponseEntity<>("", HttpStatus.INTERNAL_SERVER_ERROR);
+		
+		}
+		
+		return new ResponseEntity<>(response, HttpStatus.OK);
+
+	}
 }

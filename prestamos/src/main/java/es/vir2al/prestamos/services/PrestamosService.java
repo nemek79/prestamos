@@ -1,6 +1,7 @@
 package es.vir2al.prestamos.services;
 
 import java.util.List;
+import java.util.Map;
 
 import es.vir2al.prestamos.dtos.EstadoPrestamoDTO;
 import es.vir2al.prestamos.dtos.PrestamoDTO;
@@ -19,4 +20,5 @@ public interface PrestamosService {
 	 */
 	public List<PrestamoDTO> getByEstados(List<EstadoPrestamoDTO> lstEstados) throws Exception;
 	
+	public Map<String,String> getInfoDashboardFront(List<EstadoPrestamoDTO> lstEstados) throws Exception;
 }
