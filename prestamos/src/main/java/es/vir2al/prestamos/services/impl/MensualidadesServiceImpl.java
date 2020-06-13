@@ -57,6 +57,7 @@ public class MensualidadesServiceImpl implements MensualidadesService {
 		}
 	
 		mensualidadBD.setPrestamo(prestamo.asPrestamo());
+		mensualidadBD.setIntereses(prestamo.asPrestamo().getInteresesMesNetos());
 		
 		this.mesualidadesDAO.save(mensualidadBD);
 		

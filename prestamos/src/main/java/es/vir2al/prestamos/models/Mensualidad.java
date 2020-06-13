@@ -29,6 +29,8 @@ public class Mensualidad implements Serializable {
 	
 	private Integer year;
 
+	private Float intereses;
+
 	public Long getId() {
 		return id;
 	}
@@ -60,5 +62,13 @@ public class Mensualidad implements Serializable {
 	public void setYear(Integer year) {
 		this.year = year;
 	}
-	
+
+	public Float getIntereses() {
+		return intereses;
+	}
+
+	public void setIntereses(Float intereses) {
+		this.intereses = intereses;
+	}
+
 }
