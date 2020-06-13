@@ -1,3 +1,36 @@
-.card {
-  margin-top: 10px;
+.info-column {
+    margin-bottom: 5px;
+}
+
+.card{
+    color: rgb(80, 78, 78);
+}
+
+.card.prestamos-activos{
+    background: rgb(139, 224, 150);
+}
+.card.importe-prestado{
+    background: rgb(223, 193, 240);
+}
+.card.intereses-brutos{
+    background: rgb(245, 150, 208);
+}
+.card.intereses-netos{
+    background: rgb(45, 252, 56);
+}
+.card.intereses-estados{
+    background: rgb(247, 200, 162);
+}
+
+h3.info-texto {
+    font-size: 2em;
+}
+
+h3.importe-texto {
+    font-size: 2em;
+}
+
+.loading {
+    min-height:300px;
+    padding-top: 50px;
 }

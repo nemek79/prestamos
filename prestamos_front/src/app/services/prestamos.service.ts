@@ -49,4 +49,15 @@ export class PrestamosService {
     return this.http.post<InfoResponse>(urlEndpoint, comentarioIn);
   }
 
+  /**
+   * Obtiene la información a mostrar en el dashboard
+   */
+  public getDashboardInfo(): Observable<InfoResponse> {
+
+    const urlEndpoint = environment.urlBack + '/prestamos/front/dashboard';
+
+    return this.http.get<InfoResponse>(urlEndpoint);
+
+  }
+
 }

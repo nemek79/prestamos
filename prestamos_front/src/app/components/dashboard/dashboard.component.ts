@@ -12,10 +12,8 @@ import { Router } from '@angular/router';
 })
 export class DashboardComponent implements OnInit {
 
-  public lstPrestamos: Prestamo[];
-  public showMdlComentario: boolean;
-  public comentarioPrestamoId: number;
-  public comentarioInput: string;
+  public info: any;
+  public loading = true;
 
   constructor(
     private prestamosSRV: PrestamosService,
@@ -25,54 +23,20 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
 
-    this.showMdlComentario = false;
-    this.comentarioPrestamoId = null;
+    this.loading = true;
 
-    this.prestamosSRV.getPrestamosAbiertos().subscribe( (response: InfoResponse) => {
+    this.prestamosSRV.getDashboardInfo().subscribe( (response: InfoResponse) => {
 
-      this.lstPrestamos = response.data;
+      this.info = response.data;
+      this.loading = false;
 
     });
 
   }
 
-  public setPagado(prestamosId: number): void {
-
-      this.prestamosSRV.setPrestamoMensualidadPagado(prestamosId)
-        .subscribe( (response: InfoResponse) => {
-
-          location.reload();
-
-      });
-
-  }
-
-  public showComentario(prestamoId) {
-
-    this.comentarioPrestamoId = prestamoId;
-    this.showMdlComentario = true;
-
-  }
-
-  public saveComentario() {
-
-    if (!this.comentarioInput || this.comentarioInput.length <= 2) {
-      return;
-    }
-
-    this.prestamosSRV.createComentario(this.comentarioPrestamoId, this.comentarioInput)
-      .subscribe( (response: InfoResponse) => {
-        this.hideComentario();
-      });
-
-  }
-
-  public hideComentario() {
-
-    this.showMdlComentario = false;
-    this.comentarioPrestamoId = null;
-    this.comentarioInput = null;
-
+  goToPrestamosActivos(){
+    console.log('navigate prestamos')
+    this.route.navigate(['prestamos']);
   }
 
 }

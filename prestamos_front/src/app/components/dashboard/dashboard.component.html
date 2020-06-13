@@ -1,62 +1,111 @@
-<div class="container-fluid">
+<div class="container">
+    <div class="row my-3" *ngIf="!loading">
+        <div class="col-md-4 info-column">
 
-  <div class="card" *ngFor="let prestamo of lstPrestamos">
-    <div class="card-header">
-      <h4 class="my-0 font-weight-normal">Prestamo: {{prestamo.id}}</h4>
-    </div>
-    <div class="card-body">
-      <h6 class="card-subtitle mb-2 text-muted">{{prestamo.cliente.nombre}} {{prestamo.cliente.apellidos}}</h6>
-      <h6 class="card-subtitle mb-2 text-muted">{{prestamo.intermediario?.nombre}} {{prestamo.intermediario?.apellidos}}</h6>
-        <dl class="row">
-          <dt class="col-6">Fecha inicio</dt>
-          <dd class="col-5 text-right">{{prestamo.fechaIni}}</dd>
-          <dt class="col-6">Importe</dt>
-          <dd class="col-5 text-right">{{prestamo.importe}}</dd>
-          <dt class="col-6">Mensualidad</dt>
-          <dd class="col-5 text-right">{{prestamo.mensualidad}}</dd>
-          <dt class="col-6">Estado mes</dt>
-          <dd class="col-5 text-right">({{prestamo.diaIntereses}}) <span class="badge badge-{{prestamo.estadoMensualidad.color}}">{{prestamo.estadoMensualidad.descripcion}}</span></dd>
-        </dl>
-        <button 
-            *ngIf="prestamo.estadoMensualidad.descripcion != 'Pagado'"
-            type="button" 
-            class="btn btn-lg btn-block btn-outline-success"
-            (click)="setPagado(prestamo.id)"
-        >
-          Pagado
-        </button>
-        <button 
-            type="button" 
-            class="btn btn-lg btn-block btn-outline-warning"
-            (click)="showComentario(prestamo.id)"    
-        >
-          Comentario
-        </button>
-    </div>
-  </div>
-
-</div>
-
-<div  id="mdlComentario" [style.display]="showMdlComentario ? 'block' : 'none'"
-      class="modal" 
-      tabindex="-1" 
-      role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-body">
-        <div class="input-group">
-          <input 
-              [(ngModel)]="comentarioInput"
-              id="comentarioInput"
-              type="text" 
-              class="form-control"
-          >
-          <div class="input-group-append" id="btnAddon">
-            <button class="btn btn-outline-secondary" type="button" (click)="saveComentario()">Guardar</button>
-            <button class="btn btn-outline-secondary" type="button" (click)="hideComentario()">Cancelar</button>
-          </div>
+            <div class="card prestamos-activos text-center h-100" (click)="goToPrestamosActivos()">
+                <div class="row px-2 no-gutters">
+                    <div class="col-12">
+                        <h4 class="card-title">PRESTAMOS ACTIVOS</h4>
+                        <h2><i class="fa fa-credit-card fa-3x"></i></h2>
+                    </div>
+                </div>
+                <div class="row px-2 no-gutters">
+                    <div class="col-12 my-auto">
+                        <h3 class="info-texto">{{info.num_prestamos}}</h3>
+                    </div>
+                </div>
+            </div>
+        
         </div>
-      </div>
+
+        <div class="col-md-4 info-column">
+
+            <div class="card importe-prestado text-center h-100">
+                <div class="row px-2 no-gutters">
+                    <div class="col-12">
+                        <h4 class="card-title">IMPORTE PRESTADO</h4>
+                        <h2><i class="fas fa-money-bill-alt fa-3x"></i></h2>
+                    </div>
+                </div>
+                <div class="row px-2 no-gutters">
+                    <div class="col-12 my-auto">
+                        <h3 class="importe-texto">{{info.importe_total}}</h3>
+                    </div>
+                </div>
+            </div>
+        
+        </div>
+
+        <div class="col-md-4 info-column">
+
+            <div class="card intereses-brutos text-center h-100">
+                <div class="row px-2 no-gutters">
+                    <div class="col-12">
+                        <h4 class="card-title">INTERESES</h4>
+                        <h2><i class="fas fa-comment-dollar fa-3x"></i></h2>
+                    </div>
+                </div>
+                <div class="row px-2 no-gutters">
+                    <div class="col-12 my-auto">
+                        <h3 class="importe-texto">{{info.intereses_mes}}</h3>
+                    </div>
+                </div>
+            </div>
+        
+        </div>
+
+        <div class="col-md-4 info-column">
+
+            <div class="card intereses-netos text-center h-100">
+                <div class="row px-2 no-gutters">
+                    <div class="col-12">
+                        <h4 class="card-title">INTERESES NETOS</h4>
+                        <h2><i class="fas fa-hand-holding-usd fa-3x"></i></h2>
+                    </div>
+                </div>
+                <div class="row px-2 no-gutters">
+                    <div class="col-12 my-auto">
+                        <h3 class="importe-texto">{{info.intereses_mes_netos}}</h3>
+                    </div>
+                </div>
+            </div>
+        
+        </div>
+
+        <div class="col-md-4 info-column">
+
+            <div class="card intereses-estados text-center h-100">
+                <div class="row px-2 no-gutters">
+                    <div class="col-12">
+                        <h4 class="card-title">ESTADO</h4>
+                        <h2><i class="fas fa-search-dollar fa-3x"></i></h2>
+                    </div>
+                </div>
+                <div class="row px-2 no-gutters">
+                    <div class="col-3">
+                        <h6>Abiertos</h6>
+                        <h5 class="">{{info.intereses_mes_abierto}}</h5>
+                    </div>
+                    <div class="col-3">
+                        <h6>Pendientes</h6>
+                        <h5 class="">{{info.intereses_mes_pendientes}}</h5>
+                    </div>
+                    <div class="col-3">
+                        <h6>Pagado</h6>
+                        <h5 class="">{{info.intereses_mes_pagado}}</h5>
+                    </div>
+                    <div class="col-3">
+                        <h6>Retraso</h6>
+                        <h5 class="">{{info.intereses_mes_retraso}}</h5>
+                    </div>
+                </div>
+            </div>
+        
+        </div>
+ 
     </div>
-  </div>
+    <div class="loading text-center" *ngIf="loading">
+        <h2><i class="fas fa-circle-notch fa-spin fa-3x"></i></h2>
+        <small>Cargando..</small>
+    </div>
 </div>

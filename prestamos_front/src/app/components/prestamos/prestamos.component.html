@@ -1,0 +1,63 @@
+<div class="container-fluid">
+
+    <div class="card" *ngFor="let prestamo of lstPrestamos">
+      <div class="card-header">
+        <h4 class="my-0 font-weight-normal">Prestamo: {{prestamo.id}}</h4>
+      </div>
+      <div class="card-body">
+        <h6 class="card-subtitle mb-2 text-muted">{{prestamo.cliente.nombre}} {{prestamo.cliente.apellidos}}</h6>
+        <h6 class="card-subtitle mb-2 text-muted">{{prestamo.intermediario?.nombre}} {{prestamo.intermediario?.apellidos}}</h6>
+          <dl class="row">
+            <dt class="col-6">Fecha inicio</dt>
+            <dd class="col-5 text-right">{{prestamo.fechaIni}}</dd>
+            <dt class="col-6">Importe</dt>
+            <dd class="col-5 text-right">{{prestamo.importe}}</dd>
+            <dt class="col-6">Mensualidad</dt>
+            <dd class="col-5 text-right">{{prestamo.mensualidad}}</dd>
+            <dt class="col-6">Estado mes</dt>
+            <dd class="col-5 text-right">({{prestamo.diaIntereses}}) <span class="badge badge-{{prestamo.estadoMensualidad.color}}">{{prestamo.estadoMensualidad.descripcion}}</span></dd>
+          </dl>
+          <button 
+              *ngIf="prestamo.estadoMensualidad.descripcion != 'Pagado'"
+              type="button" 
+              class="btn btn-lg btn-block btn-outline-success"
+              (click)="setPagado(prestamo.id)"
+          >
+            Pagado
+          </button>
+          <button 
+              type="button" 
+              class="btn btn-lg btn-block btn-outline-warning"
+              (click)="showComentario(prestamo.id)"    
+          >
+            Comentario
+          </button>
+      </div>
+    </div>
+  
+  </div>
+  
+  <div  id="mdlComentario" [style.display]="showMdlComentario ? 'block' : 'none'"
+        class="modal" 
+        tabindex="-1" 
+        role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div class="input-group">
+            <input 
+                [(ngModel)]="comentarioInput"
+                id="comentarioInput"
+                type="text" 
+                class="form-control"
+            >
+            <div class="input-group-append" id="btnAddon">
+              <button class="btn btn-outline-secondary" type="button" (click)="saveComentario()">Guardar</button>
+              <button class="btn btn-outline-secondary" type="button" (click)="hideComentario()">Cancelar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

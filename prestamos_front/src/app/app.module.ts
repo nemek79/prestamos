@@ -15,6 +15,8 @@ import { AppComponent } from './app.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HeaderComponent } from './components/header/header.component';
 import { LoginComponent } from './components/login/login.component';
+import { PerfilComponent } from './components/perfil/perfil.component';
+import { PrestamosComponent } from './components/prestamos/prestamos.component';
 
 // SERVICES
 import { PrestamosService } from './services/prestamos.service';
@@ -25,7 +27,6 @@ import { TokenInterceptor } from './interceptors/TokenInterceptor';
 
 // ICONS
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
-import { PerfilComponent } from './components/perfil/perfil.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { PerfilComponent } from './components/perfil/perfil.component';
     DashboardComponent,
     HeaderComponent,
     LoginComponent,
-    PerfilComponent
+    PerfilComponent,
+    PrestamosComponent
   ],
   imports: [
     BrowserModule,
