@@ -157,7 +157,7 @@ public class PrestamosServiceImpl implements PrestamosService {
 		List<Prestamo> lstPrestamosBD = this.prestamosDAO.findByEstadoIn(lstEstadosBD);
 
 		// número de prestamos en estado activo
-		size = lstEstadosBD.size();
+		size = lstPrestamosBD.size();
 		data.put("num_prestamos", size.toString());
 
 		for (Prestamo prestamoBD : lstPrestamosBD) {
@@ -171,9 +171,7 @@ public class PrestamosServiceImpl implements PrestamosService {
 			prestamo.setEstadoMensualidad(estadoMensualidad);
 
 			importeTotal += prestamoBD.getImporte();
-			interesesMes += prestamoBD.getInteresesMes();
-			interesesNetos += prestamoBD.getInteresesMesNetos();
-
+			
 			switch (estadoMensualidad.getDescripcion()) {
 
 				case "Abierto":
@@ -181,12 +179,18 @@ public class PrestamosServiceImpl implements PrestamosService {
 					break;
 				case "Pendiente":
 					interesesPendientes += prestamoBD.getInteresesMesNetos(); 
+					interesesMes += prestamoBD.getInteresesMes();
+					interesesNetos += prestamoBD.getInteresesMesNetos();
 					break;
 				case "Pagado":
 					interesesAbonados += prestamoBD.getInteresesMesNetos(); 
+					interesesMes += prestamoBD.getInteresesMes();
+					interesesNetos += prestamoBD.getInteresesMesNetos();
 					break;
 				case "Retraso":
 					interesesRetraso += prestamoBD.getInteresesMesNetos(); 
+					interesesMes += prestamoBD.getInteresesMes();
+					interesesNetos += prestamoBD.getInteresesMesNetos();
 					break;
 
 			}
