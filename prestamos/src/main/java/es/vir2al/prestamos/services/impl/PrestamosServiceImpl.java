@@ -146,6 +146,7 @@ public class PrestamosServiceImpl implements PrestamosService {
 		Float interesesMes = 0f;
 		Float interesesNetos = 0f;
 		Float interesesAbonados = 0f;
+		Float interesesAbonadosEsperados = 0f;
 		Float interesesRetraso = 0f;
 		Float interesesPendientes = 0f;
 		Float interesesAbierto = 0f;
@@ -183,7 +184,7 @@ public class PrestamosServiceImpl implements PrestamosService {
 					interesesNetos += prestamoBD.getInteresesMesNetos();
 					break;
 				case "Pagado":
-					interesesAbonados += prestamoBD.getInteresesMesNetos(); 
+					interesesAbonadosEsperados += prestamoBD.getInteresesMesNetos(); 
 					interesesMes += prestamoBD.getInteresesMes();
 					interesesNetos += prestamoBD.getInteresesMesNetos();
 					break;
@@ -196,13 +197,21 @@ public class PrestamosServiceImpl implements PrestamosService {
 			}
 
 		}
+
  
 		data.put("importe_total", Conversiones.formatImporte(importeTotal));
 		data.put("intereses_mes", Conversiones.formatImporte(interesesMes));
 		data.put("intereses_mes_netos", Conversiones.formatImporte(interesesNetos));
 		data.put("intereses_mes_abierto", Conversiones.formatImporte(interesesAbierto));
 		data.put("intereses_mes_pendientes", Conversiones.formatImporte(interesesPendientes));
-		data.put("intereses_mes_pagado", Conversiones.formatImporte(interesesAbonados));
+		// obtenemos los intereses pagados reales
+		interesesAbonados = this.mensualidadesSRV.getImporteTotalActual();
+		// comprobamos si los intereses netos esperados son los que realmente tenemos
+		if (interesesAbonadosEsperados != interesesAbonados) {
+			data.put("intereses_mes_pagado", "* " + Conversiones.formatImporte(interesesAbonados));
+		} else {
+			data.put("intereses_mes_pagado", Conversiones.formatImporte(interesesAbonadosEsperados));
+		}
 		data.put("intereses_mes_retraso", Conversiones.formatImporte(interesesRetraso));
 
 		return data;

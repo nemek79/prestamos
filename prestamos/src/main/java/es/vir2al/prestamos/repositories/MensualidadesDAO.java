@@ -1,5 +1,6 @@
 package es.vir2al.prestamos.repositories;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -10,5 +11,7 @@ import es.vir2al.prestamos.models.Prestamo;
 public interface MensualidadesDAO extends JpaRepository<Mensualidad, Long> {
 
 	public Optional<Mensualidad> findByPrestamoAndMesAndYear(Prestamo prestamo, Integer mes, Integer year);
+
+	public Optional<List<Mensualidad>> findByMesAndYear(Integer mes, Integer year);
 	
 }

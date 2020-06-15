@@ -24,5 +24,24 @@ public interface MensualidadesService {
 	public EstadoMensualidadDTO getEstadoMensualidad(PrestamoDTO prestamo, Integer mes, Integer year) throws Exception;
 	
 	public void setMensualidadActual(PrestamoDTO prestamo) throws Exception;
+
+	/**
+	 * Obtiene el total de los importes pagandos para un mes/año
+	 * @since 0.0.4
+	 * @param mes
+	 * @param year
+	 * @return
+	 * @throws Exception
+	 */
+	public Float getImporteTotalByMesAndYear(Integer mes, Integer year) throws Exception;
+
+	/**
+	 * Obtiene el total de los importes pagados para el mes/año actual
+	 * @since 0.0.4
+	 * @return
+	 * @throws Exception
+	 */
+	public Float getImporteTotalActual() throws Exception;
+
 	
 }

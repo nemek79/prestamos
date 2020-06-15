@@ -1,6 +1,7 @@
 package es.vir2al.prestamos.services.impl;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -183,6 +184,30 @@ public class MensualidadesServiceImpl implements MensualidadesService {
 		if (mesActual != mesInicioNum) return false;
 
 		return true;
+	}
+
+	@Override
+	public Float getImporteTotalByMesAndYear(Integer mes, Integer year) throws Exception {
+		
+		Float total = 0f;
+
+		List<Mensualidad> lstMensualidades = this.mesualidadesDAO.findByMesAndYear(mes, year).orElse(null);
+
+		if (lstMensualidades == null) return total;
+
+		for (Mensualidad mensualidad : lstMensualidades) {
+			
+			total += mensualidad.getIntereses();
+
+		}
+
+		return total;
+	}
+
+	@Override
+	public Float getImporteTotalActual() throws Exception {
+		
+		return this.getImporteTotalByMesAndYear(Utilidades.getMesActual(), Utilidades.getYearActual());
 	}
 	
 }
