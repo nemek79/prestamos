@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>es.vir2al</groupId>
 	<artifactId>prestamos</artifactId>
-	<version>0.0.4-SNAPSHOT</version>
+	<version>0.0.5-SNAPSHOT</version>
 	<name>Prestamos</name>
 	<description>Prestamos back</description>
 
