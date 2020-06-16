@@ -6,6 +6,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AuthGuard } from './guards/auth.guard';
 import { RoleGuard } from './guards/role.guard';
 import { PrestamosComponent } from './components/prestamos/prestamos.component';
+import { InfoyearsComponent } from './components/infoyears/infoyears.component';
 
 const routes: Routes = [
   {
@@ -25,6 +26,11 @@ const routes: Routes = [
   {
     path: 'prestamos',
     component: PrestamosComponent,
+    canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_USER'}
+  },
+  {
+    path: 'infoyears',
+    component: InfoyearsComponent,
     canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_USER'}
   },
   {

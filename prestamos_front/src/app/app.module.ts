@@ -17,6 +17,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { LoginComponent } from './components/login/login.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
 import { PrestamosComponent } from './components/prestamos/prestamos.component';
+import { InfoyearsComponent } from './components/infoyears/infoyears.component';
 
 // SERVICES
 import { PrestamosService } from './services/prestamos.service';
@@ -36,7 +37,8 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
     HeaderComponent,
     LoginComponent,
     PerfilComponent,
-    PrestamosComponent
+    PrestamosComponent,
+    InfoyearsComponent
   ],
   imports: [
     BrowserModule,

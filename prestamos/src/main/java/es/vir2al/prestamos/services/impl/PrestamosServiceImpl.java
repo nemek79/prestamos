@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import es.vir2al.prestamos.dtos.EstadoMensualidadDTO;
 import es.vir2al.prestamos.dtos.EstadoPrestamoDTO;
+import es.vir2al.prestamos.dtos.MensualidadDTO;
 import es.vir2al.prestamos.dtos.PrestamoDTO;
 import es.vir2al.prestamos.models.EstadoPrestamo;
 import es.vir2al.prestamos.models.Prestamo;
@@ -146,9 +147,11 @@ public class PrestamosServiceImpl implements PrestamosService {
 		Float interesesMes = 0f;
 		Float interesesNetos = 0f;
 		Float interesesAbonados = 0f;
+		Float interesesAbonadosEsperados = 0f;
 		Float interesesRetraso = 0f;
 		Float interesesPendientes = 0f;
 		Float interesesAbierto = 0f;
+		MensualidadDTO mensualidad = null;
 
 		for (EstadoPrestamoDTO estado : lstEstados) {
 			lstEstadosBD.add(estado.asEstadoPrestamo());
@@ -157,7 +160,7 @@ public class PrestamosServiceImpl implements PrestamosService {
 		List<Prestamo> lstPrestamosBD = this.prestamosDAO.findByEstadoIn(lstEstadosBD);
 
 		// número de prestamos en estado activo
-		size = lstEstadosBD.size();
+		size = lstPrestamosBD.size();
 		data.put("num_prestamos", size.toString());
 
 		for (Prestamo prestamoBD : lstPrestamosBD) {
@@ -171,9 +174,7 @@ public class PrestamosServiceImpl implements PrestamosService {
 			prestamo.setEstadoMensualidad(estadoMensualidad);
 
 			importeTotal += prestamoBD.getImporte();
-			interesesMes += prestamoBD.getInteresesMes();
-			interesesNetos += prestamoBD.getInteresesMesNetos();
-
+			
 			switch (estadoMensualidad.getDescripcion()) {
 
 				case "Abierto":
@@ -181,24 +182,49 @@ public class PrestamosServiceImpl implements PrestamosService {
 					break;
 				case "Pendiente":
 					interesesPendientes += prestamoBD.getInteresesMesNetos(); 
+					interesesMes += prestamoBD.getInteresesMes();
+					interesesNetos += prestamoBD.getInteresesMesNetos();
 					break;
 				case "Pagado":
-					interesesAbonados += prestamoBD.getInteresesMesNetos(); 
+					interesesAbonadosEsperados += prestamoBD.getInteresesMesNetos(); 
+
+					// calculamos en función de si ya sabemos si nos han pagado
+
+					mensualidad = this.mensualidadesSRV.getActualByPrestamo(prestamo);
+
+					if (mensualidad == null) {
+						interesesMes += prestamoBD.getInteresesMes();
+						interesesNetos += prestamoBD.getInteresesMesNetos();
+					} else {
+						interesesMes += mensualidad.getInteresesBrutos(prestamoBD.getIntermediario().getPorcComision());
+						interesesNetos += mensualidad.getIntereses();
+					}
+
 					break;
 				case "Retraso":
 					interesesRetraso += prestamoBD.getInteresesMesNetos(); 
+					interesesMes += prestamoBD.getInteresesMes();
+					interesesNetos += prestamoBD.getInteresesMesNetos();
 					break;
 
 			}
 
 		}
+
  
 		data.put("importe_total", Conversiones.formatImporte(importeTotal));
 		data.put("intereses_mes", Conversiones.formatImporte(interesesMes));
 		data.put("intereses_mes_netos", Conversiones.formatImporte(interesesNetos));
 		data.put("intereses_mes_abierto", Conversiones.formatImporte(interesesAbierto));
 		data.put("intereses_mes_pendientes", Conversiones.formatImporte(interesesPendientes));
-		data.put("intereses_mes_pagado", Conversiones.formatImporte(interesesAbonados));
+		// obtenemos los intereses pagados reales
+		interesesAbonados = this.mensualidadesSRV.getImporteTotalActual();
+		// comprobamos si los intereses netos esperados son los que realmente tenemos
+		if (interesesAbonadosEsperados != interesesAbonados) {
+			data.put("intereses_mes_pagado", "* " + Conversiones.formatImporte(interesesAbonados));
+		} else {
+			data.put("intereses_mes_pagado", Conversiones.formatImporte(interesesAbonadosEsperados));
+		}
 		data.put("intereses_mes_retraso", Conversiones.formatImporte(interesesRetraso));
 
 		return data;

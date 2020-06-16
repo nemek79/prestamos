@@ -60,4 +60,15 @@ export class PrestamosService {
 
   }
 
+  /**
+   * Obtiene la información del mes para generar la grafica
+   */
+  public getInfoYear(year:string): Observable<any> {
+
+    const urlEndpoint = environment.urlBack + '/prestamos/front/infoyear/'+year;
+
+    return this.http.get<any>(urlEndpoint);
+
+  }
+
 }
