@@ -1,50 +1,56 @@
 
-<div class="container">
+<div class="container" >
 
 
-  <div class="row">
-    <div class="col-12">
-      <div class="form-group">
-        <label for="selectYear">Seleccionar año</label>
-        <select class="form-control"
-                id="selectYear"
-                [(ngModel)]="year"
-                (change)="handleClickYear()"
-        >
-          <option>2020</option>
-          <option>2019</option>
-        </select>
+  <div class="main-container" >
+    <div class="row">
+      <div class="col-12">
+        <div class="form-group">
+          <label for="selectYear">Seleccionar año</label>
+          <select class="form-control"
+                  id="selectYear"
+                  [(ngModel)]="year"
+                  (change)="handleClickYear()"
+          >
+            <option>2020</option>
+            <option>2019</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" >
+      <div class="col-12 mx-auto">
+        <div class="card">
+          <div class="card-header">
+            Información año {{year}}
+          </div>
+          <div class="card-body">
+            <dl class="row">
+              <dt class="col-4">Intereses:</dt>
+              <dd class="col-8">{{total}} €</dd>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" >
+      <div class="col-md-12 mx-auto">
+        <div class="card">
+          <div class="card-header">
+            Intereses x meses
+          </div>
+          <div class="card-body">
+            <canvas id="myChart"></canvas>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-
-  <div class="row" >
-    <div class="col-12 mx-auto">
-      <div class="card">
-        <div class="card-header">
-          Información año {{year}}
-        </div>
-        <div class="card-body">
-          <dl class="row">
-            <dt class="col-4">Intereses:</dt>
-            <dd class="col-8">3000 €</dd>
-          </dl>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="row" >
-    <div class="col-md-12 mx-auto">
-      <div class="card">
-        <div class="card-header">
-          Intereses x meses
-        </div>
-        <div class="card-body">
-          <canvas id="myChart"></canvas>
-        </div>
-      </div>
-    </div>
+  <div class="loading text-center" *ngIf="loading">
+    <h2><i class="fas fa-circle-notch fa-spin fa-3x"></i></h2>
+    <small>Cargando..</small>
   </div>
 </div>
 
