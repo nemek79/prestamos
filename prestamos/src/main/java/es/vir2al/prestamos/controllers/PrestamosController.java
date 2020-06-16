@@ -224,4 +224,29 @@ public class PrestamosController {
 		return new ResponseEntity<>(response, HttpStatus.OK);
 
 	}
+
+
+   @GetMapping("/front/infoyear/{year}")
+   @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+   public ResponseEntity<?> getFrontInfoYear(
+		@PathVariable("year") Integer year
+   ) {
+
+	   Map<Integer, Float> data = new HashMap<Integer, Float>();
+
+	   try {
+
+		   // Obtenemos la informacion de los intereses por mes del año indicado
+		   data = this.mensualidadesSRV.getInteresesTotalesByMesFromYear(year);
+
+	   } catch (Exception e) {
+	   
+		   e.printStackTrace();
+		   return new ResponseEntity<>("", HttpStatus.INTERNAL_SERVER_ERROR);
+	   
+	   }
+	   
+	   return new ResponseEntity<>(data, HttpStatus.OK);
+
+   }
 }

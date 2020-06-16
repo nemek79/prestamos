@@ -1,5 +1,7 @@
 package es.vir2al.prestamos.services;
 
+import java.util.Map;
+
 import es.vir2al.prestamos.dtos.EstadoMensualidadDTO;
 import es.vir2al.prestamos.dtos.MensualidadDTO;
 import es.vir2al.prestamos.dtos.PrestamoDTO;
@@ -53,5 +55,13 @@ public interface MensualidadesService {
 	public MensualidadDTO getActualByPrestamo(PrestamoDTO prestamo) throws Exception;
 
 
+	/**
+	 * Obtiene los intereses agrupados por mes del año indicado por parametro
+	 * @since 0.0.4
+	 * @param year
+	 * @return
+	 * @throws Exception
+	 */
+	public Map<Integer, Float> getInteresesTotalesByMesFromYear(Integer year) throws Exception;
 	
 }
