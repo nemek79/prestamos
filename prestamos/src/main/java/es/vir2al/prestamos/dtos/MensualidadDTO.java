@@ -82,4 +82,21 @@ public class MensualidadDTO implements Serializable {
 		this.intereses = intereses;
 	}
 
+	/**
+	 * Calcula los intereses brutos a partir de la comision del intermediario
+	 * @param comision
+	 * @throws Exception
+	 */
+	public Float getInteresesBrutos(Float comision) throws Exception {
+
+		if (comision == null || comision == 0) return this.intereses;
+
+		if (this.intereses == null) throw new Exception("No se puede calcular intereses brutos sin intereses netos");
+
+		Float intBrutos = (this.intereses * 100) / (100 - comision);
+
+		return intBrutos;
+
+	}
+
 }

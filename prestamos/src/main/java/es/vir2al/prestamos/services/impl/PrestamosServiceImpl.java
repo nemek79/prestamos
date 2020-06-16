@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import es.vir2al.prestamos.dtos.EstadoMensualidadDTO;
 import es.vir2al.prestamos.dtos.EstadoPrestamoDTO;
+import es.vir2al.prestamos.dtos.MensualidadDTO;
 import es.vir2al.prestamos.dtos.PrestamoDTO;
 import es.vir2al.prestamos.models.EstadoPrestamo;
 import es.vir2al.prestamos.models.Prestamo;
@@ -150,6 +151,7 @@ public class PrestamosServiceImpl implements PrestamosService {
 		Float interesesRetraso = 0f;
 		Float interesesPendientes = 0f;
 		Float interesesAbierto = 0f;
+		MensualidadDTO mensualidad = null;
 
 		for (EstadoPrestamoDTO estado : lstEstados) {
 			lstEstadosBD.add(estado.asEstadoPrestamo());
@@ -185,8 +187,19 @@ public class PrestamosServiceImpl implements PrestamosService {
 					break;
 				case "Pagado":
 					interesesAbonadosEsperados += prestamoBD.getInteresesMesNetos(); 
-					interesesMes += prestamoBD.getInteresesMes();
-					interesesNetos += prestamoBD.getInteresesMesNetos();
+
+					// calculamos en función de si ya sabemos si nos han pagado
+
+					mensualidad = this.mensualidadesSRV.getActualByPrestamo(prestamo);
+
+					if (mensualidad == null) {
+						interesesMes += prestamoBD.getInteresesMes();
+						interesesNetos += prestamoBD.getInteresesMesNetos();
+					} else {
+						interesesMes += mensualidad.getInteresesBrutos(prestamoBD.getIntermediario().getPorcComision());
+						interesesNetos += mensualidad.getIntereses();
+					}
+
 					break;
 				case "Retraso":
 					interesesRetraso += prestamoBD.getInteresesMesNetos(); 

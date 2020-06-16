@@ -43,5 +43,15 @@ public interface MensualidadesService {
 	 */
 	public Float getImporteTotalActual() throws Exception;
 
+	/**
+	 * Obtiene la mensualidad del mes en curso para el prestamos indicado
+	 * @since 0.0.2
+	 * @param prestamo
+	 * @return MensualidadDTO
+	 * @throws Exception
+	 */
+	public MensualidadDTO getActualByPrestamo(PrestamoDTO prestamo) throws Exception;
+
+
 	
 }

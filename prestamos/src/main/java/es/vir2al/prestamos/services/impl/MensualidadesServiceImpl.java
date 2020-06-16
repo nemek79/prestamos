@@ -209,5 +209,19 @@ public class MensualidadesServiceImpl implements MensualidadesService {
 		
 		return this.getImporteTotalByMesAndYear(Utilidades.getMesActual(), Utilidades.getYearActual());
 	}
+
+	@Override
+	public MensualidadDTO getActualByPrestamo(PrestamoDTO prestamo) throws Exception {
+		
+		Mensualidad mensualidadBD = this.mesualidadesDAO.findByPrestamoAndMesAndYear(prestamo.asPrestamo(), 
+																						Utilidades.getMesActual(), 
+																						Utilidades.getYearActual())
+										.orElse(null);
+
+		if (mensualidadBD == null) return null;
+
+		return new MensualidadDTO(mensualidadBD);
+
+	}
 	
 }
