@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="Prestamos" basedir="." default="main">
+
+    <description>
+        Proyecto Prestamos
+    </description>
+
+    <property name="version" value="${version}" />
+    <property name="mavenExe" location="C:\Program Files\maven\bin\mvn.cmd"/>
+    <property name="winrarExe" location="C:\Program Files\WinRAR\WinRAR.exe"/>
+    <property name="outputWar" location="E:\DEVOPS\Versiones\Prestamos" />
+
+
+    <target name="clean_output_dir">
+        <delete dir="${outputWar}\v_${version}" />
+    </target>
+
+    <target name="build_back">
+        <delete dir="${basedir}\prestamos\target" />
+        <exec dir="${basedir}\prestamos" executable="${mavenExe}">
+           <arg value="package"/>
+           <arg value="-Dmaven.test.skip=true"/>
+           <arg value="-Dcurrent.version=${version}"/>
+        </exec>
+		<copy file="${basedir}\prestamos\target\prestamos-${version}-SNAPSHOT.jar" 
+			  tofile="${outputWar}\v_${version}\prestamos.jar" 
+			  overwrite="true" />
+        <delete dir="${basedir}\prestamos\target" />
+    </target>
+
+
+    <target name="build_front">
+        <delete dir="${basedir}\prestamos_front\dist" /> 
+        <exec dir="${basedir}\prestamos_front" executable="ng.cmd">
+            <arg value="build"/>
+            <arg value="--prod"/>
+        </exec>
+              
+        <copy todir="${outputWar}\v_${version}\prestamosfront\">
+            <fileset dir="${basedir}\prestamos_front\dist\prestamosfront">
+            </fileset>
+        </copy>
+        <delete dir="${basedir}\prestamos_front\dist" /> 
+    </target>
+
+    <target name="build_admin">
+        <delete dir="${basedir}\prestamos_front_admin\dist" /> 
+        <exec dir="${basedir}\prestamos_front_admin" executable="ng.cmd">
+            <arg value="build"/>
+            <arg value="--prod"/>
+        </exec>       
+        <copy todir="${outputWar}\v_${version}\prestamosadmin\">
+            <fileset dir="${basedir}\prestamos_front_admin\dist\pretamosadmin">
+            </fileset>
+        </copy>
+        <delete dir="${basedir}\prestamos_front_admin\dist" />
+    </target>
+
+    <target name="compress_version">
+        <exec dir="${outputWar}" executable="${winrarExe}">
+            <arg value="a"/>
+            <arg value="-r"/>
+            <arg value="prestamos_v_${version}.rar"/>
+            <arg value="v_${version}"/>
+        </exec>  
+        <delete dir="${outputWar}\v_${version}" />     
+    </target>
+
+
+    <ftp server="ftp.apache.org"
+    remotedir="incoming"
+    userid="anonymous"
+    password="me@myorg.com"
+    depends="yes">
+   <fileset dir="htdocs/manual"/>
+</ftp>
+
+    <target name="main" depends="build_back,build_front,build_admin,compress_version"/>
+
+</project>

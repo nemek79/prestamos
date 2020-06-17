@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>es.vir2al</groupId>
 	<artifactId>prestamos</artifactId>
-	<version>0.0.5-SNAPSHOT</version>
+	<version>${current.version}-SNAPSHOT</version>
 	<name>Prestamos</name>
 	<description>Prestamos back</description>
 
@@ -76,12 +76,7 @@
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		
-		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-test</artifactId>
-			<scope>test</scope>
-		</dependency>
+
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
