@@ -10,6 +10,8 @@
     <property name="mavenExe" location="C:\Program Files\maven\bin\mvn.cmd"/>
     <property name="winrarExe" location="C:\Program Files\WinRAR\WinRAR.exe"/>
     <property name="outputWar" location="E:\DEVOPS\Versiones\Prestamos" />
+    <property name="ftpExe" location="C:\Users\David\Google Drive\VIR2AL\DEVOPS\ScriptsInstalacion" />
+    
 
 
     <target name="clean_output_dir">
@@ -67,15 +69,13 @@
         <delete dir="${outputWar}\v_${version}" />     
     </target>
 
+    <target name="ftp_version" > 
+        <exec executable="cmd" dir="${ftpExe}">   
+            <arg value="/C" />
+            <arg value="up_version_prestamos.bat"/>               
+        </exec> 
+    </target>
 
-    <ftp server="ftp.apache.org"
-    remotedir="incoming"
-    userid="anonymous"
-    password="me@myorg.com"
-    depends="yes">
-   <fileset dir="htdocs/manual"/>
-</ftp>
-
-    <target name="main" depends="build_back,build_front,build_admin,compress_version"/>
+    <target name="main" depends="build_back,build_front,build_admin,compress_version,ftp_version"/>
 
 </project>

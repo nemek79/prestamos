@@ -1,7 +1,7 @@
 export const environment = {
   production: true,
   client: 'PRESTAMOS',
-  clientPass: '',
+  clientPass: 'Prestamo$01P@sswd',
   urlEndPointAuth: 'http://vir2al.es:8099',
-  urlBack: 'http://localhost:8092/api'
+  urlBack: 'http://vir2al.es:8092/api'
 };
